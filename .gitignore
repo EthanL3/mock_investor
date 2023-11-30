@@ -1,2 +1,4 @@
 # Local Config File
 local.properties
+.idea/
+app/.idea/
