@@ -1,5 +1,7 @@
 # Local Config File
 local.properties
+
+# build folders
 .idea/
 app/.idea/
 .gradle/
