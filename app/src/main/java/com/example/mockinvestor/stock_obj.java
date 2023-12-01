@@ -32,33 +32,9 @@ public class stock_obj{
     public char[] getMrktValue(){
 	return String.valueOf(c_market_value);
     }
-
-    public char[] getBkValue(){
-	return String.valueOf(c_book_value);
-    }
-
-    public char[] getEps(){
-	return String.valueOf(c_eps);
-    }
-
-    public char[] getPriceEarnings(){
-	return String.valueOf(price_earnings_growth);
-    }
-
-    public char[] getPriceEarningstoGrowth(){
-	return String.valueOf(price_earnings_growth);
-    }
-
-    public char[] getDivYield(){
-	return String.valueOf(dividend_yield);
-    }
-    
-    public char[] getPriceBookRatio(){
-	return String.valueOf(price_book_ratio);
-    }
-
-    public char[] getPriceEarningsRatio(){
-	return String.valueOf(price_earnings_ratio);
+	
+    public char[] getLossesOrGains(){
+	return String.valueOf(c_market_value-g_buy_price);
     }
 
      public void initialize(char[] symbol, float price){
