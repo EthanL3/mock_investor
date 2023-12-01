@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.example.mockinvestor.stock_obj;
-
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
@@ -19,7 +18,7 @@ public class apicall {
     String apiKey;
     OkHttpClient client;
 
-    public apicall(String apikey) {
+    public apicall() {
         this.apiKey = System.getenv("YAHOO_FINANCE_API_KEY");
         this.client = new OkHttpClient();
     }
@@ -47,3 +46,4 @@ public class apicall {
         return null;
     }
 }
+
