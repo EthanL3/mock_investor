@@ -7,7 +7,7 @@ public class Portfolio {
 
     private int portfolioSize = 0;
     private int[] shares = new int[100]; // Assuming a maximum of 100 shares in the portfolio
-    private StockObj[] prtfl = new StockObj[100]; // Assuming a maximum of 100 stocks in the portfolio
+    private stock_obj[] prtfl = new stock_obj[100]; // Assuming a maximum of 100 stocks in the portfolio
 
     private float holdingPeriodReturn; // Holding period return: total return of a portfolio over user tenure (saved as percentage)
     private float averageReturn; // Average return of your portfolio per annum
