@@ -2,53 +2,72 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context =".MainActivity">
+    tools:context = ".MainActivity">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to your portfolio"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif"
-        android:id="@+id/txtViewWelcome"/>
+        android:id="@+id/topLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stock"
+            android:id="@+id/txtViewStock"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:id="@+id/txtViewValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Total Value of Stock"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/txtViewStock"
+            android:layout_marginLeft="30dp"/>
+        <TextView
+            android:id="@+id/txtViewGain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Gain/Loss"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/txtViewValue"
+            android:layout_marginLeft="30dp"/>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="48dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnPortfolio"
-        android:layout_below="@id/txtViewWelcome"
+        android:text="Trade"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:text="Portfolio"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/btnTrade"
-        android:layout_below="@id/btnPortfolio"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:text="Trade"/>
+        android:layout_below="@id/topLayout"
+        android:layout_marginTop="500dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnOptions"
+        android:text="Refresh"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btnRefresh"
         android:layout_below="@id/btnTrade"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:text="Options"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        android:layout_below="@id/btnOptions"
-        android:text="by Team"
-        android:id="@+id/txtViewBy"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"/>
+        android:layout_marginTop="50dp"/>
+
 </RelativeLayout>
