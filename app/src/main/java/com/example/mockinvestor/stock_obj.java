@@ -111,6 +111,11 @@ public class stock_obj{
             System.out.println("Error: Dividends can only be saved at the end of the year");
         }
     }
+
+   public float returnFLOAT_MrktValue() {
+	return c_market_value;
+   }
+
 //END OF FUNCTIONS TO USE OUTSIDE CLASS-----------------------------------------------------------------------------
 
 //ignore this test function:
