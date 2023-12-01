@@ -19,6 +19,48 @@ public class stock_obj{
     private float[][] book_val_history = new float[3][12];
     private float[] annual_div_history = new float[3];
 
+//FUNCTIONS TO USE OUTSIDE THIS CLASS-----------------------------------------------------------------------------
+
+     public char[] getSymbol(){
+	return g_symbol;
+    }
+
+     public char[] getBuyPrice(){
+	return g_buy_price;
+    }
+    
+    public char[] getMrktValue(){
+	return c_market_value;
+    }
+
+    public char[] getBkValue(){
+	return c_book_value;
+    }
+
+    public char[] getEps(){
+	return c_eps;
+    }
+
+    public char[] getPriceEarnings(){
+	return price_earnings_growth;
+    }
+
+    public char[] getPriceEarningstoGrowth(){
+	return price_earnings_growth;
+    }
+
+    public char[] getDivYield(){
+	return dividend_yield;
+    }
+    
+    public char[] getPriceBookRatio(){
+	return price_book_ratio;
+    }
+
+    public char[] getPriceEarningsRatio(){
+	return price_earnings_ratio;
+    }
+
      public void initialize(char[] symbol, float price){
          initialize(symbol, price, 0, 0);
     }
@@ -36,7 +78,7 @@ public class stock_obj{
 	    c_eps = eps_val;
 	}
     }
-    
+
     public void monthlyUpdate(float mrkt_val) {
         monthlyUpdate(mrkt_val, 0, 0);
     }
@@ -60,8 +102,10 @@ public class stock_obj{
             System.out.println("Error: Dividends can only be saved at the end of the year");
         }
     }
+//END OF FUNCTIONS TO USE OUTSIDE CLASS-----------------------------------------------------------------------------
 
-    public void printStockDetails() {
+//ignore this test function:
+    /*public void printStockDetails() {
         System.out.println("Stock: " + g_symbol);
         System.out.println("Buy Price: " + g_buy_price);
         System.out.println("Market Price: " + c_market_value);
@@ -71,7 +115,7 @@ public class stock_obj{
 	System.out.println("Dividend Yield: " + dividend_yield);
         System.out.println("Price to Book Ratio: " + price_book_ratio);
         System.out.println("Price to Earnings Ratio: " + price_earnings_ratio);
-    }
+    }*/
 
     // Calculation functions
 
