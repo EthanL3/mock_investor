@@ -1,8 +1,8 @@
 package com.example.mockinvestor;
 
-public class stock_obj {
+public class stock_obj{
 
-    private char[] g_stockID;
+    private char[] g_symbol;
     private float g_buy_price = 0;
     private float c_market_value = 0;
     private float c_book_value = 0;
@@ -19,6 +19,24 @@ public class stock_obj {
     private float[][] book_val_history = new float[3][12];
     private float[] annual_div_history = new float[3];
 
+     public void initialize(char[] symbol, float price){
+         initialize(symbol, price, 0, 0);
+    }
+    
+     public void initialize(char[] symbol, float price, float bk_val){
+	 initialize(symbol, price, bk_val, 0);
+    }
+    
+    public void initialize(char[] symbol, float price, float bk_val, float eps_val){
+	if ((count_month == 0) && (count_year == 0)){
+	    g_symbol = symbol;
+	    g_buy_price = price;
+	    c_market_value = price; //market value is buy upon buying
+	    c_book_value = bk_val;
+	    c_eps = eps_val;
+	}
+    }
+    
     public void monthlyUpdate(float mrkt_val) {
         monthlyUpdate(mrkt_val, 0, 0);
     }
@@ -44,7 +62,7 @@ public class stock_obj {
     }
 
     public void printStockDetails() {
-        System.out.println("Stock: " + g_stockID);
+        System.out.println("Stock: " + g_symbol);
         System.out.println("Buy Price: " + g_buy_price);
         System.out.println("Market Price: " + c_market_value);
         System.out.println("Book Price: " + c_book_value);
