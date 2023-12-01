@@ -1,43 +1,21 @@
-public class StockObj {
+public class stock_obj {
 
     private char[] g_stockID;
-    private float g_buy_price;
-    private float c_market_value;
-    private float c_book_value;
-    private float c_eps;
-    private int count_month;
-    private int count_year;
-    private float price_earnings_growth;
-    private float dividend_yield;
-    private float price_book_ratio;
-    private float price_earnings_ratio;
+    private float g_buy_price = 0;
+    private float c_market_value = 0;
+    private float c_book_value = 0;
+    private float c_eps = 0;
+    private int count_month = 0;
+    private int count_year = 0;
+    private float price_earnings_growth = 0;
+    private float dividend_yield = 0;
+    private float price_book_ratio = 0;
+    private float price_earnings_ratio = 0;
 
     private float[][] eps_history = new float[3][12];
     private float[][] market_val_history = new float[3][12];
     private float[][] book_val_history = new float[3][12];
     private float[] annual_div_history = new float[3];
-
-    public StockObj(char[] ID, float price) {
-        this(ID, price, 0, 0);
-    }
-
-    public StockObj(char[] ID, float price, float bk_val) {
-        this(ID, price, bk_val, 0);
-    }
-
-    public StockObj(char[] ID, float price, float bk_val, float eps_val) {
-        this.g_stockID = ID;
-        this.g_buy_price = price;
-        this.c_market_value = price;
-        this.c_book_value = bk_val;
-        this.c_eps = eps_val;
-        this.count_month = 0;
-        this.count_year = 0;
-        calcPriceEarningsGrowth();
-        calcPriceBookRatio();
-        calcPriceEarningsRatio();
-        calcDividendYield();
-    }
 
     public void monthlyUpdate(float mrkt_val) {
         monthlyUpdate(mrkt_val, 0, 0);
@@ -48,10 +26,10 @@ public class StockObj {
     }
 
     public void monthlyUpdate(float mrkt_val, float bk_val, float eps_val) {
-        updateHistory();
         updateCurrentValues(mrkt_val, bk_val, eps_val);
         calculateRatios();
         updateTimeByMonth();
+	updateHistory();
     }
 
     public void endOfYearDiv(float div) {
@@ -64,14 +42,15 @@ public class StockObj {
     }
 
     public void printStockDetails() {
-        System.out.println("Stock: " + String.valueOf(getStockID()));
-        System.out.println("Buy Price: " + getBuyPrice());
-        System.out.println("Market Price: " + getMarketValue());
-        System.out.println("Book Price: " + getBookValue());
-        System.out.println("Earnings per Share: " + getEps());
-        System.out.println("Price to Growth of Earnings per Share: " + getPriceEarningsGrowth());
-        System.out.println("Price to Book Ratio: " + getPriceBookRatio());
-        System.out.println("Price to Earnings Ratio: " + getPriceEarningsRatio());
+        System.out.println("Stock: " + g_stockID);
+        System.out.println("Buy Price: " + g_buy_price);
+        System.out.println("Market Price: " + c_market_value);
+        System.out.println("Book Price: " + c_book_value);
+        System.out.println("Earnings per Share: " + c_eps);
+        System.out.println("Price to Growth of Earnings per Share: " + price_earnings_growth);
+	System.out.println("Dividend Yield: " + dividend_yield);
+        System.out.println("Price to Book Ratio: " + price_book_ratio);
+        System.out.println("Price to Earnings Ratio: " + price_earnings_ratio);
     }
 
     // Calculation functions
@@ -138,14 +117,4 @@ public class StockObj {
             count_month++;
         }
     }
-
-    /*public static void main(String[] args) {
-        StockObj samsung = new StockObj("Samsung Electronics Co Ltd".toCharArray(), 56.10f, 39.01f, 4.02f);
-
-        samsung.printStockDetails();
-
-        samsung.monthlyUpdate(58.30f, 37.01f, 3.00f);
-        samsung.printStockDetails();
-    }*/
 }
-
