@@ -1,6 +1,8 @@
 package com.example.mockinvestor;
 
-public class Stock {
+import java.io.Serializable;
+
+public class Stock implements Serializable {
     private String symbol, name, quantity, currentValue, gainLoss;
 
     public Stock(String symbol, String name, String quantity, String currentValue, String gainLoss){

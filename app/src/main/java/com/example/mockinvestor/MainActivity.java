@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
+    private ArrayList<Stock> stocks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         RecyclerView recycler_view = findViewById(R.id.recycler_view);
 
-        ArrayList<Stock> stocks = new ArrayList<>();
+
 
         stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
         stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
@@ -49,14 +50,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-
-
     }
-
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(this, StockInfoActivity.class);
-        //use a parsable to pass over all the data i will need for StockInfoActivity
+        //pass the entire stock object to the next activity
+        intent.putExtra("stock", stocks.get(position));
+
 
         startActivity(intent);
     }
