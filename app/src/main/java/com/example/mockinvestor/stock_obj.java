@@ -70,12 +70,21 @@ public class stock_obj{
     }
     
     public void initialize(char[] symbol, float price, float bk_val, float eps_val){
-	 g_symbol = symbol;
-         g_buy_price = price;
-         c_market_value = price; //market value is buy upon buying
-         c_book_value = bk_val;
-         c_eps = eps_val;
+	    if ((count_year == 0) && (count_month == 0))
+		g_symbol = symbol;
+         	g_buy_price = price;
+         	c_market_value = price; //market value is buy upon buying
+         	c_book_value = bk_val;
+        	c_eps = eps_val;
+    	    }
     }
+
+    public void multiply_by_shares(int shares) {
+	if ((count_year == 0) && (count_month == 0)){
+        	updateCurrentValues(mrkt_val*shares, bk_val*shares, eps_val*shares);
+	}
+    }
+
 
     public void monthlyUpdate(float mrkt_val) {
         monthlyUpdate(mrkt_val, 0, 0);
@@ -146,7 +155,7 @@ public class stock_obj{
         eps_history[count_year][count_month] = c_eps;
     }
 
-    private void updateCurrentValues(float mrkt_val, float bk_val, float eps_val) {
+    public void updateCurrentValues(float mrkt_val, float bk_val, float eps_val) {
         c_market_value = mrkt_val;
         c_book_value = bk_val;
         c_eps = eps_val;
