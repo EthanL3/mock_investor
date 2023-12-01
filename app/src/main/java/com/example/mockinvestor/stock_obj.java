@@ -139,13 +139,13 @@ public class StockObj {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         StockObj samsung = new StockObj("Samsung Electronics Co Ltd".toCharArray(), 56.10f, 39.01f, 4.02f);
 
         samsung.printStockDetails();
 
         samsung.monthlyUpdate(58.30f, 37.01f, 3.00f);
         samsung.printStockDetails();
-    }
+    }*/
 }
 
