@@ -17,30 +17,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stock"
-            android:id="@+id/txtViewStock"
+            android:id="@+id/stock_title"
             android:textSize="15sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="# Shares"
+            android:id="@+id/shares_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:layout_toRightOf="@id/stock_title"
+            android:layout_marginLeft="30dp"/>
 
         <TextView
-            android:id="@+id/txtViewValue"
+            android:id="@+id/value_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Total Value of Stock"
+            android:text="Value of Stock"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_toRightOf="@id/txtViewStock"
+            android:layout_toRightOf="@id/shares_title"
             android:layout_marginLeft="30dp"/>
         <TextView
-            android:id="@+id/txtViewGain"
+            android:id="@+id/gains_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:text="Gain/Loss"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_toRightOf="@id/txtViewValue"
+            android:layout_toRightOf="@id/value_title"
             android:layout_marginLeft="30dp"/>
     </RelativeLayout>
 

@@ -24,7 +24,12 @@
         </activity>
 
         <activity
-            android:name = ".Trade"
+            android:name = ".TradeActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name = ".StockInfoActivity"
             android:exported="false">
         </activity>
 

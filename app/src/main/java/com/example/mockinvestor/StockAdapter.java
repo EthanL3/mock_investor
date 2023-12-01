@@ -2,6 +2,7 @@ package com.example.mockinvestor;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,8 +12,8 @@ import java.util.ArrayList;
 
 public class StockAdapter extends RecyclerView.Adapter<ViewHolder>{
 
-    Context context;
-    ArrayList<Stock> stocks = new ArrayList<>();
+    private Context context;
+    private ArrayList<Stock> stocks = new ArrayList<>();
 
     public StockAdapter(Context context, ArrayList<Stock> stocks) {
         this.context = context;
