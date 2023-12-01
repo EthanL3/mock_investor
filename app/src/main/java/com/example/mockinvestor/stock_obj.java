@@ -77,12 +77,14 @@ public class stock_obj{
          	c_book_value = bk_val;
         	c_eps = eps_val;
     	    }
+	   calculateRatios();
     }
 
     public void multiply_by_shares(int shares) {
 	if ((count_year == 0) && (count_month == 0)){
         	updateCurrentValues(mrkt_val*shares, bk_val*shares, eps_val*shares);
 	}
+        calculateRatios();
     }
 
 
