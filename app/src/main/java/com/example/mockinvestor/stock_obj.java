@@ -26,39 +26,39 @@ public class stock_obj{
     }
 
      public char[] getBuyPrice(){
-	return g_buy_price;
+	return String.valueOf(g_buy_price);
     }
     
     public char[] getMrktValue(){
-	return c_market_value;
+	return String.valueOf(c_market_value);
     }
 
     public char[] getBkValue(){
-	return c_book_value;
+	return String.valueOf(c_book_value);
     }
 
     public char[] getEps(){
-	return c_eps;
+	return String.valueOf(c_eps);
     }
 
     public char[] getPriceEarnings(){
-	return price_earnings_growth;
+	return String.valueOf(price_earnings_growth);
     }
 
     public char[] getPriceEarningstoGrowth(){
-	return price_earnings_growth;
+	return String.valueOf(price_earnings_growth);
     }
 
     public char[] getDivYield(){
-	return dividend_yield;
+	return String.valueOf(dividend_yield);
     }
     
     public char[] getPriceBookRatio(){
-	return price_book_ratio;
+	return String.valueOf(price_book_ratio);
     }
 
     public char[] getPriceEarningsRatio(){
-	return price_earnings_ratio;
+	return String.valueOf(price_earnings_ratio);
     }
 
      public void initialize(char[] symbol, float price){
