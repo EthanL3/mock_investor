@@ -70,13 +70,11 @@ public class stock_obj{
     }
     
     public void initialize(char[] symbol, float price, float bk_val, float eps_val){
-	if ((count_month == 0) && (count_year == 0)){
-	    g_symbol = symbol;
-	    g_buy_price = price;
-	    c_market_value = price; //market value is buy upon buying
-	    c_book_value = bk_val;
-	    c_eps = eps_val;
-	}
+	 g_symbol = symbol;
+         g_buy_price = price;
+         c_market_value = price; //market value is buy upon buying
+         c_book_value = bk_val;
+         c_eps = eps_val;
     }
 
     public void monthlyUpdate(float mrkt_val) {
