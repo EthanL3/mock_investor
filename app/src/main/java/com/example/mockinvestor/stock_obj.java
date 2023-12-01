@@ -21,6 +21,7 @@ public class stock_obj{
 
 //FUNCTIONS TO USE OUTSIDE THIS CLASS-----------------------------------------------------------------------------
 
+//GET FUNCTIONS FOR ETHAN
      public char[] getSymbol(){
 	return g_symbol;
     }
@@ -37,6 +38,22 @@ public class stock_obj{
 	return String.valueOf(c_market_value-g_buy_price);
     }
 
+    public char[] getDetailedInfo(){
+	char[] outstring;
+	outstring = "Buy Price: " + g_buy_price + "\nMarket Price: " + c_market_value + "\nBook Price: " + c_book_value;
+	outstring = outstring + "\nEarnings per Share: " + c_eps + "\nPrice to Growth of Earnings per Share: " + price_earnings_growth;
+	outstring = outstring + "\nPrice to Book Ratio: " + price_book_ratio + "\nPrice to Earnings Ratio: " + price_earnings_ratio;
+	//outstring = outstring + "\nDividend Yield: " + dividend_yield;
+	return outstring;
+    }
+
+//FOLLOWING TWO FUNCTIONS ARE FOR MARKET VALUE GRAPHS FOR ETHAN
+     public float[] getMrktValueHistory{
+	return market_val_history; //every value is 1 month apart, starting at year 0 and month 0
+     }
+
+	
+//INITIALIZE FUNCTIONS FOR MOUMIT
      public void initialize(char[] symbol, float price){
          initialize(symbol, price, 0, 0);
     }
@@ -56,14 +73,7 @@ public class stock_obj{
 	   calculateRatios();
     }
 
-    public void multiplyByShares(int shares) {
-	if ((count_year == 0) && (count_month == 0)){
-        	updateCurrentValues(mrkt_val*shares, bk_val*shares, eps_val*shares);
-	}
-        calculateRatios();
-    }
-
-
+//MONTHLY UPDATE FUNCTIONS FOR MOUMIT
     public void monthlyUpdate(float mrkt_val) {
         monthlyUpdate(mrkt_val, 0, 0);
     }
@@ -88,9 +98,18 @@ public class stock_obj{
         }
     }
 
+//PORTFOLIO FUNCTIONS FOR ME
    public float returnFLOAT_MrktValue() {
 	return c_market_value;
    }
+
+
+   public void multiplyByShares(int shares) {
+	if ((count_year == 0) && (count_month == 0)){
+        	updateCurrentValues(mrkt_val*shares, bk_val*shares, eps_val*shares);
+	}
+        calculateRatios();
+    }
 
 //END OF FUNCTIONS TO USE OUTSIDE CLASS-----------------------------------------------------------------------------
 
