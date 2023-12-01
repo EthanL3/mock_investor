@@ -19,6 +19,24 @@ public class stock_obj{
     private float[][] book_val_history = new float[3][12];
     private float[] annual_div_history = new float[3];
 
+//FUNCTIONS TO USE OUTSIDE THIS CLASS-----------------------------------------------------------------------------
+
+     public char[] getSymbol(){
+	return g_symbol;
+    }
+
+     public char[] getBuyPrice(){
+	return String.valueOf(g_buy_price);
+    }
+    
+    public char[] getMrktValue(){
+	return String.valueOf(c_market_value);
+    }
+	
+    public char[] getLossesOrGains(){
+	return String.valueOf(c_market_value-g_buy_price);
+    }
+
      public void initialize(char[] symbol, float price){
          initialize(symbol, price, 0, 0);
     }
@@ -28,15 +46,24 @@ public class stock_obj{
     }
     
     public void initialize(char[] symbol, float price, float bk_val, float eps_val){
-	if ((count_month == 0) && (count_year == 0)){
-	    g_symbol = symbol;
-	    g_buy_price = price;
-	    c_market_value = price; //market value is buy upon buying
-	    c_book_value = bk_val;
-	    c_eps = eps_val;
-	}
+	    if ((count_year == 0) && (count_month == 0))
+		g_symbol = symbol;
+         	g_buy_price = price;
+         	c_market_value = price; //market value is buy upon buying
+         	c_book_value = bk_val;
+        	c_eps = eps_val;
+    	    }
+	   calculateRatios();
     }
-    
+
+    public void multiplyByShares(int shares) {
+	if ((count_year == 0) && (count_month == 0)){
+        	updateCurrentValues(mrkt_val*shares, bk_val*shares, eps_val*shares);
+	}
+        calculateRatios();
+    }
+
+
     public void monthlyUpdate(float mrkt_val) {
         monthlyUpdate(mrkt_val, 0, 0);
     }
@@ -61,7 +88,14 @@ public class stock_obj{
         }
     }
 
-    public void printStockDetails() {
+   public float returnFLOAT_MrktValue() {
+	return c_market_value;
+   }
+
+//END OF FUNCTIONS TO USE OUTSIDE CLASS-----------------------------------------------------------------------------
+
+//ignore this test function:
+    /*public void printStockDetails() {
         System.out.println("Stock: " + g_symbol);
         System.out.println("Buy Price: " + g_buy_price);
         System.out.println("Market Price: " + c_market_value);
@@ -71,7 +105,7 @@ public class stock_obj{
 	System.out.println("Dividend Yield: " + dividend_yield);
         System.out.println("Price to Book Ratio: " + price_book_ratio);
         System.out.println("Price to Earnings Ratio: " + price_earnings_ratio);
-    }
+    }*/
 
     // Calculation functions
 
@@ -104,7 +138,7 @@ public class stock_obj{
         eps_history[count_year][count_month] = c_eps;
     }
 
-    private void updateCurrentValues(float mrkt_val, float bk_val, float eps_val) {
+    public void updateCurrentValues(float mrkt_val, float bk_val, float eps_val) {
         c_market_value = mrkt_val;
         c_book_value = bk_val;
         c_eps = eps_val;
