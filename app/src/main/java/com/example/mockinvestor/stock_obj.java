@@ -80,7 +80,7 @@ public class stock_obj{
 	   calculateRatios();
     }
 
-    public void multiply_by_shares(int shares) {
+    public void multiplyByShares(int shares) {
 	if ((count_year == 0) && (count_month == 0)){
         	updateCurrentValues(mrkt_val*shares, bk_val*shares, eps_val*shares);
 	}
