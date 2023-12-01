@@ -1,18 +1,17 @@
 package com.example.mockinvestor;
 
 public class stock_obj{
-
-    private char[] g_symbol;
-    private float g_buy_price = 0;
-    private float c_market_value = 0;
-    private float c_book_value = 0;
-    private float c_eps = 0;
+    private String g_symbol;
+    private double g_buy_price = 0;
+    private double c_market_value = 0;
+    private double c_book_value = 0;
+    private double c_eps = 0;
     private int count_month = 0;
     private int count_year = 0;
-    private float price_earnings_growth = 0;
-    private float dividend_yield = 0;
-    private float price_book_ratio = 0;
-    private float price_earnings_ratio = 0;
+    private double price_earnings_growth = 0;
+    private double dividend_yield = 0;
+    private double price_book_ratio = 0;
+    private double price_earnings_ratio = 0;
 
     private float[][] eps_history = new float[3][12];
     private float[][] market_val_history = new float[3][12];
@@ -48,9 +47,9 @@ public class stock_obj{
     }
 
 //FOLLOWING TWO FUNCTIONS ARE FOR MARKET VALUE GRAPHS FOR ETHAN
-     public float[] getMrktValueHistory{
-	return market_val_history; //every value is 1 month apart, starting at year 0 and month 0
-     }
+     //public float[] getMrktValueHistory{
+	//return market_val_history; //every value is 1 month apart, starting at year 0 and month 0
+    //}
 
 	
 //INITIALIZE FUNCTIONS FOR MOUMIT
@@ -70,7 +69,8 @@ public class stock_obj{
          	c_book_value = bk_val;
         	c_eps = eps_val;
     	    }
-	   calculateRatios();
+            //calculateRatios();
+            //updateHistory();
     }
 
 //MONTHLY UPDATE FUNCTIONS FOR MOUMIT
@@ -114,7 +114,7 @@ public class stock_obj{
 //END OF FUNCTIONS TO USE OUTSIDE CLASS-----------------------------------------------------------------------------
 
 //ignore this test function:
-    /*public void printStockDetails() {
+    public void printStockDetails() {
         System.out.println("Stock: " + g_symbol);
         System.out.println("Buy Price: " + g_buy_price);
         System.out.println("Market Price: " + c_market_value);
@@ -124,7 +124,7 @@ public class stock_obj{
 	System.out.println("Dividend Yield: " + dividend_yield);
         System.out.println("Price to Book Ratio: " + price_book_ratio);
         System.out.println("Price to Earnings Ratio: " + price_earnings_ratio);
-    }*/
+    }
 
     // Calculation functions
 
@@ -191,3 +191,4 @@ public class stock_obj{
         }
     }
 }
+

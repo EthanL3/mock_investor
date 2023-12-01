@@ -13,7 +13,8 @@ public class TradeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade);
-
+        getSupportActionBar().setTitle("Trade");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Button btnBuy = findViewById(R.id.btnBuy);

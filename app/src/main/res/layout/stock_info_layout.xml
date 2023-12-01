@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context = ".StockInfoActivity"
+    android:background="@color/blueBlack">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company Name"
+        android:id="@+id/name_info"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/lightBlue"
+        android:fontFamily="sans-serif"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price/Share"
+        android:id="@+id/price_info"
+        android:textSize="25sp"
+        android:layout_below="@id/name_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/lightBlue"
+        android:fontFamily="sans-serif"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity of Shares"
+        android:id="@+id/shares_info"
+        android:textSize="25sp"
+        android:layout_below="@id/price_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/lightBlue"
+        android:fontFamily="sans-serif"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Value"
+        android:id="@+id/total_info"
+        android:textSize="25sp"
+        android:layout_below="@id/shares_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/lightBlue"
+        android:fontFamily="sans-serif"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Gain/Loss ($/%)"
+        android:id="@+id/gains_info"
+        android:textSize="25sp"
+        android:layout_below="@id/total_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/lightBlue"
+        android:fontFamily="sans-serif"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dividends"
+        android:id="@+id/dividends_info"
+        android:textSize="25sp"
+        android:layout_below="@id/gains_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/lightBlue"
+        android:fontFamily="sans-serif"/>
+
+
 
 </RelativeLayout>

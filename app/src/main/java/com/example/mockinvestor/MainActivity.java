@@ -12,30 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Portfolio");
+
+        RecyclerView recycler_view = findViewById(R.id.recycler_view);
 
         ArrayList<Stock> stocks = new ArrayList<>();
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
-        stocks.add(new Stock("APPL","1", "2", "3"));
 
-        RecyclerView recyclerView = findViewById(R.id.recView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new StockAdapter(getApplicationContext(), stocks));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
 
         Button btnTrade = findViewById(R.id.btnTrade);
         btnTrade.setOnClickListener(new View.OnClickListener() {
@@ -45,5 +45,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, TradeActivity.class));
             }
         });
+
+        StockAdapter adapter = new StockAdapter(this, stocks, this);
+        recycler_view.setAdapter(adapter);
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
+
+
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, StockInfoActivity.class);
+        //use a parsable to pass over all the data i will need for StockInfoActivity
+
+        startActivity(intent);
     }
 }
