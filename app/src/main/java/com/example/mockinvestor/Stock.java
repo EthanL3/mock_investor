@@ -3,11 +3,11 @@ package com.example.mockinvestor;
 import java.io.Serializable;
 
 public class Stock implements Serializable {
-    private String symbol, name, quantity, currentValue, gainLoss;
+    private String symbol, companyName, quantity, currentValue, gainLoss;
 
-    public Stock(String symbol, String name, String quantity, String currentValue, String gainLoss){
+    public Stock(String symbol, String companyName, String quantity, String currentValue, String gainLoss){
         this.symbol = symbol;
-        this.name = name;
+        this.companyName = companyName;
         this.quantity = quantity;
         this.currentValue = currentValue;
         this.gainLoss = gainLoss;
@@ -16,8 +16,8 @@ public class Stock implements Serializable {
     public String getSymbol(){
         return symbol;
     }
-    public String getName(){
-        return name;
+    public String getCompanyName(){
+        return companyName;
     }
     public String getQuantity(){
         return quantity;
@@ -31,8 +31,8 @@ public class Stock implements Serializable {
     public void setSymbol(String symbol){
         this.symbol = symbol;
     }
-    public void setName(String name){
-        this.name = name;
+    public void setCompanyName(String companyName){
+        this.companyName = companyName;
     }
     public void setQuantity(String quantity){
         this.quantity = quantity;
