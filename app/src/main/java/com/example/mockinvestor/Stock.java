@@ -1,6 +1,7 @@
 package com.example.mockinvestor;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Stock implements Serializable {
     private String symbol, companyName;
@@ -32,6 +33,20 @@ public class Stock implements Serializable {
 
         this.marketCap = 1000; //placeholder
         this.volume = 1000; //placeholder
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Stock stock = (Stock) o;
+        return Objects.equals(symbol, stock.symbol);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(symbol);
     }
 
     public void sellShares(int sharesSold) {

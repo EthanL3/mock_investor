@@ -16,6 +16,14 @@ public class MyApplication extends Application {
         instance = this;
     }
 
+    public boolean containsStock(Stock stock) {
+        for(int i = 0; i < this.allUserStocks.size(); i++) {
+            if (this.allUserStocks.get(i).getSymbol().equals(stock.getSymbol())) {
+                return true;
+            }
+        }
+        return false;
+    }
     /* NOT NEEDED FOR NOW, maybe need it later tho
     public void sellShares(int index, int numSharesSold) {
         Stock stock = this.allUserStocks.get(index);
