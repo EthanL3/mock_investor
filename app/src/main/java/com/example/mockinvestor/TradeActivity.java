@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class TradeActivity extends AppCompatActivity {
-
+    ArrayList<Stock> added_stocks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +26,20 @@ public class TradeActivity extends AppCompatActivity {
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Do something when the button is clicked
-                startActivity(new Intent(TradeActivity.this, MainActivity.class));
+                //Create new stock object and add to stocks arraylist
+                EditText ticker_input = findViewById(R.id.enter_ticker);
+                EditText shares_input = findViewById(R.id.enter_shares);
+                String ticker = ticker_input.getText().toString();
+                int shares = Integer.parseInt(shares_input.getText().toString());
+                Stock user_stock = new Stock(ticker, shares);
+
+                MyApplication.getInstance().addStockToList(user_stock);
+
+                Intent intent = new Intent(TradeActivity.this, MainActivity.class);
+
+                startActivity(intent);
             }
         });
-
 
     }
 }

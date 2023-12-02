@@ -28,7 +28,7 @@
         android:fontFamily="sans-serif"
         android:text="Price/Share"
         android:textColor="@color/lightBlue"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/market_cap"
@@ -40,7 +40,7 @@
         android:fontFamily="sans-serif"
         android:text="Market Cap"
         android:textColor="@color/lightBlue"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/previous_close"
@@ -52,7 +52,7 @@
         android:fontFamily="sans-serif"
         android:text="Previous Close"
         android:textColor="@color/lightBlue"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/open"
@@ -64,7 +64,7 @@
         android:fontFamily="sans-serif"
         android:text="Open"
         android:textColor="@color/lightBlue"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/volume"
@@ -76,7 +76,25 @@
         android:fontFamily="sans-serif"
         android:text="Volume"
         android:textColor="@color/lightBlue"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/line_chart"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/volume"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
+        android:text="Sell"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:textColor="@color/blueBlack"
+        android:backgroundTint="@color/lightBlue"
+        />
+
 
 
 

@@ -2,15 +2,17 @@ package com.example.mockinvestor;
 
 import java.io.Serializable;
 
-public class Stock implements Serializable {
-    private String symbol, companyName, quantity, currentValue, gainLoss;
+public class Stock {
+    private String symbol, companyName;
+    private int quantity;
+    private double currentValue, gainLoss;
 
-    public Stock(String symbol, String companyName, String quantity, String currentValue, String gainLoss){
+    public Stock(String symbol, int quantity){
         this.symbol = symbol;
-        this.companyName = companyName;
+        this.companyName = "Company name"; //placeholder
         this.quantity = quantity;
-        this.currentValue = currentValue;
-        this.gainLoss = gainLoss;
+        this.currentValue = 100; //placeholder
+        this.gainLoss = 0;
     }
     //create getters and setters for each variable
     public String getSymbol(){
@@ -19,28 +21,22 @@ public class Stock implements Serializable {
     public String getCompanyName(){
         return companyName;
     }
-    public String getQuantity(){
-        return quantity;
+    public String getQuantity() {
+        return Integer.toString(quantity);
     }
     public String getCurrentValue(){
-        return currentValue;
+        return Double.toString(currentValue);
     }
     public String getGainLoss(){
-        return gainLoss;
+        return Double.toString(gainLoss);
     }
-    public void setSymbol(String symbol){
-        this.symbol = symbol;
-    }
-    public void setCompanyName(String companyName){
-        this.companyName = companyName;
-    }
-    public void setQuantity(String quantity){
+    public void setQuantity(int quantity){
         this.quantity = quantity;
     }
-    public void setCurrentValue(String currentValue){
+    public void setCurrentValue(double currentValue){
         this.currentValue = currentValue;
     }
-    public void setGainLoss(String gainLoss){
+    public void setGainLoss(double gainLoss){
         this.gainLoss = gainLoss;
     }
 }

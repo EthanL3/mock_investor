@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
-    private ArrayList<Stock> stocks = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,57 +22,45 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         getSupportActionBar().setTitle("Portfolio");
 
         RecyclerView recycler_view = findViewById(R.id.recycler_view);
+        ArrayList<Stock> stocks = new ArrayList<>();
 
-        /*
-        String stockSymbol = "AAPL";
-
-        apicall apiCall = new apicall();
-
-        stock_obj stock = apiCall.fetchStockInfo(stockSymbol);
-
-        // Print stock details
-        if (stock != null) {
-            stock.printStockDetails();
-        } else {
-            System.out.println("Failed to fetch stock information.");
+        if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
+            stocks = MyApplication.getInstance().getAllUserStocks();
         }
-        */
-
-
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
-        stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));
+        else {
+            stocks.add(new Stock("APPL", 10));
+            stocks.add(new Stock("GOOG", 20));
+            stocks.add(new Stock("AMZN", 30));
+            stocks.add(new Stock("FB", 40));
+            stocks.add(new Stock("TSLA", 50));
+            stocks.add(new Stock("MSFT", 60));
+            stocks.add(new Stock("NVDA", 70));
+            stocks.add(new Stock("AMD", 80));
+            stocks.add(new Stock("INTC", 90));
+            stocks.add(new Stock("QCOM", 100));
+        }
 
         Button btnTrade = findViewById(R.id.btnTrade);
+
         btnTrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Do something when the button is clicked
-                startActivity(new Intent(MainActivity.this, TradeActivity.class));
+                Intent intent = new Intent(MainActivity.this, TradeActivity.class);
+                startActivity(intent);
             }
         });
 
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
+
     }
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(this, StockInfoActivity.class);
+        intent.putExtra("index", position); //pass the index of the stock object in the arraylist
         //pass the entire stock object to the next activity
-        intent.putExtra("stock", stocks.get(position));
-
-
         startActivity(intent);
     }
 }
