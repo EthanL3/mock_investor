@@ -37,7 +37,7 @@
             android:id="@+id/quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
+            android:layout_marginLeft="70dp"
             android:text="Quantity"
             android:textColor="@color/blueBlack"
             android:textSize="20dp" />
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="Gains"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="0dp"
             android:textColor="@color/blueBlack"
             android:textSize="20dp" />
     </RelativeLayout>

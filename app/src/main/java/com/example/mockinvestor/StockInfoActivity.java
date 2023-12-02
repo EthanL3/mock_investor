@@ -29,7 +29,9 @@ public class StockInfoActivity extends AppCompatActivity {
         TextView volume = findViewById(R.id.volume);
 
         symbol.setText(selectedStock.getSymbol());
-        price_per_share.setText(selectedStock.getCurrentPrice());
+        price_per_share.setText("Current Price: " + selectedStock.getCurrentPrice());
+        market_cap.setText("Market Cap: " + selectedStock.getMarketCap());
+        volume.setText("Volume " + selectedStock.getVolume());
         lineChart = (LineChart) findViewById(R.id.line_chart);
 
         Button btnSell = findViewById(R.id.btnSell);
