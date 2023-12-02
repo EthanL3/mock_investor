@@ -52,7 +52,7 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/gain_loss"
+            android:id="@+id/gain_loss_dollars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -60,6 +60,17 @@
             android:layout_marginRight="0dp"
             android:textColor="@color/blueBlack"
             android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gain_loss_percent"
+            android:text="Gains (%)"
+            android:layout_below="@id/gain_loss_dollars"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="0dp"
+            android:textColor="@color/blueBlack"
+            android:textSize="10dp"
+            android:layout_marginTop="5dp"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -25,14 +25,14 @@ public class StockInfoActivity extends AppCompatActivity {
         int index = getIntent().getIntExtra("index", 0);
         Stock selectedStock = MyApplication.getInstance().getStockFromListByIndex(index);
         TextView symbol = findViewById(R.id.symbol);
-        TextView price_per_share = findViewById(R.id.price_per_share);
+        TextView current_price = findViewById(R.id.current_price);
         TextView market_cap = findViewById(R.id.market_cap);
         TextView volume = findViewById(R.id.volume);
 
         symbol.setText(selectedStock.getSymbol());
-        price_per_share.setText("Current Price: " + selectedStock.getCurrentPrice());
-        market_cap.setText("Market Cap: " + selectedStock.getMarketCap());
-        volume.setText("Volume " + selectedStock.getVolume());
+        current_price.setText("Current Price: " + Double.toString(selectedStock.getCurrentPrice()));
+        market_cap.setText("Market Cap: " + Double.toString(selectedStock.getMarketCap()));
+        volume.setText("Volume " + Double.toString(selectedStock.getVolume()));
 
 
         //Selling set number of shares
