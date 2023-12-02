@@ -29,7 +29,7 @@ public class StockInfoActivity extends AppCompatActivity {
         TextView market_cap = findViewById(R.id.market_cap);
         TextView volume = findViewById(R.id.volume);
 
-        symbol.setText(selectedStock.getSymbol());
+        symbol.setText(selectedStock.getCompanyName()+"("+selectedStock.getSymbol()+")");
         current_price.setText("Current Price: " + Double.toString(selectedStock.getCurrentPrice()));
         market_cap.setText("Market Cap: " + Double.toString(selectedStock.getMarketCap()));
         volume.setText("Volume " + Double.toString(selectedStock.getVolume()));
