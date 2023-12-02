@@ -16,6 +16,18 @@ public class MyApplication extends Application {
         instance = this;
     }
 
+    /* NOT NEEDED FOR NOW, maybe need it later tho
+    public void sellShares(int index, int numSharesSold) {
+        Stock stock = this.allUserStocks.get(index);
+        if (stock.getQuantity() == 0) {
+            this.removeStockFromList(index);
+        }
+        else {
+            stock.sellShares(numSharesSold);
+        }
+    }
+     */
+
     public void setAllUserStocks(ArrayList<Stock> allUserStocks) {
         this.allUserStocks = allUserStocks;
     }
@@ -44,4 +56,8 @@ public class MyApplication extends Application {
         return this.allUserStocks.get(index);
     }
 
+
+
 }
+
+

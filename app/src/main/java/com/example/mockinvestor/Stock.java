@@ -34,22 +34,22 @@ public class Stock implements Serializable {
         this.volume = 1000; //placeholder
     }
 
-    public double getGainLossDollars(){
-        return gainLossDollars;
+    public void sellShares(int sharesSold) {
+        this.quantity -= sharesSold;
+        this.currentValue = quantity * currentPrice;
+        this.gainLossDollars = currentValue - purchaseValue;
+        this.gainLossPercent = (currentValue - purchaseValue) / purchaseValue;
     }
 
-    public void setGainLossDollars(double gainLossDollars){
-        this.gainLossDollars = gainLossDollars;
+    public void buyShares(int sharesBought) {
+        this.quantity += sharesBought;
+        this.currentValue = quantity * currentPrice;
+        this.gainLossDollars = currentValue - purchaseValue;
+        this.gainLossPercent = (currentValue - purchaseValue) / purchaseValue;
     }
+
     private void updateGainLossDollars(){
         this.gainLossDollars = currentValue - purchaseValue;
-    }
-
-    public double getGainLossPercent() {
-        return gainLossPercent;
-    }
-    public void setGainLossPercent(double gainLossPercent) {
-        this.gainLossPercent = gainLossPercent;
     }
 
     public void updateGainLossPercent(){
@@ -58,6 +58,21 @@ public class Stock implements Serializable {
 
 
     //SETTERS AND GETTERS:
+    public double getGainLossPercent() {
+        return gainLossPercent;
+    }
+
+    public void setGainLossPercent(double gainLossPercent) {
+        this.gainLossPercent = gainLossPercent;
+    }
+
+    public double getGainLossDollars(){
+        return gainLossDollars;
+    }
+
+    public void setGainLossDollars(double gainLossDollars){
+        this.gainLossDollars = gainLossDollars;
+    }
 
     public String getSymbol() {
         return symbol;
@@ -77,10 +92,6 @@ public class Stock implements Serializable {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public double getMarketCap() {

@@ -54,21 +54,41 @@
         android:textColor="@color/lightBlue"
         android:textSize="20sp" />
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/line_chart"
+    <EditText
+        android:id="@+id/enter_shares_sold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/volume"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/lightBlue"
+        android:hint="Number of shares"
+        android:textColor="@color/lightBlue"
+        android:textColorHint="@color/lightBlue" />
 
     <Button
         android:id="@+id/btnSell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/volume"
+        android:layout_below="@id/enter_shares_sold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/lightBlue"
+        android:text="Sell"
+        android:fontFamily="sans-serif"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/blueBlack" />
+    <Button
+        android:id="@+id/btnSellAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnSell"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/lightBlue"
         android:fontFamily="sans-serif"
-        android:text="Sell"
+        android:layout_margin="20dp"
+        android:text="Sell All"
         android:textColor="@color/blueBlack"
         android:textSize="15dp"
         android:textStyle="bold" />

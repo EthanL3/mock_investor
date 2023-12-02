@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,10 +33,27 @@ public class StockInfoActivity extends AppCompatActivity {
         price_per_share.setText("Current Price: " + selectedStock.getCurrentPrice());
         market_cap.setText("Market Cap: " + selectedStock.getMarketCap());
         volume.setText("Volume " + selectedStock.getVolume());
-        lineChart = (LineChart) findViewById(R.id.line_chart);
+
+
+        //Selling set number of shares
 
         Button btnSell = findViewById(R.id.btnSell);
+        Button btnSellAll = findViewById(R.id.btnSellAll);
+
         btnSell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText enter_shares_sold = findViewById(R.id.enter_shares_sold);
+                int numSharesSold = Integer.parseInt(enter_shares_sold.getText().toString());
+                MyApplication.getInstance().getStockFromListByIndex(index).sellShares(numSharesSold);
+                Intent intent = new Intent(StockInfoActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //Selling ALL shares (remove stock from list completely)
+        btnSellAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //remove stock from list
