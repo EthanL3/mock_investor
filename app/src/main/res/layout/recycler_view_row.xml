@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/stock_card_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:contentPadding="25dp"
+    app:cardBackgroundColor="@color/darkTurquoise"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
+    android:layout_margin="5dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stock"
+            android:textColor="@color/lightBlue"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/company_name"
+            android:text="Company Name"
+            android:textColor="@color/lightBlue"
+            android:textSize="10dp"
+            android:layout_below="@id/symbol"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@id/symbol"
+            android:text="Quantity"
+            android:textColor="@color/lightBlue"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/current_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@id/quantity"
+            android:text="Value"
+            android:textColor="@color/lightBlue"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/gain_loss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="95dp"
+            android:layout_toRightOf="@id/current_value"
+            android:text="Gains"
+            android:textColor="@color/lightBlue"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -3,7 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context = ".Trade">
+    tools:context = ".TradeActivity"
+    android:background="@color/blueBlack">
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Stock Ticker"
+        android:id="@+id/enter_ticker"
+        android:textColorHint="@color/lightBlue"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/lightBlue"
+        android:backgroundTint="@color/lightBlue"
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Number of shares"
+        android:id="@+id/enter_shares"
+        android:textColorHint="@color/lightBlue"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/enter_ticker"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/lightBlue"
+        android:backgroundTint="@color/lightBlue"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buy"
+        android:layout_below="@id/enter_shares"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:backgroundTint="@color/lightBlue"
+        android:textColor="@color/blueBlack"
+        android:id="@+id/btnBuy"
+        />
 
 
 

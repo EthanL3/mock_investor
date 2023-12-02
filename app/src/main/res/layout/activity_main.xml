@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context = ".MainActivity">
+    tools:context = ".MainActivity"
+    android:background="@color/blueBlack">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -16,38 +17,52 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stock"
-            android:id="@+id/txtViewStock"
+            android:text="Symbol"
+            android:id="@+id/stock_title"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:textColor="@color/lightBlue"
             android:fontFamily="sans-serif"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity"
+            android:id="@+id/shares_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:layout_toRightOf="@id/stock_title"
+            android:textColor="@color/lightBlue"
+            android:layout_marginLeft="30dp"/>
 
         <TextView
-            android:id="@+id/txtViewValue"
+            android:id="@+id/value_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Total Value of Stock"
+            android:text="Current Value"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_toRightOf="@id/txtViewStock"
+            android:textColor="@color/lightBlue"
+            android:layout_toRightOf="@id/shares_title"
             android:layout_marginLeft="30dp"/>
         <TextView
-            android:id="@+id/txtViewGain"
+            android:id="@+id/gains_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:text="Gain/Loss"
             android:textSize="15sp"
+            android:textColor="@color/lightBlue"
             android:textStyle="bold"
-            android:layout_toRightOf="@id/txtViewValue"
+            android:layout_toRightOf="@id/value_title"
             android:layout_marginLeft="30dp"/>
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recView"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="525dp"
         android:layout_marginTop="48dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,15 +74,19 @@
         android:text="Trade"
         android:layout_centerHorizontal="true"
         android:id="@+id/btnTrade"
-        android:layout_below="@id/topLayout"
-        android:layout_marginTop="500dp"/>
+        android:backgroundTint="@color/lightBlue"
+        android:textColor="@color/blueBlack"
+        android:layout_below="@id/recycler_view"
+        android:layout_marginTop="20dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Refresh"
         android:layout_centerHorizontal="true"
         android:id="@+id/btnRefresh"
+        android:backgroundTint="@color/lightBlue"
+        android:textColor="@color/blueBlack"
         android:layout_below="@id/btnTrade"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="10dp"/>
 
 </RelativeLayout>
