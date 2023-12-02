@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
             stocks = MyApplication.getInstance().getAllUserStocks();
         }
-        else {
-            stocks.add(new Stock("AAPL", 10));
-        }
 
         Button btnTrade = findViewById(R.id.btnTrade);
 
