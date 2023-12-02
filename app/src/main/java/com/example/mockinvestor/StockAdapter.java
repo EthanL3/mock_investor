@@ -33,9 +33,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull StockAdapter.MyViewHolder holder, int position) {
         holder.symbol.setText(stockList.get(position).getSymbol());
         holder.company_name.setText(stockList.get(position).getCompanyName());
-        holder.quantity.setText(stockList.get(position).getQuantity());
-        holder.current_value.setText(stockList.get(position).getCurrentValue());
-        holder.gain_loss.setText(stockList.get(position).getGainLoss());
+        holder.quantity.setText(Double.toString(stockList.get(position).getQuantity()));
+        holder.current_value.setText(Double.toString(stockList.get(position).getCurrentValue()));
+        holder.gain_loss.setText(Double.toString(stockList.get(position).getGainLossDollars()));
     }
 
     @Override

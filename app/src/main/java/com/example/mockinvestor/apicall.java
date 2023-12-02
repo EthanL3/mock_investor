@@ -12,11 +12,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
 public class apicall {
 
     private static final String TAG = "apicall";
-    private static final String BASE_URL = "https://yahoo-finance127.p.rapidapi.com/price/eth-usd";
+    private static final String BASE_URL = "https://yahoo-finance127.p.rapidapi.com/search";
 
     String apiKey;
     OkHttpClient client;
