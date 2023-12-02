@@ -3,7 +3,7 @@ package com.example.mockinvestor;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.example.mockinvestor.stock_obj;
+
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
@@ -23,7 +23,7 @@ public class apicall {
         this.client = new OkHttpClient();
     }
 
-    public stock_obj searchStock(String symbol) {
+    public stock_obj fetchStockInfo(String symbol) {
         Request request = new Request.Builder()
                 .url(BASE_URL + "/" + symbol)
                 .get()
@@ -35,7 +35,8 @@ public class apicall {
             Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 Gson gson = new Gson();
-                return gson.fromJson(response.body().string(), stock_obj.class);
+                stock_obj stock = gson.fromJson(response.body().string(), stock_obj.class);
+                return stock;
             } else {
                 Log.e(TAG, "Error in API call. Response code: " + response.code());
             }
@@ -46,4 +47,3 @@ public class apicall {
         return null;
     }
 }
-
