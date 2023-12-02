@@ -50,10 +50,15 @@ public class Stock implements Serializable {
     }
 
     public void sellShares(int sharesSold) {
-        this.quantity -= sharesSold;
-        this.currentValue = quantity * currentPrice;
-        this.gainLossDollars = currentValue - purchaseValue;
-        this.gainLossPercent = (currentValue - purchaseValue) / purchaseValue;
+        if (this.quantity== sharesSold) {
+            MyApplication.getInstance().removeStockFromList(this);
+        }
+        else {
+            this.quantity -= sharesSold;
+            this.currentValue = quantity * currentPrice;
+            this.gainLossDollars = currentValue - purchaseValue;
+            this.gainLossPercent = (currentValue - purchaseValue) / purchaseValue;
+        }
     }
 
     public void buyShares(int sharesBought) {
