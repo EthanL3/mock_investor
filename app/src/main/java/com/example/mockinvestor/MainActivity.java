@@ -28,16 +28,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             stocks = MyApplication.getInstance().getAllUserStocks();
         }
         else {
-            stocks.add(new Stock("APPL", 10));
-            stocks.add(new Stock("GOOG", 20));
-            stocks.add(new Stock("AMZN", 30));
-            stocks.add(new Stock("FB", 40));
-            stocks.add(new Stock("TSLA", 50));
-            stocks.add(new Stock("MSFT", 60));
-            stocks.add(new Stock("NVDA", 70));
-            stocks.add(new Stock("AMD", 80));
-            stocks.add(new Stock("INTC", 90));
-            stocks.add(new Stock("QCOM", 100));
+            stocks.add(new Stock("AAPL", 10));
         }
 
         Button btnTrade = findViewById(R.id.btnTrade);
@@ -59,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(this, StockInfoActivity.class);
-        intent.putExtra("index", position); //pass the index of the stock object in the arraylist
-        //pass the entire stock object to the next activity
+        //pass the current stock object to the next activity
+        intent.putExtra("index", position);
         startActivity(intent);
     }
 }

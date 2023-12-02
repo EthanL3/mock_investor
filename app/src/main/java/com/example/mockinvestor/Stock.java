@@ -2,10 +2,10 @@ package com.example.mockinvestor;
 
 import java.io.Serializable;
 
-public class Stock {
+public class Stock implements Serializable {
     private String symbol, companyName;
     private int quantity;
-    private double currentValue, gainLoss;
+    private double currentValue, gainLoss, currentPrice;
 
     public Stock(String symbol, int quantity){
         this.symbol = symbol;
@@ -14,7 +14,15 @@ public class Stock {
         this.currentValue = 100; //placeholder
         this.gainLoss = 0;
     }
-    //create getters and setters for each variable
+
+    public String getCurrentPrice() {
+        return Double.toString(currentPrice);
+    }
+
+    public void setCurrentPrice(double currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
     public String getSymbol(){
         return symbol;
     }
@@ -25,7 +33,7 @@ public class Stock {
         return Integer.toString(quantity);
     }
     public String getCurrentValue(){
-        return Double.toString(currentValue);
+        return Double.toString(currentValue * currentPrice);
     }
     public String getGainLoss(){
         return Double.toString(gainLoss);

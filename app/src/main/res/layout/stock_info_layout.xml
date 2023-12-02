@@ -7,13 +7,13 @@
     tools:context=".StockInfoActivity">
 
     <TextView
-        android:id="@+id/company_name"
+        android:id="@+id/symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:fontFamily="sans-serif"
-        android:text="Company Name (Ticker)"
+        android:text="Symbol"
         android:textColor="@color/lightBlue"
         android:textSize="30sp" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/price_per_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/company_name"
+        android:layout_below="@id/symbol"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
 
@@ -43,59 +43,35 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/previous_close"
+        android:id="@+id/volume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/market_cap"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:text="Previous Close"
-        android:textColor="@color/lightBlue"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/open"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/previous_close"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Open"
-        android:textColor="@color/lightBlue"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/volume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/open"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
         android:text="Volume"
         android:textColor="@color/lightBlue"
         android:textSize="20sp" />
+
     <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/line_chart"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/line_chart"/>
+        android:layout_height="wrap_content" />
+
     <Button
+        android:id="@+id/btnSell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/volume"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:backgroundTint="@color/lightBlue"
         android:fontFamily="sans-serif"
         android:text="Sell"
-        android:textStyle="bold"
-        android:textSize="15dp"
         android:textColor="@color/blueBlack"
-        android:backgroundTint="@color/lightBlue"
-        />
-
-
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

@@ -34,7 +34,6 @@ public class TradeActivity extends AppCompatActivity {
                 Stock user_stock = new Stock(ticker, shares);
 
                 MyApplication.getInstance().addStockToList(user_stock);
-
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
 
                 startActivity(intent);

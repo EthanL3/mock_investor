@@ -32,6 +32,10 @@ public class MyApplication extends Application {
         this.allUserStocks.remove(stock);
     }
 
+    public void removeStockFromList(int index) {
+        this.allUserStocks.remove(index);
+    }
+
     public void clearStockList() {
         this.allUserStocks.clear();
     }
