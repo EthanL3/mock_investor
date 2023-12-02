@@ -1,3 +1,4 @@
+
 package com.example.mockinvestor;
 
 public class stock_obj{

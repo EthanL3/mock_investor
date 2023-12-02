@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:contentPadding="25dp"
-    app:cardBackgroundColor="@color/darkTurquoise"
+    app:cardBackgroundColor="@color/lightBlue"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
     android:layout_margin="5dp"
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stock"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/blueBlack"
             android:textSize="20dp"
             android:textStyle="bold"/>
         <TextView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/company_name"
             android:text="Company Name"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/blueBlack"
             android:textSize="10dp"
             android:layout_below="@id/symbol"
             android:layout_marginTop="5dp"/>
@@ -40,7 +40,7 @@
             android:layout_marginLeft="35dp"
             android:layout_toRightOf="@id/symbol"
             android:text="Quantity"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/blueBlack"
             android:textSize="20dp" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_marginLeft="50dp"
             android:layout_toRightOf="@id/quantity"
             android:text="Value"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/blueBlack"
             android:textSize="20dp" />
 
         <TextView
@@ -60,8 +60,19 @@
             android:layout_marginLeft="95dp"
             android:layout_toRightOf="@id/current_value"
             android:text="Gains"
-            android:textColor="@color/lightBlue"
+            android:textColor="@color/blueBlack"
             android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="% Change"
+            android:id="@+id/percent_change"
+            android:layout_below="@id/gain_loss"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/blueBlack"
+            android:textSize="10dp"
+            android:layout_toRightOf="@id/company_name"
+            android:layout_marginLeft="225dp"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

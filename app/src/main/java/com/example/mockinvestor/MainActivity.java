@@ -22,6 +22,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         RecyclerView recycler_view = findViewById(R.id.recycler_view);
 
+        /*
+        String stockSymbol = "AAPL";
+
+        apicall apiCall = new apicall();
+
+        stock_obj stock = apiCall.fetchStockInfo(stockSymbol);
+
+        // Print stock details
+        if (stock != null) {
+            stock.printStockDetails();
+        } else {
+            System.out.println("Failed to fetch stock information.");
+        }
+        */
 
 
         stocks.add(new Stock("APPL", "Apple Inc.", "10", "1000", "-50"));

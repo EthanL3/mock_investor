@@ -15,8 +15,12 @@ public class StockInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Stock selectedStock = (Stock) getIntent().getSerializableExtra("stock");
-        TextView nameInfo = findViewById(R.id.name_info);
-        TextView quantityInfo = findViewById(R.id.quantity_info);
+        TextView company_name = findViewById(R.id.company_name);
+        TextView price_per_share = findViewById(R.id.price_per_share);
+        TextView market_cap = findViewById(R.id.market_cap);
+        TextView previous_close = findViewById(R.id.previous_close);
+        TextView open = findViewById(R.id.open);
+        TextView volume = findViewById(R.id.volume);
 
 
     }

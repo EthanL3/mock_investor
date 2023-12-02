@@ -24,6 +24,7 @@
         android:layout_below="@id/company_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+
         android:fontFamily="sans-serif"
         android:text="Price/Share"
         android:textColor="@color/lightBlue"
