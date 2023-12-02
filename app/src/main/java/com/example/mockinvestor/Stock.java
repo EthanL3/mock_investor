@@ -1,4 +1,4 @@
-example.mockinvestor;
+package com.example.mockinvestor;
 
 import java.io.Serializable;
 import java.util.Objects;
