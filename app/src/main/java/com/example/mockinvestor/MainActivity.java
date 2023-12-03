@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         RecyclerView recycler_view = findViewById(R.id.recycler_view);
         ArrayList<Stock> stocks = new ArrayList<>();
+        //Buttons
+        Button btnProfile = findViewById(R.id.btnProfile);
+        Button btnTrade = findViewById(R.id.btnTrade);
+        Button btnRefresh = findViewById(R.id.btnRefresh);
         //TextView objects for bottom of screen
         TextView total_value = findViewById(R.id.total_value);
         TextView total_gain_loss_dollars = findViewById(R.id.total_gain_loss_dollars);
@@ -37,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             stocks = MyApplication.getInstance().getAllUserStocks();
         }
 
-        Button btnTrade = findViewById(R.id.btnTrade);
+        //Button clicks
         btnTrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                 startActivity(intent);
             }
         });
-        Button btnRefresh = findViewById(R.id.btnRefresh);
+
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             }
         });
 
-        Button btnProfile = findViewById(R.id.btnProfile);
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-
-
 
         //avApi test
         //will save the csv to this path in the device's files:
@@ -89,9 +90,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         */
 
     }
-
-
-
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(this, StockInfoActivity.class);

@@ -21,6 +21,13 @@ public class Stock implements Serializable {
     public Stock(String symbol, int shares) { //temporary code
         this.symbol = symbol;
         this.shares = shares;
+        this.companyName = "Company Name";
+        this.currentVal = 100;
+        this.purchaseVal = 75;
+        this.volume = 100000;
+        this.marketCap = 1000000;
+        this.T_gainLossDollars = 25;
+        this.T_gainLossPercent = 33.33;
     }
 
     public Stock(String symbol, String companyName, String price, String volume, String marketCap){

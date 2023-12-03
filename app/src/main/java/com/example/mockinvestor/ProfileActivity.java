@@ -12,8 +12,5 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        TextView total_money_left = findViewById(R.id.total_money_left);
-        //total_money_left.setText("Total money left:
     }
 }
