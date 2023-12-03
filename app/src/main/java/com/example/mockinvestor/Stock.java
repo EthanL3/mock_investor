@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Stock implements Serializable {
-    private String symbol, companyName;
+    private String symbol = "", companyName = "";
     private double marketCap = 0, volume = 0;
     private double currentPrice = 0, purchasePrice = 0; //price per share
     private double currentValue = 0, purchaseValue = 0;//value of all shares
