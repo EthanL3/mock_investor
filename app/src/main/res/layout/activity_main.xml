@@ -62,11 +62,20 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="525dp"
+        android:layout_height="520dp"
         android:layout_marginTop="48dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:id="@+id/btnProfile"
+        android:backgroundTint="@color/lightBlue"
+        android:textColor="@color/blueBlack"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/recycler_view"/>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -121,7 +130,4 @@
             android:layout_below="@+id/btnTrade"/>
 
     </RelativeLayout>
-
-
-
 </RelativeLayout>

@@ -3,9 +3,6 @@
     <item android:title="Home"
         android:id="@+id/home"
         android:icon="@drawable/ic_home_black_24dp" />
-    <item android:title="Trade"
-        android:id="@+id/trade"
-        android:icon="@drawable/ic_dollar_symbol" />
     <item android:title="Profile"
         android:id="@+id/profile"
         android:icon="@drawable/ic_person" />
