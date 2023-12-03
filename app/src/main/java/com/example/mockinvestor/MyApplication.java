@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class MyApplication extends Application {
     private static MyApplication instance;
     ArrayList<Stock> allUserStocks = new ArrayList<>();
+<<<<<<< Updated upstream
 
     double holdings = 0, cash = 100000;
     int numStocks = 0;
@@ -55,6 +56,8 @@ public class MyApplication extends Application {
         }
     }
     
+=======
+>>>>>>> Stashed changes
     public static MyApplication getInstance() {
         return instance;
     }
@@ -72,17 +75,6 @@ public class MyApplication extends Application {
         }
         return false;
     }
-    /* NOT NEEDED FOR NOW, maybe need it later tho
-    public void sellShares(int index, int numSharesSold) {
-        Stock stock = this.allUserStocks.get(index);
-        if (stock.getQuantity() == 0) {
-            this.removeStockFromList(index);
-        }
-        else {
-            stock.sellShares(numSharesSold);
-        }
-    }
-     */
 
     public void setAllUserStocks(ArrayList<Stock> allUserStocks) {
         this.allUserStocks = allUserStocks;

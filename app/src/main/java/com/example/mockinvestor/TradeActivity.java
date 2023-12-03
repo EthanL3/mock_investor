@@ -38,8 +38,8 @@ public class TradeActivity extends AppCompatActivity {
                 String ticker = ticker_input.getText().toString();
                 int shares = Integer.parseInt(shares_input.getText().toString());
                 Stock user_stock = new Stock(ticker, shares);
+                //buying shares
                 MyApplication.getInstance().purchaseStocks(user_stock,shares);
-
                 //going back to main activity
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
                 startActivity(intent);
