@@ -40,7 +40,8 @@
             android:layout_marginLeft="75dp"
             android:text="Quantity"
             android:textColor="@color/blueBlack"
-            android:textSize="15dp" />
+            android:textSize="17.5dp"
+            android:layout_centerVertical="true"/>
 
         <TextView
             android:id="@+id/current_value"
@@ -49,7 +50,8 @@
             android:layout_marginLeft="160dp"
             android:text="Value"
             android:textColor="@color/blueBlack"
-            android:textSize="15dp" />
+            android:textSize="17.5dp"
+            android:layout_centerVertical="true"/>
 
         <TextView
             android:id="@+id/gain_loss_dollars"
@@ -57,9 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="Gains"
-            android:layout_marginRight="0dp"
             android:textColor="@color/blueBlack"
-            android:textSize="15dp" />
+            android:textSize="17.5dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

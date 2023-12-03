@@ -8,51 +8,37 @@ public class MyApplication extends Application {
     private static MyApplication instance;
     ArrayList<Stock> allUserStocks = new ArrayList<>();
     double holdings = 0, cash = 100000;
-    int numStocks = 0;
-
-    public int getNumStocks(){
-        return numStocks;
-    }
-    public void setNumStocks(int val){
-        this.numStocks = val;
-    }
     public double getCash(){
         return cash;
     }
     public void setCash(double val){
         this.cash = val;
     }
+    /*
     public void purchaseStocks(Stock stock, int shares) {
-        int count = 0;
-        while (count <= numStocks) {
-            if (allUserStocks.get(count).getSymbol() == stock.getSymbol()) { //add shares if stock already in portfolio
-                break;
-            }
-            count++;
+        if (containsStock(stock)) {
+            int indexOfStock = allUserStocks.indexOf(stock);
+            allUserStocks.get(indexOfStock).buyShares(shares);
+            cash = cash - allUserStocks.get(indexOfStock).getTOTALCurrentValue();
         }
-        if (count > numStocks) { //then this stock doesn't already exist in portfolio
-            allUserStocks.add(stock);
+        //if stock is not in list, index will always be size - 1
+        else {
+            addStockToList(stock);
+            allUserStocks.get(allUserStocks.size()-1).buyShares(shares);
         }
-        allUserStocks.get(count).buyShares(shares);
-        cash = cash - allUserStocks.get(count).getTOTALCurrentValue();
-        numStocks++;
+        cash = cash - (allUserStocks.get(allUserStocks.size()-1).getCurrentValue()*shares);
     }
 
     public void sellStocks(Stock stock, int shares) {
-        int count = 0;
-        while (count <= numStocks) {
-            if (allUserStocks.get(count).getSymbol() == stock.getSymbol()) { //add shares if stock already in portfolio
-                break;
-            } //if stock is found in portfolio bracket
-            count++;
-        }
-        allUserStocks.get(count).sellShares(shares);
-        cash = cash + (allUserStocks.get(count).getCurrentValue()*shares);
-        if (allUserStocks.get(count).getQuantity() == 0){
+        if (shares >= stock.getQuantity()) {
             removeStockFromList(stock);
-            numStocks -= 1;
         }
+        else {
+            allUserStocks.get(allUserStocks.indexOf(stock)).sellShares(shares);
+        }
+        cash = cash + stock.getTOTALCurrentValue();
     }
+    */
 
     public static MyApplication getInstance() {
         return instance;

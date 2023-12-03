@@ -96,27 +96,30 @@ public class Stock implements Serializable {
         currentDate = cal_currentDate.getTime();
         count_day++;
     }
-    //purchase stock function, to be accessed from portfolio
+
     public void buyShares(int numShares) {
         this.shares += numShares;
-        this.T_currentVal = (double) shares * currentVal;
-        this.T_purchaseVal = (double) shares * purchaseVal;
-        this.T_valHistory[count_day] = T_currentVal;
-        updateGainsLoss();
+        //update everything after buying shares
+        //this.T_currentVal = (numShares + this.shares) * currentVal;
+        //this.T_purchaseVal = (numShares + this.shares) * currentVal;
+        //this.T_valHistory[count_day] = T_currentVal;
+        //updateGainsLoss();
+
     }
 
     public void sellShares(int numShares) {
         this.shares -= numShares;
-        this.T_currentVal = (double) shares * currentVal;
-        this.T_purchaseVal = (double) shares * purchaseVal;
-        this.T_valHistory[count_day] = T_currentVal;
-        updateGainsLoss();
+        //updating everything after selling shares
+        //this.T_currentVal = (this.shares - numShares) * currentVal;
+        //this.T_purchaseVal = (this.shares - numShares) * currentVal;
+        //this.T_valHistory[count_day] = T_currentVal;
+        //updateGainsLoss();
     }
 
     //private functions to be used within class (IGNORE)
     private void updateGainsLoss(){
         T_gainLossDollars = T_currentVal - T_purchaseVal;
-        T_gainLossPercent = (double) (T_gainLossDollars/T_purchaseVal) - 1; //saves float btw 0-1
+        T_gainLossPercent = (T_gainLossDollars / T_purchaseVal) * 100; //in percent
     }
 
     //assumes symbol is unique for each stock
