@@ -1,3 +1,12 @@
+package com.example.mockinvestor;
+
+import java.io.Serializable;
+import java.util.Objects;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
+import java.util.Calendar;
+
 public class Stock implements Serializable {
     //every field marked by T_ is value considering TOTAL SHARES
     private String symbol, companyName;
