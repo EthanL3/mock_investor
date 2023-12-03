@@ -45,7 +45,7 @@ public class TradeActivity extends AppCompatActivity {
                     MyApplication.getInstance().addStockToList(user_stock);
                 }
                 //updating cash amount
-                MyApplication.getInstance().setCash(MyApplication.getInstance().getCash() - (user_stock.getPurchaseValue()));
+                MyApplication.getInstance().setCash(MyApplication.getInstance().getCash() - user_stock.getPurchaseValue());
                 //going back to main activity
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
                 startActivity(intent);

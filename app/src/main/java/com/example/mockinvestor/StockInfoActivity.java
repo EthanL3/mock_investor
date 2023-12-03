@@ -52,7 +52,7 @@ public class StockInfoActivity extends AppCompatActivity {
                     stockToBeSold.sellShares(numSharesSold);
                 }
                 //updating cash amount
-                MyApplication.getInstance().setCash(MyApplication.getInstance().getCash() + stockToBeSold.getCurrentValue() * numSharesSold);
+                MyApplication.getInstance().setCash(MyApplication.getInstance().getCash() + stockToBeSold.getCurrentValue());
                 //going back to main activity
                 Intent intent = new Intent(StockInfoActivity.this, MainActivity.class);
                 startActivity(intent);
