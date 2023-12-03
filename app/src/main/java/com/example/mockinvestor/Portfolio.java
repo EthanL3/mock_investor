@@ -1,4 +1,4 @@
-package com.example.mockinvestor;
+/*package com.example.mockinvestor;
 
 import java.util.ArrayList;
 
@@ -52,4 +52,4 @@ class Portfolio {
         holdings = holdings - stocks.get(count).getTOTALCurrentValue();
         numStocks--;
     }
-}
+}*/

@@ -82,16 +82,7 @@ public class Stock implements Serializable {
         count_day++;
         this.T_valHistory[count_day] = T_currentVal;
         updateGainsLoss();
-
         //update date by one day in "currentDate"
-        Calendar cal_currentDate = Calendar.getInstance();
-        cal_currentDate.setTime(currentDate);
-        cal_currentDate.add(Calendar.DATE, 1);
-        currentDate = cal_currentDate.getTime();
-    }
-    //purchase stock function, to be accessed from portfolio
-    public void updateShares(int numShares){
-        this.shares = numShares;
         SimpleDateFormat date_format = new SimpleDateFormat("MM/dd/yyyy");
         try {
             purchaseDate = date_format.parse(date);
@@ -99,21 +90,27 @@ public class Stock implements Serializable {
         } catch (ParseException e) {
             System.out.println("Error: purchaseStock: string not in MM/dd/yyyy format" + e.getMessage());
         }
+        Calendar cal_currentDate = Calendar.getInstance();
+        cal_currentDate.setTime(currentDate);
+        cal_currentDate.add(Calendar.DATE, 1);
+        currentDate = cal_currentDate.getTime();
+        count_day++;
+    }
+    //purchase stock function, to be accessed from portfolio
+    public void buyShares(int numShares) {
+        this.shares += numShares;
         this.T_currentVal = (double) shares * currentVal;
         this.T_purchaseVal = (double) shares * purchaseVal;
-        count_day++;
         this.T_valHistory[count_day] = T_currentVal;
         updateGainsLoss();
     }
 
-    public void sellShares(int numShares)
-    {
+    public void sellShares(int numShares) {
         this.shares -= numShares;
-    }
-
-    public void buyShares(int numShares)
-    {
-        this.shares += numShares;
+        this.T_currentVal = (double) shares * currentVal;
+        this.T_purchaseVal = (double) shares * purchaseVal;
+        this.T_valHistory[count_day] = T_currentVal;
+        updateGainsLoss();
     }
 
     //private functions to be used within class (IGNORE)
