@@ -35,8 +35,6 @@ public class StockInfoActivity extends AppCompatActivity {
         volume.setText("Volume " + selectedStock.getVolume());
 
 
-
-
         Button btnSell = findViewById(R.id.btnSell);
         Button btnSellAll = findViewById(R.id.btnSellAll);
         //Selling set number of shares
@@ -45,14 +43,7 @@ public class StockInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText enter_shares_sold = findViewById(R.id.enter_shares_sold);
                 int numSharesSold = Integer.parseInt(enter_shares_sold.getText().toString());
-                int currentShares = MyApplication.getInstance().getAllUserStocks().get(index).getQuantity();
-                if (numSharesSold >= currentShares) {
-                    //remove stock from list
-                    MyApplication.getInstance().removeStockFromList(index);
-                }
-                else {
-                    MyApplication.getInstance().getAllUserStocks().get(index).sellShares(numSharesSold);
-                }
+                MyApplication.getInstance().sellStocks(selectedStock,numSharesSold);
                 //go back to main activity
                 Intent intent = new Intent(StockInfoActivity.this, MainActivity.class);
                 startActivity(intent);
