@@ -1,6 +1,6 @@
 package com.example.mockinvestor;
 
-import com.example.mockinvestor.avApi;
+//import com.example.mockinvestor.avApi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-//import com.example.mockinvestor.BuildConfig;
+import com.example.mockinvestor.BuildConfig;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
@@ -98,3 +98,4 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         startActivity(intent);
     }
 }
+
