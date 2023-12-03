@@ -33,7 +33,7 @@ public class StockInfoActivity extends AppCompatActivity {
         Button btnSellAll = findViewById(R.id.btnSellAll);
 
         symbol.setText(stockToBeSold.getCompanyName()+"("+stockToBeSold.getSymbol()+")");
-        current_price.setText("Current Price: " + Double.toString(stockToBeSold.getCurrentValue()));
+        current_price.setText("Current Price: " + Double.toString(stockToBeSold.getCurrentPrice()));
         market_cap.setText("Market Cap: " + Double.toString(stockToBeSold.getMarketCap()));
         volume.setText("Volume " + Double.toString(stockToBeSold.getVolume()));
 
@@ -43,7 +43,7 @@ public class StockInfoActivity extends AppCompatActivity {
                 EditText enter_shares_sold = findViewById(R.id.enter_shares_sold);
                 int numSharesSold = Integer.parseInt(enter_shares_sold.getText().toString());
                 //if number of shares sold >= total shares of stock, remove stock from list
-                if(numSharesSold >= stockToBeSold.getQuantity()){
+                if(numSharesSold >= stockToBeSold.getShares()){
                     MyApplication.getInstance().removeStockFromList(index);
                 }
                 //else sell number of shares

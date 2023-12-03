@@ -31,13 +31,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Button btnProfile = findViewById(R.id.btnProfile);
         Button btnTrade = findViewById(R.id.btnTrade);
         Button btnRefresh = findViewById(R.id.btnRefresh);
-        //TextView objects for bottom of screen
-        TextView cash_value = findViewById(R.id.cash_value);
 
-        //setting text for bottom of screen
-        cash_value.setText("Cash Left: $" + Double.toString(MyApplication.getInstance().getCash()));
-
-
+        //TextView objects for cash left and holdings
+        TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
+        total_value_of_stocks.setText("Portfolio Value: $" + Double.toString(MyApplication.getInstance().getHoldings()));
 
         //if user has stocks, display them
         if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {

@@ -10,15 +10,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cash_layout"
+        android:id="@+id/header_layout"
         android:layout_marginTop="5dp">
-
         <TextView
-            android:id="@+id/cash_value"
+            android:id="@+id/total_value_of_stocks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Cash Value"
+            android:text="Total value of stocks"
             android:textColor="@color/lightBlue"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -28,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/lightBlue"
-        android:layout_below="@id/cash_layout"
+        android:layout_below="@id/header_layout"
         android:layout_marginTop="5dp"
         android:id="@+id/line1"/>
 
@@ -135,6 +134,5 @@
             android:backgroundTint="@color/lightBlue"
             android:text="Refresh"
             android:textColor="@color/blueBlack" />
-
     </RelativeLayout>
 </RelativeLayout>

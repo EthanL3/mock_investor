@@ -14,6 +14,18 @@ public class MyApplication extends Application {
     public void setCash(double val){
         this.cash = val;
     }
+
+    public double getHoldings() {
+        holdings = 0;
+        for(int i = 0; i < allUserStocks.size(); i++) {
+            holdings += allUserStocks.get(i).getCurrentValue();
+        }
+        return holdings;
+    }
+
+    public void setHoldings(double holdings) {
+        this.holdings = holdings;
+    }
     /*
     public void purchaseStocks(Stock stock, int shares) {
         if (containsStock(stock)) {
