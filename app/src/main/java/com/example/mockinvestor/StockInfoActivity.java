@@ -42,17 +42,7 @@ public class StockInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText enter_shares_sold = findViewById(R.id.enter_shares_sold);
                 int numSharesSold = Integer.parseInt(enter_shares_sold.getText().toString());
-                //if number of shares sold >= total shares of stock, remove stock from list
-                if(numSharesSold >= stockToBeSold.getShares()){
-                    MyApplication.getInstance().removeStockFromList(index);
-                }
-                //else sell number of shares
-                else
-                {
-                    stockToBeSold.sellShares(numSharesSold);
-                }
-                //updating cash amount
-                MyApplication.getInstance().setCash(MyApplication.getInstance().getCash() + stockToBeSold.getCurrentValue() * numSharesSold);
+                MyApplication.getInstance().sellStocks(stockToBeSold,numSharesSold);
                 //going back to main activity
                 Intent intent = new Intent(StockInfoActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -71,3 +61,4 @@ public class StockInfoActivity extends AppCompatActivity {
         });
     }
 }
+
