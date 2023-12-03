@@ -52,9 +52,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //will save the csv to this path in the device's files:
         // /data/user/0/com.example.mockinvestor/files/CSVFiles/"symbol"_historical_stock_data.csv
         avApi apiObj = new avApi();
-        String symbol = "TSLA";
+
+        String symbol = "NFLX";
         apiObj.stockDataUpdate(this, symbol);
 
+        Float testPrice = CSVReader.getClosePrice(0, symbol);
+        System.out.println("testPrice: " + testPrice);
+
+        Float testVolume = CSVReader.getVolume(0, symbol);
+        System.out.println("testVolume: " + testVolume);
 
     }
 

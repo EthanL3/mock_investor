@@ -47,7 +47,7 @@ public class avApi {
     }
     private Context context;
 
-    private class StockDataAsyncTask extends AsyncTask<String, Void, Void> {
+    private static class StockDataAsyncTask extends AsyncTask<String, Void, Void> {
         private Context context;
         private String apiKey;
 
@@ -80,9 +80,11 @@ public class avApi {
                     String csvData = parseJsonResponse(response.toString());
 
                     //use the CSVWriter class to write the data to a csv file
-                    CSVWriter.writeStringToCSV(context, csvData, "historical_stock_data.csv");
+                    String csvFileName = symbol + "_historical_stock_data.csv";
 
-                    System.out.println("Data saved to historical_stock_data.csv");
+                    CSVWriter.writeStringToCSV(context, csvData, csvFileName);
+
+                    System.out.println("Data saved to " + csvFileName);
 
                     //print the path to the historical_stock_data.csv file
                     File csvDirectory = new File(context.getFilesDir(), "CSVFiles");
@@ -90,7 +92,7 @@ public class avApi {
                         csvDirectory.mkdirs();
                     }
 
-                    String csvFileName = symbol + "_historical_stock_data.csv";
+
 
                     File csvFile = new File(csvDirectory, csvFileName);
                     Log.d("Path to CSV file", csvFile.getAbsolutePath());

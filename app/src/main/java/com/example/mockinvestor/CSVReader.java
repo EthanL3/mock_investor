@@ -54,18 +54,18 @@ public class CSVReader {
         }
         return closingPrices;
     }
-    //days start at 0 and go to 99
+    //days start at 0 and go to 98
     public static Float getClosePrice (int day, String symbol){
         String filepath = getFilepath(symbol);
 
-        Float price = readClosingPrices(symbol).get(100-day);
+        Float price = readClosingPrices(symbol).get(day);
         return price;
     }
 
     public static Float getVolume (int day, String symbol){
         String filepath = getFilepath(symbol);
 
-        Float vol = readVolume(symbol).get(100-day);
+        Float vol = readVolume(symbol).get(day);
         return vol;
     }
 }
