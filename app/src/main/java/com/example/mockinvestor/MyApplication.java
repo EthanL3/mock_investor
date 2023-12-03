@@ -64,8 +64,6 @@ public class MyApplication extends Application {
         return this.allUserStocks.get(index);
     }
 
-
-
 }
 
 
