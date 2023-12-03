@@ -8,6 +8,7 @@ public class MyApplication extends Application {
     private static MyApplication instance;
     ArrayList<Stock> allUserStocks = new ArrayList<>();
     double holdings = 0, cash = 100000;
+    int portfolioSize = 0;
     public double getCash(){
         return cash;
     }
@@ -22,31 +23,51 @@ public class MyApplication extends Application {
         }
         return holdings;
     }
-    /*
     public void purchaseStocks(Stock stock, int shares) {
-        if (containsStock(stock)) {
-            int indexOfStock = allUserStocks.indexOf(stock);
-            allUserStocks.get(indexOfStock).buyShares(shares);
-            cash = cash - allUserStocks.get(indexOfStock).getTOTALCurrentValue();
+        try {
+            if (containsStock(stock)) {
+                int indexOfStock = allUserStocks.indexOf(stock);
+                Stock user_stock = allUserStocks.get(indexOfStock);
+                user_stock.buyShares(shares);
+            } else {
+                addStockToList(stock);
+                portfolioSize++;
+                allUserStocks.get(portfolioSize-1).buyShares(shares);
+            }
+            cash = cash - stock.getCurrentValue();
+        } catch (NullPointerException e) {
+            Stock user_stock = new Stock(stock.getSymbol(), shares);
+            addStockToList(user_stock);
+            allUserStocks.get(0).buyShares(shares);
+            cash = cash - user_stock.getCurrentValue();
+            throw e;
         }
-        //if stock is not in list, index will always be size - 1
-        else {
-            addStockToList(stock);
-            allUserStocks.get(allUserStocks.size()-1).buyShares(shares);
-        }
-        cash = cash - (allUserStocks.get(allUserStocks.size()-1).getCurrentValue()*shares);
     }
 
     public void sellStocks(Stock stock, int shares) {
-        if (shares >= stock.getQuantity()) {
-            removeStockFromList(stock);
+        try {
+            if (containsStock(stock)) {
+                int indexOfStock = allUserStocks.indexOf(stock);
+                Stock user_stock = allUserStocks.get(indexOfStock);
+                if (shares == user_stock.getShares()) {
+                    removeStockFromList(stock);
+                    portfolioSize--;
+                    cash = cash + user_stock.getCurrentValue();
+                } else if (shares > user_stock.getShares()){
+                    System.out.println("Error: SellStocks: You own fewer shares than you want to sell.");
+                } else {
+                    double previousCurrentVal = user_stock.getCurrentValue();
+                    user_stock.sellShares(shares);
+                    cash = cash + (previousCurrentVal - user_stock.getCurrentValue());
+                }
+            } else {
+                System.out.println("Error: SellStocks: This stock does not exist in your portfolio.");
+            }
+        } catch (NullPointerException nullPointerException) {
+            System.out.println("Error: SellStocks: You have no stocks to sell.");
         }
-        else {
-            allUserStocks.get(allUserStocks.indexOf(stock)).sellShares(shares);
-        }
-        cash = cash + stock.getTOTALCurrentValue();
     }
-    */
+
 
     public static MyApplication getInstance() {
         return instance;
