@@ -9,14 +9,11 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Stock implements Serializable {
-    //every field marked by T_ is value considering TOTAL SHARES
     private String symbol, companyName;
-    private double marketCap, volume;
-    private double T_gainLossDollars, T_gainLossPercent; //total gain/loss of all shares
-    private double currentPrice, purchasePrice; //price per share
-    private double currentValue, purchaseValue;//value of all shares
-    private ArrayList<Double> valueHistory = new ArrayList<Double>(); //array of values of stock over time
-    private int shares, count_day = 0;
+    private double marketCap = 0, volume = 0;
+    private double currentPrice = 0, purchasePrice = 0; //price per share
+    private double currentValue = 0, purchaseValue = 0;//value of all shares
+    private int shares = 0, count_day = 0;
     private Date purchaseDate, currentDate;
     private String date = "08/01/2023"; //placeholder
 
@@ -28,11 +25,9 @@ public class Stock implements Serializable {
         this.purchasePrice = 75;
         this.volume = 100000;
         this.marketCap = 1000000;
-        this.T_gainLossDollars = 25;
-        this.T_gainLossPercent = 33.33;
     }
 
-    public Stock(String symbol, String companyName, String price, String volume, String marketCap){
+    public Stock(String symbol, String companyName, String price, String volume, String marketCap, String date){
         this.symbol = symbol;
         this.companyName = companyName; //will add when I add CSV file
         try {
@@ -43,7 +38,13 @@ public class Stock implements Serializable {
         } catch (NumberFormatException e){
             System.out.println("Error: initialization: string not in number format");
         }
-        updateGainsLoss();
+        SimpleDateFormat date_format = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            purchaseDate = date_format.parse(date);
+            currentDate = date_format.parse(date);
+        } catch (ParseException e) {
+            System.out.println("Error: initialize: string not in MM/dd/yyyy format" + e.getMessage());
+        }
     }
     //getters for each variable: to return strings only
     public String getSymbol(){
@@ -75,12 +76,6 @@ public class Stock implements Serializable {
         this.purchaseValue = purchasePrice * shares; //TEMPORARY
         return purchaseValue;
     }
-    public double getGainLossDollars(){
-        return T_gainLossDollars;
-    }
-    public double getGainLossPercent(){
-        return T_gainLossPercent;
-    }
 
     //update day function: to be used every day through clock-imitating loop
     public void updateDay(String price){
@@ -90,13 +85,9 @@ public class Stock implements Serializable {
             System.out.println("Error: update string not in number format");
         }
         this.currentValue = currentPrice * shares;
-        count_day++;
-        valueHistory.set(count_day, currentValue);
-        updateGainsLoss();
         //update date by one day in "currentDate"
         SimpleDateFormat date_format = new SimpleDateFormat("MM/dd/yyyy");
         try {
-            purchaseDate = date_format.parse(date);
             currentDate = date_format.parse(date);
         } catch (ParseException e) {
             System.out.println("Error: purchaseStock: string not in MM/dd/yyyy format" + e.getMessage());
@@ -110,25 +101,13 @@ public class Stock implements Serializable {
 
     public void buyShares(int numShares) {
         this.shares += numShares;
-        //this.T_currentVal = (numShares + this.shares) * currentVal;
-        //this.T_purchaseVal = (numShares + this.shares) * currentVal;
-        //this.T_valHistory[count_day] = T_currentVal;
-        //updateGainsLoss();
+        this.currentValue = currentPrice * shares;
     }
 
     public void sellShares(int numShares) {
         this.shares -= numShares;
-        //updating everything after selling shares
-        //this.T_currentVal = (this.shares - numShares) * currentVal;
-        //this.T_purchaseVal = (this.shares - numShares) * currentVal;
-        //this.T_valHistory[count_day] = T_currentVal;
-        //updateGainsLoss();
-    }
+        this.currentValue = currentPrice * shares;
 
-    //private functions to be used within class (IGNORE)
-    private void updateGainsLoss(){
-        T_gainLossDollars = currentValue - purchaseValue;
-        T_gainLossPercent = (T_gainLossDollars / purchaseValue) * 100; //in percent
     }
 
     //assumes symbol is unique for each stock
