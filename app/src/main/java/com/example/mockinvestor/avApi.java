@@ -1,10 +1,12 @@
 package com.example.mockinvestor;
+
 import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,22 +17,47 @@ import org.json.JSONObject;
 
 import java.io.File;
 import android.util.Log;
+import java.util.Properties;
 
 import java.io.File;
 
 
 public class avApi {
 
-    public void stockDataUpdate(String symbol) {
-        new StockDataAsyncTask().execute(symbol);
+    //this will fetch the api key for the gradle.properties file
+    private static final String PROPERTIES_FILE = "config.properties";
+    private static final String API_KEY_PROPERTY = "ALPHA_VANTAGE_API_KEY";
+
+    private String getApiKey(Context context) {
+        try (InputStream input = context.getAssets().open(PROPERTIES_FILE)) {
+            Properties properties = new Properties();
+            properties.load(input);
+            return properties.getProperty(API_KEY_PROPERTY);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
+    public void stockDataUpdate(Context context, String symbol){
+
+        String apiKey = getApiKey(context);
+
+        new StockDataAsyncTask(context, apiKey).execute(symbol);
+    }
     private Context context;
 
     private class StockDataAsyncTask extends AsyncTask<String, Void, Void> {
+        private Context context;
+        private String apiKey;
+
+        public StockDataAsyncTask(Context context, String apiKey) {
+            this.context = context;
+            this.apiKey = apiKey;
+        }
         @Override
         protected Void doInBackground(String... params) {
-            String apiKey = "CBP69ER5QF1IGEW5";
+            //String apiKey = BuildConfig.ALPHA_VANTAGE_API_KEY;
             String function = "TIME_SERIES_DAILY";
             String symbol = params[0];
             String base_url = "https://www.alphavantage.co/query";
@@ -49,15 +76,21 @@ public class avApi {
                     }
                     reader.close();
 
-                    // Parse the JSON response and extract data
+
                     String csvData = parseJsonResponse(response.toString());
 
-                    // Save the data to a CSV file
+                    //use the CSVWriter class to write the data to a csv file
                     CSVWriter.writeStringToCSV(context, csvData, "historical_stock_data.csv");
 
                     System.out.println("Data saved to historical_stock_data.csv");
-                    //print the path to the historical_stock_data.csv file
 
+                    //print the path to the historical_stock_data.csv file
+                    File csvDirectory = new File(context.getFilesDir(), "CSVFiles");
+                    if (!csvDirectory.exists()) {
+                        csvDirectory.mkdirs();
+                    }
+                    File csvFile = new File(csvDirectory, "historical_stock_data.csv");
+                    Log.d("Path to CSV file", csvFile.getAbsolutePath());
 
 
 
@@ -73,18 +106,19 @@ public class avApi {
             return null;
         }
 
+        //method to process the json response from the api and return a string that can be converted to csv
         private String parseJsonResponse(String jsonResponse) {
-            // Parse JSON and extract data
+
             StringBuilder csvData = new StringBuilder("Date,Open,High,Low,Close,Volume\n");
             try {
                 JSONObject jsonObject = new JSONObject(jsonResponse);
                 JSONObject timeSeries = jsonObject.getJSONObject("Time Series (Daily)");
 
-                // Get the dates (keys) from the time series
+
                 JSONArray dates = timeSeries.names();
 
                 if (dates != null) {
-                    // Iterate through each date
+
                     for (int i = 0; i < dates.length(); i++) {
                         String date = dates.getString(i);
                         JSONObject dailyData = timeSeries.getJSONObject(date);

@@ -1,5 +1,7 @@
 package com.example.mockinvestor;
 
+import com.example.mockinvestor.avApi;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import com.example.mockinvestor.BuildConfig;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
@@ -42,7 +46,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
 
+        //api test code
+
+
+
+        avApi apiObj = new avApi();
+        String symbol = "TSLA";
+        apiObj.stockDataUpdate(this, symbol);
+        //will save the csv to this path in the device's files:
+        // /data/user/0/com.example.mockinvestor/files/CSVFiles/historical_stock_data.csv
+
     }
+
+
+
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(this, StockInfoActivity.class);
