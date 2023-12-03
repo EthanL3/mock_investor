@@ -35,8 +35,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.MyViewHolder
         holder.company_name.setText(stockList.get(position).getCompanyName());
         holder.shares.setText(Double.toString(stockList.get(position).getShares()));
         holder.current_value.setText("$" + Double.toString(stockList.get(position).getCurrentValue()));
-        holder.gain_loss_dollars.setText("$" + Double.toString(stockList.get(position).getGainLossDollars()));
-        holder.gain_loss_percent.setText(Double.toString(stockList.get(position).getGainLossPercent())+ "%");
+        //holder.gain_loss_dollars.setText("$" + Double.toString(stockList.get(position).getGainLossDollars()));
+        //holder.gain_loss_percent.setText(Double.toString(stockList.get(position).getGainLossPercent())+ "%");
     }
 
     @Override
