@@ -1,10 +1,9 @@
 package com.example.mockinvestor;
+//import com.example.mockinvestor.BuildConfig;
 
 import android.app.Application;
 
 import java.util.ArrayList;
-
-//import com.example.mockinvestor.BuildConfig;
 
 public class MyApplication extends Application {
     private static MyApplication instance;
@@ -14,12 +13,15 @@ public class MyApplication extends Application {
     public double getCash(){
         return cash;
     }
-    public void setCash(double val){
+    /*public void setCash(double val){
         this.cash = val;
-    }
+    }*/
 
     public double getHoldings() {
-        holdings = 0;
+        //Stock exampleStock = new Stock("NEW","45","0","0","0","03/12/2024");
+        //Stock exampleStock = new Stock("NEW",10);
+        //purchaseStocks(exampleStock, 10);
+        holdings = cash;
         for (int i = 0; i < portfolioSize; i++) {
             holdings += allUserStocks.get(i).getCurrentValue();
         }
@@ -39,13 +41,14 @@ public class MyApplication extends Application {
             } else {
                 addStockToList(stock);
                 portfolioSize++;
-                allUserStocks.get(allUserStocks.size()-1).buyShares(shares);
+                allUserStocks.get(portfolioSize-1).buyShares(shares);
             }
             cash = cash - stock.getCurrentValue();
         } catch (NullPointerException e) {
-            addStockToList(stock);
+            Stock user_stock = new Stock(stock.getSymbol(), shares);
+            addStockToList(user_stock);
             allUserStocks.get(0).buyShares(shares);
-            cash = cash - stock.getCurrentValue();
+            cash = cash - user_stock.getCurrentValue();
             throw e;
         }
     }
@@ -70,10 +73,9 @@ public class MyApplication extends Application {
                 System.out.println("Error: SellStocks: This stock does not exist in your portfolio.");
             }
         } catch (NullPointerException nullPointerException) {
-            System.out.println("Error: You have no stocks to sell.");
+            System.out.println("Error: SellStocks: You have no stocks to sell.");
         }
     }
-
 
     public static MyApplication getInstance() {
         return instance;
@@ -121,8 +123,10 @@ public class MyApplication extends Application {
         try {
             return this.allUserStocks.get(index);
         } catch (NullPointerException e) {
-            throw e;
+            Stock newStock = new Stock("",0);
+            return newStock;
         }
     }
 
 }
+
