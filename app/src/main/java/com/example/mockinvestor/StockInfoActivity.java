@@ -45,7 +45,8 @@ public class StockInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText enter_shares_sold = findViewById(R.id.enter_shares_sold);
                 int numSharesSold = Integer.parseInt(enter_shares_sold.getText().toString());
-                MyApplication.getInstance().getPortfolio().sellStocks(MyApplication.getInstance().getPortfolio().getStockList().get(index),numSharesSold);
+                int currentShares = MyApplication.getInstance().getAllUserStocks().get(index).getQuantity();
+                MyApplication.getInstance().getAllUserStocks().get(index).updateShares(currentShares - numSharesSold);
                 Intent intent = new Intent(StockInfoActivity.this, MainActivity.class);
                 startActivity(intent);
             }
