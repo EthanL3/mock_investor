@@ -46,15 +46,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
 
-        //api test code
 
 
-
+        //avApi test
+        //will save the csv to this path in the device's files:
+        // /data/user/0/com.example.mockinvestor/files/CSVFiles/"symbol"_historical_stock_data.csv
         avApi apiObj = new avApi();
         String symbol = "TSLA";
         apiObj.stockDataUpdate(this, symbol);
-        //will save the csv to this path in the device's files:
-        // /data/user/0/com.example.mockinvestor/files/CSVFiles/historical_stock_data.csv
+
 
     }
 

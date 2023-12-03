@@ -89,7 +89,10 @@ public class avApi {
                     if (!csvDirectory.exists()) {
                         csvDirectory.mkdirs();
                     }
-                    File csvFile = new File(csvDirectory, "historical_stock_data.csv");
+
+                    String csvFileName = symbol + "_historical_stock_data.csv";
+
+                    File csvFile = new File(csvDirectory, csvFileName);
                     Log.d("Path to CSV file", csvFile.getAbsolutePath());
 
 
