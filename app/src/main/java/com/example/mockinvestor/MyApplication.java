@@ -6,10 +6,13 @@ import java.util.ArrayList;
 
 public class MyApplication extends Application {
     private static MyApplication instance;
-    ArrayList<Stock> allUserStocks = new ArrayList<>();
+    //ArrayList<Stock> allUserStocks = new ArrayList<>();
+    private Portfolio userPortfolio; //list of stocks stored in portfolio object
+
     public static MyApplication getInstance() {
         return instance;
     }
+    public Portfolio getPortfolio(){ return userPortfolio; }
 
     public void onCreate() {
         super.onCreate();
@@ -17,13 +20,14 @@ public class MyApplication extends Application {
     }
 
     public boolean containsStock(Stock stock) {
-        for(int i = 0; i < this.allUserStocks.size(); i++) {
-            if (this.allUserStocks.get(i).getSymbol().equals(stock.getSymbol())) {
+        for(int i = 0; i < this.userPortfolio.getNumStocks(); i++) {
+            if (this.userPortfolio.getStockList().get(i).getSymbol().equals(stock.getSymbol())) {
                 return true;
             }
         }
         return false;
     }
+
     /* NOT NEEDED FOR NOW, maybe need it later tho
     public void sellShares(int index, int numSharesSold) {
         Stock stock = this.allUserStocks.get(index);
@@ -37,31 +41,31 @@ public class MyApplication extends Application {
      */
 
     public void setAllUserStocks(ArrayList<Stock> allUserStocks) {
-        this.allUserStocks = allUserStocks;
+        this.userPortfolio.setStocksList(allUserStocks);
     }
 
     public ArrayList<Stock> getAllUserStocks() {
-        return allUserStocks;
+        return userPortfolio.getStockList();
     }
 
     public void addStockToList(Stock stock) {
-        this.allUserStocks.add(stock);
+        this.userPortfolio.getStockList().add(stock);
     }
 
     public void removeStockFromList(Stock stock) {
-        this.allUserStocks.remove(stock);
+        this.userPortfolio.getStockList().remove(stock);
     }
 
     public void removeStockFromList(int index) {
-        this.allUserStocks.remove(index);
+        this.userPortfolio.getStockList().remove(index);
     }
 
     public void clearStockList() {
-        this.allUserStocks.clear();
+        this.userPortfolio.getStockList().clear();
     }
 
     public Stock getStockFromListByIndex(int index) {
-        return this.allUserStocks.get(index);
+        return this.userPortfolio.getStockList().get(index);
     }
 
 
