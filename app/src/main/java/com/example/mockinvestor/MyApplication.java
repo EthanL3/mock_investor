@@ -38,6 +38,22 @@ public class MyApplication extends Application {
         cash = cash - allUserStocks.get(count).getTOTALCurrentValue();
         numStocks++;
     }
+
+    public void sellStocks(Stock stock, int shares) {
+        int count = 0;
+        while (count <= numStocks) {
+            if (allUserStocks.get(count).getSymbol() == stock.getSymbol()) { //add shares if stock already in portfolio
+                break;
+            } //if stock is found in portfolio bracket
+            count++;
+        }
+        allUserStocks.get(count).sellShares(shares);
+        cash = cash + (allUserStocks.get(count).getCurrentValue()*shares);
+        if (allUserStocks.get(count).getQuantity() == 0){
+            removeStockFromList(stock);
+            numStocks -= 1;
+        }
+    }
     
     public static MyApplication getInstance() {
         return instance;
