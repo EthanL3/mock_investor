@@ -51,4 +51,3 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         startActivity(intent);
     }
 }
-
