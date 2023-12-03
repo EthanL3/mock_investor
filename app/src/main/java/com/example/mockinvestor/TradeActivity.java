@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +19,11 @@ public class TradeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trade);
         getSupportActionBar().setTitle("Trade");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        TextView total_money_left = findViewById(R.id.total_money_left);
+
+        //Money left to spend, placeholder for now
+        total_money_left.setText("Total money left: $100000");
 
 
         Button btnBuy = findViewById(R.id.btnBuy);
@@ -35,7 +41,7 @@ public class TradeActivity extends AppCompatActivity {
                 if (MyApplication.getInstance().containsStock(user_stock)) {
                     int stockIndex = MyApplication.getInstance().getAllUserStocks().indexOf(user_stock);
                     Stock stock = MyApplication.getInstance().getAllUserStocks().get(stockIndex);
-                    MyApplication.getInstance().getPortfolio().purchaseStocks(user_stock,shares);
+                    stock.buyShares(shares);
                 }
                 //else add the stock to the list
                 else {
