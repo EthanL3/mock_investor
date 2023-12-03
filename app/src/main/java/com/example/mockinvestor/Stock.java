@@ -106,6 +106,16 @@ public class Stock implements Serializable {
         updateGainsLoss();
     }
 
+    public void sellShares(int numShares)
+    {
+        this.shares -= numShares;
+    }
+
+    public void buyShares(int numShares)
+    {
+        this.shares += numShares;
+    }
+
     //private functions to be used within class (IGNORE)
     private void updateGainsLoss(){
         T_gainLossDollars = T_currentVal - T_purchaseVal;

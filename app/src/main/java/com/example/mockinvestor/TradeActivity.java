@@ -89,7 +89,8 @@ public class TradeActivity extends AppCompatActivity {
                 if (MyApplication.getInstance().containsStock(user_stock)) {
                     int stockIndex = MyApplication.getInstance().getAllUserStocks().indexOf(user_stock);
                     Stock stock = MyApplication.getInstance().getAllUserStocks().get(stockIndex);
-                    purchaseStocks(user_stock,shares);
+                    stock.buyShares(shares);
+                    //purchaseStocks(user_stock,shares);
                 }
                 //else add the stock to the list
                 else {

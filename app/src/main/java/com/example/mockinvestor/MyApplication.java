@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class MyApplication extends Application {
     private static MyApplication instance;
     ArrayList<Stock> allUserStocks = new ArrayList<>();
+    int cash;
     public static MyApplication getInstance() {
         return instance;
     }
