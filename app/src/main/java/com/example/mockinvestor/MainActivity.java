@@ -1,127 +1,101 @@
 package com.example.mockinvestor;
 
-import android.app.Application;
+//import com.example.mockinvestor.avApi;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyApplication extends Application {
-    private static MyApplication instance;
-    ArrayList<Stock> allUserStocks = new ArrayList<>();
-    int portfolioSize = 0;
-    double holdings = 0, cash = 100000;
-    public double getCash(){
-        return cash;
-    }
-    public void setCash(double val){
-        this.cash = val;
-    }
+//import com.example.mockinvestor.BuildConfig;
 
-    public double getHoldings() {
-        holdings = 0;
-        for (int i = 0; i < portfolioSize; i++) {
-            holdings += allUserStocks.get(i).getCurrentValue();
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Portfolio");
+
+        RecyclerView recycler_view = findViewById(R.id.recycler_view);
+        ArrayList<Stock> stocks = new ArrayList<>();
+        //Buttons
+        Button btnProfile = findViewById(R.id.btnProfile);
+        Button btnTrade = findViewById(R.id.btnTrade);
+        Button btnRefresh = findViewById(R.id.btnRefresh);
+
+        //TextView objects for cash left and holdings
+        TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
+        total_value_of_stocks.setText("Portfolio Value: $" + Double.toString(MyApplication.getInstance().getHoldings()));
+
+        //if user has stocks, display them
+        if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
+            stocks = MyApplication.getInstance().getAllUserStocks();
         }
-        return holdings;
-    }
 
-    public void setHoldings(double holdings) {
-        this.holdings = holdings;
-    }
-
-    public void purchaseStocks(Stock stock, int shares) {
-        try {
-            if (containsStock(stock)) {
-                int indexOfStock = allUserStocks.indexOf(stock);
-                Stock user_stock = allUserStocks.get(indexOfStock);
-                user_stock.buyShares(shares);
-            } else {
-                addStockToList(stock);
-                portfolioSize++;
-                allUserStocks.get(allUserStocks.size()-1).buyShares(shares);
+        //Button clicks
+        btnTrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Do something when the button is clicked
+                Intent intent = new Intent(MainActivity.this, TradeActivity.class);
+                startActivity(intent);
             }
-            cash = cash - stock.getCurrentValue();
-        } catch (NullPointerException e) {
-            addStockToList(stock);
-            allUserStocks.get(0).buyShares(shares);
-            cash = cash - stock.getCurrentValue();
-            throw e;
-        }
-    }
+        });
 
-    public void sellStocks(Stock stock, int shares) {
-        try {
-            if (containsStock(stock)) {
-                int indexOfStock = allUserStocks.indexOf(stock);
-                Stock user_stock = allUserStocks.get(indexOfStock);
-                if (shares == user_stock.getShares()) {
-                    removeStockFromList(stock);
-                    portfolioSize--;
-                    cash = cash + user_stock.getCurrentValue();
-                } else if (shares > user_stock.getShares()){
-                    System.out.println("Error: SellStocks: You own fewer shares than you want to sell.");
-                } else {
-                    double previousCurrentVal = user_stock.getCurrentValue();
-                    user_stock.sellShares(shares);
-                    cash = cash + (previousCurrentVal - user_stock.getCurrentValue());
-                }
-            } else {
-               System.out.println("Error: SellStocks: This stock does not exist in your portfolio.");
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Do something when the button is clicked
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
             }
-        } catch (NullPointerException nullPointerException) {
-            System.out.println("Error: You have no stocks to sell.");
-        }
-    }
+        });
 
-
-    public static MyApplication getInstance() {
-        return instance;
-    }
-
-    public void onCreate() {
-        super.onCreate();
-        instance = this;
-    }
-
-    public boolean containsStock(Stock stock) {
-        for(int i = 0; i < portfolioSize; i++) {
-            if (this.allUserStocks.get(i).getSymbol().equals(stock.getSymbol())) {
-                return true;
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Do something when the button is clicked
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
-        }
-        return false;
-    }
+        });
 
-    public void setAllUserStocks(ArrayList<Stock> allUserStocks) {
-        this.allUserStocks = allUserStocks;
-    }
+        StockAdapter adapter = new StockAdapter(this, stocks, this);
+        recycler_view.setAdapter(adapter);
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
 
-    public ArrayList<Stock> getAllUserStocks() {
-        return allUserStocks;
-    }
+        //avApi test
+        //will save the csv to this path in the device's files:
+        // /data/user/0/com.example.mockinvestor/files/CSVFiles/"symbol"_historical_stock_data.csv
+        /*
+        avApi apiObj = new avApi();
 
-    public void addStockToList(Stock stock) {
-        this.allUserStocks.add(stock);
-    }
+        String symbol = "NFLX";
+        apiObj.stockDataUpdate(this, symbol);
 
-    public void removeStockFromList(Stock stock) {
-        this.allUserStocks.remove(stock);
-    }
+        Float testPrice = CSVReader.getClosePrice(0, symbol);
+        System.out.println("testPrice: " + testPrice);
 
-    public void removeStockFromList(int index) {
-        this.allUserStocks.remove(index);
-    }
+        Float testVolume = CSVReader.getVolume(0, symbol);
+        System.out.println("testVolume: " + testVolume);
+        */
 
-    public void clearStockList() {
-        this.allUserStocks.clear();
     }
-
-    public Stock getStockFromListByIndex(int index) {
-        try {
-            return this.allUserStocks.get(index);
-        } catch (NullPointerException e) {
-            throw e;
-        }
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, StockInfoActivity.class);
+        //pass the current stock object to the next activity
+        intent.putExtra("index", position);
+        startActivity(intent);
     }
-
 }
 
