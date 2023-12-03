@@ -62,11 +62,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="520dp"
-        android:layout_marginTop="48dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topLayout"
+        android:layout_above="@+id/btnProfile"
+        android:layout_marginBottom="10dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,15 +73,19 @@
         android:id="@+id/btnProfile"
         android:backgroundTint="@color/lightBlue"
         android:textColor="@color/blueBlack"
-        android:layout_marginStart="20dp"
-        android:layout_below="@+id/recycler_view"/>
+        android:layout_above="@id/bottom_layout"
+        android:layout_marginStart="20dp"/>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_layout"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:padding="20dp">
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,14 +94,16 @@
             android:id="@+id/btnTrade"
             android:backgroundTint="@color/lightBlue"
             android:textColor="@color/blueBlack" />
+
         <TextView
+            android:id="@+id/total_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:text="Total Value"
-            android:id="@+id/total_value"
             android:textColor="@color/lightBlue"
-            android:textSize="25sp"
-            android:fontFamily="sans-serif"/>
+            android:textSize="25sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
