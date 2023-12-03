@@ -1,5 +1,7 @@
 package com.example.mockinvestor;
 
+import android.app.Application;
+
 import java.util.ArrayList;
 
 //import com.example.mockinvestor.BuildConfig;
