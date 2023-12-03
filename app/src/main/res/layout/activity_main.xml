@@ -62,31 +62,77 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="525dp"
-        android:layout_marginTop="48dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topLayout"
+        android:layout_above="@+id/btnProfile"
+        android:layout_marginBottom="10dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trade"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/btnTrade"
+        android:text="Profile"
+        android:id="@+id/btnProfile"
         android:backgroundTint="@color/lightBlue"
         android:textColor="@color/blueBlack"
-        android:layout_below="@id/recycler_view"
-        android:layout_marginTop="20dp"/>
-    <Button
+        android:layout_above="@id/bottom_layout"
+        android:layout_marginStart="20dp"/>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Refresh"
+        android:id="@+id/bottom_layout"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/btnRefresh"
-        android:backgroundTint="@color/lightBlue"
-        android:textColor="@color/blueBlack"
-        android:layout_below="@id/btnTrade"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trade"
+            android:layout_alignParentEnd = "true"
+            android:id="@+id/btnTrade"
+            android:backgroundTint="@color/lightBlue"
+            android:textColor="@color/blueBlack" />
+
+        <TextView
+            android:id="@+id/total_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Total Value"
+            android:textColor="@color/lightBlue"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Gain/Loss ($)"
+            android:id="@+id/total_gain_loss_dollars"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp"
+            android:layout_below="@id/total_value"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Gain/Loss (%)"
+            android:id="@+id/total_gain_loss_percent"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp"
+            android:layout_below="@id/total_gain_loss_dollars"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refresh"
+            android:id="@+id/btnRefresh"
+            android:backgroundTint="@color/lightBlue"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/blueBlack"
+            android:layout_below="@+id/btnTrade"/>
+
+    </RelativeLayout>
 </RelativeLayout>

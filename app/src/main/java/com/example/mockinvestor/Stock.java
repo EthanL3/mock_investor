@@ -1,11 +1,11 @@
 package com.example.mockinvestor;
 
 import java.io.Serializable;
-import java.util.Objects;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
 
 public class Stock implements Serializable {
     //every field marked by T_ is value considering TOTAL SHARES
@@ -118,6 +118,8 @@ public class Stock implements Serializable {
         T_gainLossDollars = T_currentVal - T_purchaseVal;
         T_gainLossPercent = (double) (T_gainLossDollars/T_purchaseVal) - 1; //saves float btw 0-1
     }
+
+    //assumes symbol is unique for each stock
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,20 +131,4 @@ public class Stock implements Serializable {
     public int hashCode() {
         return Objects.hash(symbol);
     }
-
-    /*public void setSymbol(String symbol){
-        this.symbol = symbol;
-    }
-    public void setCompanyName(String companyName){
-        this.companyName = companyName;
-    }
-    public void setQuantity(String quantity){
-        this.quantity = quantity;
-    }
-    public void setCurrentValue(String currentValue){
-        this.currentVal = currentValue;
-    }
-    public void setGainLoss(String gainLoss){
-        this.gainLoss = gainLoss;
-    }*/
 }

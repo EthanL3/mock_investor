@@ -34,8 +34,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.MyViewHolder
         holder.symbol.setText(stockList.get(position).getSymbol());
         holder.company_name.setText(stockList.get(position).getCompanyName());
         holder.quantity.setText(Double.toString(stockList.get(position).getQuantity()));
-        holder.current_value.setText(Double.toString(stockList.get(position).getCurrentValue()));
-        holder.gain_loss.setText(Double.toString(stockList.get(position).getGainLossDollars()));
+        holder.current_value.setText("$" + Double.toString(stockList.get(position).getCurrentValue()));
+        holder.gain_loss_dollars.setText("$" + Double.toString(stockList.get(position).getGainLossDollars()));
+        holder.gain_loss_percent.setText(Double.toString(stockList.get(position).getGainLossPercent())+ "%");
     }
 
     @Override
@@ -44,14 +45,15 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.MyViewHolder
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView symbol, company_name, quantity, current_value, gain_loss;
+        TextView symbol, company_name, quantity, current_value, gain_loss_dollars, gain_loss_percent;
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             symbol = itemView.findViewById(R.id.symbol);
             company_name = itemView.findViewById(R.id.company_name);
             quantity = itemView.findViewById(R.id.quantity);
             current_value = itemView.findViewById(R.id.current_value);
-            gain_loss = itemView.findViewById(R.id.gain_loss);
+            gain_loss_dollars = itemView.findViewById(R.id.gain_loss_dollars);
+            gain_loss_percent = itemView.findViewById(R.id.gain_loss_percent);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
