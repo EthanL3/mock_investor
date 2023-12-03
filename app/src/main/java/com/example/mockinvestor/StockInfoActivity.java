@@ -30,7 +30,7 @@ public class StockInfoActivity extends AppCompatActivity {
         TextView volume = findViewById(R.id.volume);
 
         symbol.setText(selectedStock.getSymbol());
-        price_per_share.setText("Current Price: " + selectedStock.getCurrentPrice());
+        price_per_share.setText("Current Price: " + selectedStock.getCurrentValue());
         market_cap.setText("Market Cap: " + selectedStock.getMarketCap());
         volume.setText("Volume " + selectedStock.getVolume());
 
@@ -45,7 +45,7 @@ public class StockInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText enter_shares_sold = findViewById(R.id.enter_shares_sold);
                 int numSharesSold = Integer.parseInt(enter_shares_sold.getText().toString());
-                MyApplication.getInstance().getStockFromListByIndex(index).sellShares(numSharesSold);
+                MyApplication.getInstance().getPortfolio().sellStocks(MyApplication.getInstance().getPortfolio().getStockList().get(index),numSharesSold);
                 Intent intent = new Intent(StockInfoActivity.this, MainActivity.class);
                 startActivity(intent);
             }
