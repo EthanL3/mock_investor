@@ -22,13 +22,9 @@ public class TradeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Trade");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //TextView total_money_left = findViewById(R.id.total_money_left);
-
-        //Money left to spend, placeholder for now
-        //total_money_left.setText("Total money left: $100000");
-
-
         Button btnBuy = findViewById(R.id.btnBuy);
+        TextView cash_available_to_trade = findViewById(R.id.cash_available_to_trade);
+        cash_available_to_trade.setText("Cash Available to Trade: $" + Double.toString(MyApplication.getInstance().getCash()));
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +45,7 @@ public class TradeActivity extends AppCompatActivity {
                     MyApplication.getInstance().addStockToList(user_stock);
                 }
                 //updating cash amount
-                MyApplication.getInstance().setCash(MyApplication.getInstance().getCash() - user_stock.getCurrentValue() * shares);
+                MyApplication.getInstance().setCash(MyApplication.getInstance().getCash() - (user_stock.getPurchaseValue()));
                 //going back to main activity
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
                 startActivity(intent);

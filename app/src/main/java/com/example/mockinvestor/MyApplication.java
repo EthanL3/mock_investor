@@ -22,10 +22,6 @@ public class MyApplication extends Application {
         }
         return holdings;
     }
-
-    public void setHoldings(double holdings) {
-        this.holdings = holdings;
-    }
     /*
     public void purchaseStocks(Stock stock, int shares) {
         if (containsStock(stock)) {

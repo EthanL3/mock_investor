@@ -110,19 +110,14 @@ public class Stock implements Serializable {
 
     public void buyShares(int numShares) {
         this.shares += numShares;
-        //this.T_currentVal = (numShares + this.shares) * currentVal;
-        //this.T_purchaseVal = (numShares + this.shares) * currentVal;
-        //this.T_valHistory[count_day] = T_currentVal;
-        //updateGainsLoss();
+        this.currentValue = shares * currentPrice;
+        this.purchaseValue = shares * purchasePrice;
     }
 
     public void sellShares(int numShares) {
         this.shares -= numShares;
-        //updating everything after selling shares
-        //this.T_currentVal = (this.shares - numShares) * currentVal;
-        //this.T_purchaseVal = (this.shares - numShares) * currentVal;
-        //this.T_valHistory[count_day] = T_currentVal;
-        //updateGainsLoss();
+        this.currentValue = shares * currentPrice;
+        this.purchaseValue = shares * purchasePrice;
     }
 
     //private functions to be used within class (IGNORE)
