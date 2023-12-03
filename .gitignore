@@ -1,6 +1,7 @@
 # Local Config File
 local.properties
 gradle.properties
+app/src/main/assets/config.properties
 
 # build folders
 .idea/
