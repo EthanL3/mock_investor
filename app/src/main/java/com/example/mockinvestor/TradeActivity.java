@@ -15,52 +15,6 @@ public class TradeActivity extends AppCompatActivity {
 
     ArrayList<Stock> added_stocks = new ArrayList<>();
 
-    double holdings = 0, cash = 100000;
-    int numStocks = 0;
-
-    public int getNumStocks(){ return numStocks; }
-    public void purchaseStocks(Stock stock, int shares) {
-        int count = 0;
-        while (count <= numStocks) {
-            if (added_stocks.get(count).getSymbol() == stock.getSymbol()) { //add shares if stock already in portfolio
-                added_stocks.get(count).updateShares((added_stocks.get(count).getQuantity() + shares));
-                break;
-            }
-            count++;
-        }
-        if (count > numStocks) { //if stock does not already exist in portfolio
-            added_stocks.get(count).updateShares(shares);
-        }
-        cash = cash - added_stocks.get(count).getTOTALCurrentValue();
-        holdings = holdings + added_stocks.get(count).getTOTALCurrentValue();
-        numStocks++;
-    }
-    public void setStocksList(ArrayList<Stock> stocks){
-        this.added_stocks = stocks;
-    }
-    public void sellStocks(Stock stock, int shares) {
-        int count = 0;
-        int shares_buffer;
-        while (count <= numStocks) {
-            if (added_stocks.get(count).getSymbol() == stock.getSymbol()) { //add shares if stock already in portfolio
-                shares_buffer = added_stocks.get(count).getQuantity() - shares;
-                if (shares_buffer < 1) {
-                    added_stocks.remove(count);
-                } else {
-                    added_stocks.get(count).updateShares(shares_buffer);
-                }
-                break;
-            } //if stock is found in portfolio bracket
-            count++;
-        }
-        if (count > numStocks) { //if stock does not already exist in portfolio
-            System.out.println("Error: This stock does not exist in your portfolio");
-        }
-        cash = cash + added_stocks.get(count).getTOTALCurrentValue();
-        holdings = holdings - added_stocks.get(count).getTOTALCurrentValue();
-        numStocks--;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,18 +38,8 @@ public class TradeActivity extends AppCompatActivity {
                 String ticker = ticker_input.getText().toString();
                 int shares = Integer.parseInt(shares_input.getText().toString());
                 Stock user_stock = new Stock(ticker, shares);
+                MyApplication.getInstance().purchaseStocks(user_stock,shares);
 
-                //if stock already exists in the list, add the shares to the existing stock
-                if (MyApplication.getInstance().containsStock(user_stock)) {
-                    int stockIndex = MyApplication.getInstance().getAllUserStocks().indexOf(user_stock);
-                    Stock stock = MyApplication.getInstance().getAllUserStocks().get(stockIndex);
-                    stock.buyShares(shares);
-                    //purchaseStocks(user_stock,shares);
-                }
-                //else add the stock to the list
-                else {
-                    MyApplication.getInstance().addStockToList(user_stock);
-                }
                 //going back to main activity
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
                 startActivity(intent);
