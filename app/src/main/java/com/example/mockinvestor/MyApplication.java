@@ -7,8 +7,6 @@ import java.util.ArrayList;
 public class MyApplication extends Application {
     private static MyApplication instance;
     ArrayList<Stock> allUserStocks = new ArrayList<>();
-<<<<<<< Updated upstream
-
     double holdings = 0, cash = 100000;
     int numStocks = 0;
 
@@ -55,9 +53,7 @@ public class MyApplication extends Application {
             numStocks -= 1;
         }
     }
-    
-=======
->>>>>>> Stashed changes
+
     public static MyApplication getInstance() {
         return instance;
     }
