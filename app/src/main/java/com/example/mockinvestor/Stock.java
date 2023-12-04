@@ -23,8 +23,8 @@ public class Stock implements Serializable {
         this.currentPrice = 100;
         this.purchasePrice = 75;
         this.volume = 100000;
-        this.T_gainLossDollars = 25;
-        this.T_gainLossPercent = 33.33;
+        this.gainLossDollars = 25;
+        this.gainLossPercent = 33.33;
     }*/
 
     public Stock(String symbol, double price, double volume, String date){

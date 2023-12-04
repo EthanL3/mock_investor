@@ -58,7 +58,7 @@ public class TradeActivity extends AppCompatActivity {
                     Toast.makeText(TradeActivity.this, "Invalid Ticker Or Out Of API Calls", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), "2023-08-01");
+                Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), CSVReader.getDate(0, ticker));
                 //end of api task and stock creation
 
                 MyApplication.getInstance().purchaseStocks(user_stock,shares);
