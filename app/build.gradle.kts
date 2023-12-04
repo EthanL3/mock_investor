@@ -6,6 +6,8 @@ android {
     namespace = "com.example.mockinvestor"
     compileSdk = 34
 
+
+
     defaultConfig {
         applicationId = "com.example.mockinvestor"
         minSdk = 24
@@ -14,15 +16,23 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+    }
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
         release {
+
+            buildConfigField("String", "ALPHA_VANTAGE_API_KEY", "\"${project.findProperty("ALPHA_VANTAGE_API_KEY") ?: System.getenv("ALPHA_VANTAGE_API_KEY")}\"")
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
             )
+
         }
     }
     compileOptions {

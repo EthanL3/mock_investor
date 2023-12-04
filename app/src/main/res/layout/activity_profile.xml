@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blueBlack">
+    android:background="@color/blueBlack"
+    tools:context=".ProfileActivity">
 
     <TextView
         android:id="@+id/profile"
@@ -12,56 +14,58 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif"
-        android:text="Profile"
-        android:textColor="@color/lightBlue"
+        android:text="Portfolio Data"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/money_invested"
+        android:id="@+id/available_cash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
-        android:text="Money Invested"
+        android:text="Available Cash"
         android:textColor="@color/lightBlue"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/total_gain_loss_dollars"
+        android:id="@+id/current_total_holdings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/money_invested"
+        android:layout_below="@id/available_cash"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
-        android:text="Total Gain/Loss ($)"
+        android:text="Current Total Holdings"
         android:textColor="@color/lightBlue"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/total_gain_loss_percent"
+        android:id="@+id/total_gain_loss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/total_gain_loss_dollars"
+        android:layout_below="@id/current_total_holdings"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
-        android:text="Total Gain/Loss (%)"
+        android:text="Total gained/lost"
         android:textColor="@color/lightBlue"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/money_left"
+        android:id="@+id/total_value_of_stocks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/total_gain_loss_percent"
+        android:layout_below="@id/total_gain_loss"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
-        android:text="Money Left"
+        android:text="Total value of stocks"
         android:textColor="@color/lightBlue"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
+
+
 </RelativeLayout>

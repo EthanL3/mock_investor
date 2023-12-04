@@ -3,55 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context = ".TradeActivity"
-    android:background="@color/blueBlack">
+    android:background="@color/blueBlack"
+    tools:context=".TradeActivity">
+
     <TextView
+        android:id="@+id/cash_available_to_trade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Money Left"
-        android:textColor="@color/lightBlue"
-        android:textSize="30dp"
-        android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/total_money_left"
+        android:layout_marginTop="60dp"
+        android:fontFamily="sans-serif"
+        android:text="Cash available to trade:"
+        android:textColor="@color/lightBlue"
         android:textStyle="bold"
-        android:fontFamily="sans-serif"/>
-    <EditText
+        android:textSize="25dp" />
+    <TextView
+        android:id="@+id/cash_available"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter Stock Ticker"
+        android:layout_below="@id/cash_available_to_trade"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif"
+        android:text="0.00"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
+    <EditText
         android:id="@+id/enter_ticker"
-        android:textColorHint="@color/lightBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cash_available"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:textColor="@color/lightBlue"
         android:backgroundTint="@color/lightBlue"
-        android:layout_below="@+id/total_money_left"
-        />
+        android:hint="Enter Stock Ticker"
+        android:textColor="@color/lightBlue"
+        android:textColorHint="@color/lightBlue" />
+
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Number of shares"
         android:id="@+id/enter_shares"
-        android:textColorHint="@color/lightBlue"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/enter_ticker"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/lightBlue"
-        android:backgroundTint="@color/lightBlue"
-        />
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buy"
+        android:layout_below="@id/enter_ticker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/lightBlue"
+        android:hint="Number of shares"
+        android:textColor="@color/lightBlue"
+        android:textColorHint="@color/lightBlue" />
+
+    <Button
+        android:id="@+id/btnBuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/enter_shares"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:backgroundTint="@color/lightBlue"
-        android:textColor="@color/blueBlack"
-        android:id="@+id/btnBuy"
-        />
-
+        android:text="Buy"
+        android:textColor="@color/blueBlack" />
 
 
 </RelativeLayout>

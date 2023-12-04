@@ -6,13 +6,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.mockinvestor.avApi.UpdateCallback;
 
 import java.util.ArrayList;
 
+
 public class TradeActivity extends AppCompatActivity {
+
     ArrayList<Stock> added_stocks = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +25,9 @@ public class TradeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Trade");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TextView total_money_left = findViewById(R.id.total_money_left);
-
-        //Money left to spend, placeholder for now
-        total_money_left.setText("Total money left: $100000");
-
-
         Button btnBuy = findViewById(R.id.btnBuy);
+        TextView cash_available = findViewById(R.id.cash_available);
+        cash_available.setText(String.format("$%.2f", MyApplication.getInstance().getAvailableCash()));
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,17 +36,32 @@ public class TradeActivity extends AppCompatActivity {
                 EditText shares_input = findViewById(R.id.enter_shares);
                 String ticker = ticker_input.getText().toString();
                 int shares = Integer.parseInt(shares_input.getText().toString());
-                Stock user_stock = new Stock(ticker, shares);
 
-                //if stock already exists in the list, add the shares to the existing stock
-                if (MyApplication.getInstance().containsStock(user_stock)) {
-                    int stockIndex = MyApplication.getInstance().getAllUserStocks().indexOf(user_stock);
-                    Stock stock = MyApplication.getInstance().getAllUserStocks().get(stockIndex);
-                    stock.buyShares(shares);
+                //code that handles buying and creating CSVs
+                avApi apiobject = new avApi();
+                UpdateCallback updateCallback = new UpdateCallback() {
+                    @Override
+                    public void onUpdateComplete() {
+                        // Handle success, e.g., update UI or perform additional tasks
+                        System.out.println("Update completed successfully");
+                    }
+
+                    @Override
+                    public void onUpdateFailed() {
+                        // Handle failure, e.g., show an error message
+                        System.out.println("Update failed");
+                    }
+                };
+                apiobject.runStockDataUpdateWithRetry(TradeActivity.this, ticker, 5, updateCallback);
+                System.out.println(CSVReader.readClosingPrices(ticker).size());
+                if (CSVReader.readClosingPrices(ticker).size() == 0){
+                    Toast.makeText(TradeActivity.this, "Invalid Ticker Or Out Of API Calls", Toast.LENGTH_SHORT).show();
                 }
-                //else add the stock to the list
-                else {
-                    MyApplication.getInstance().addStockToList(user_stock);
+                else{
+                Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), CSVReader.getDate(0, ticker));
+                //end of api task and stock creation
+
+                MyApplication.getInstance().purchaseStocks(user_stock,shares);
                 }
                 //going back to main activity
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
