@@ -6,97 +6,30 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class portfolioCSVReader {
-/*
-    public static String getFilepath(String symbol){
-        String fileP ="/data/user/0/com.example.mockinvestor/files/CSVFiles/" + symbol + "_historical_stock_data.csv";
-        return fileP;
-    }
-    public static ArrayList<Float> readClosingPrices(String symbol){
-        String filepath = getFilepath(symbol);
-        ArrayList<Float> closingPrices = new ArrayList<>();
 
-        try(BufferedReader br = new BufferedReader(new FileReader(filepath))){
+    public static ArrayList<Stock> loadSavedStocks(){
+        ArrayList<Stock> savedStocks = new ArrayList<>();
+        String fileP ="/data/user/0/com.example.mockinvestor/files/CSVFiles/" + "Portfolio.csv";
+
+        try(BufferedReader br = new BufferedReader(new FileReader(fileP))){
             br.readLine();
             String l;
-            float cPrice;
+            Stock currentStock;
             while ((l = br.readLine()) != null){
                 String[] dat = l.split(",");
-                cPrice = Float.parseFloat(dat[4]);
-                closingPrices.add(cPrice);
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return closingPrices;
-    }
-
-    public static List<Float> readVolume(String symbol){
-        String filepath = getFilepath(symbol);
-        List<Float> closingPrices = new ArrayList<>();
-
-        try(BufferedReader br = new BufferedReader(new FileReader(filepath))){
-            br.readLine();
-            String l;
-            float vol;
-            while ((l = br.readLine()) != null){
-                String[] dat = l.split(",");
-                vol = Float.parseFloat(dat[5]);
-                closingPrices.add(vol);
+                currentStock = new Stock(dat[0], Float.parseFloat(dat[1]), Integer.parseInt(dat[2]), dat[3]);
+                currentStock.buyShares(Integer.parseInt(dat[4]));
+                currentStock.buyShares(Integer.parseInt(dat[4]));
+                currentStock.updateDay(Float.parseFloat(dat[5]));
+                savedStocks.add(currentStock);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return closingPrices;
+        return savedStocks;
     }
 
-    public static List<String> readDate(String symbol){
-        String filepath = getFilepath(symbol);
-        ArrayList<String> dates = new ArrayList<>();
-
-        try(BufferedReader br = new BufferedReader(new FileReader(filepath))){
-            br.readLine();
-            String l;
-            String d;
-            while ((l = br.readLine()) != null){
-                String[] dat = l.split(",");
-                d =dat[0];
-                dates.add(d);
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return dates;
-    }
-
-    //days start at 0 and go to 99
-    public static float getClosePrice (int day, String symbol){
-        String filepath = getFilepath(symbol);
-
-        float price = readClosingPrices(symbol).get(day);
-        return price;
-    }
-
-    public static float getVolume (int day, String symbol){
-        String filepath = getFilepath(symbol);
-
-        float vol = readVolume(symbol).get(day);
-        return vol;
-    }
-
-    public static String getDate (int day, String symbol){
-        String filepath = getFilepath(symbol);
-
-        String date = readDate(symbol).get(day);
-        return date;
-    }
-*/
 }

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Do something when the button is clicked
+                //update here?
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -82,6 +84,21 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
+        int portfolioSize = MyApplication.getInstance().getPortfolioSize();
+        Timer currentPriceTimer = new Timer();
+        while (MyApplication.getInstance().getCount() < 100) {
+            currentPriceTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    for (int i=0; i<portfolioSize; i++) {
+                        String currentSymbol = MyApplication.getInstance().getAllUserStocks().get(i).getSymbol();
+                        MyApplication.getInstance().getAllUserStocks().get(i).updateDay(CSVReader.getClosePrice(MyApplication.getInstance().getCount(),currentSymbol));
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }, 10000); //delay 10 seconds
+            MyApplication.getInstance().incrementCount();
+        }
 
         //avApi test
         //will save the csv to this path in the device's files:

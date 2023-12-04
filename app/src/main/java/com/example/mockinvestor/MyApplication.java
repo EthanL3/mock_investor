@@ -10,6 +10,13 @@ public class MyApplication extends Application {
     double holdings = 0, availableCash = 100000;
     int portfolioSize = 0;
     double totalValueOfStocks = 0;
+    int timerCount = 0;
+
+    public int getCount(){
+        return timerCount;
+    }
+    public void incrementCount(){ this.timerCount += 1; }
+
     public double getAvailableCash(){
         return availableCash;
     }
