@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CSVWriter {
+public class portfolioCSVWriter {
     /*public static void writeStringToCSV(Context context, String data, String filename) throws IOException {
         File csvDirectory = new File(context.getFilesDir(), "CSVFiles");
         if (!csvDirectory.exists()) {
