@@ -13,15 +13,27 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:fontFamily="sans-serif"
-        android:text="Cash available to trade"
+        android:text="Cash available to trade:"
         android:textColor="@color/lightBlue"
-        android:textSize="20dp" />
+        android:textStyle="bold"
+        android:textSize="25dp" />
+    <TextView
+        android:id="@+id/cash_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cash_available_to_trade"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif"
+        android:text="0.00"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
 
     <EditText
         android:id="@+id/enter_ticker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cash_available_to_trade"
+        android:layout_below="@+id/cash_available"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:backgroundTint="@color/lightBlue"

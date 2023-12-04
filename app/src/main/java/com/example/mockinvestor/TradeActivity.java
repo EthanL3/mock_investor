@@ -23,8 +23,8 @@ public class TradeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button btnBuy = findViewById(R.id.btnBuy);
-        TextView cash_available_to_trade = findViewById(R.id.cash_available_to_trade);
-        cash_available_to_trade.setText("Cash Available to Trade: $" + Double.toString(MyApplication.getInstance().getAvailableCash()));
+        TextView cash_available = findViewById(R.id.cash_available);
+        cash_available.setText(String.format("$%.2f", MyApplication.getInstance().getAvailableCash()));
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
