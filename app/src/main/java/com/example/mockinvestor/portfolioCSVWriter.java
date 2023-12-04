@@ -20,7 +20,7 @@ public class portfolioCSVWriter {
         } else {
             String filePathStr ="/data/user/0/com.example.mockinvestor/files/CSVFiles/Portfolio.csv";
             File filePath = new File(filePathStr);
-            if (filePath.exists() && !filePath.isDirectory()){
+            if (filePath.exists()){
                 filePath.delete();
                 lines = 0;
             }
