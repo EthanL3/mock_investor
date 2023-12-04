@@ -33,6 +33,9 @@ public class TradeActivity extends AppCompatActivity {
                 EditText shares_input = findViewById(R.id.enter_shares);
                 String ticker = ticker_input.getText().toString();
                 int shares = Integer.parseInt(shares_input.getText().toString());
+
+                avApi apiobject = new avApi();
+                apiobject.stockDataUpdate(getApplicationContext(), ticker);
                 Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker));
                 MyApplication.getInstance().purchaseStocks(user_stock,shares);
                 //going back to main activity
