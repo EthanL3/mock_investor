@@ -31,10 +31,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Button btnProfile = findViewById(R.id.btnProfile);
         Button btnTrade = findViewById(R.id.btnTrade);
         Button btnRefresh = findViewById(R.id.btnRefresh);
+        Button btnQuit = findViewById(R.id.btnQuit);
 
         //TextView objects for cash left and holdings
         TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
-        total_value_of_stocks.setText("Portfolio Value: $" + Double.toString(MyApplication.getInstance().getTotalValueOfStocks()));
+        total_value_of_stocks.setText(String.format("Total value of stocks: $%.2f", MyApplication.getInstance().getTotalValueOfStocks()));
 
         //if user has stocks, display them
         if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
@@ -69,6 +70,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             }
         });
 
+        btnQuit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                System.exit(0);
+            }
+        });
+
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
@@ -79,21 +88,22 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
 
         avApi apiObj = new avApi();
-
         String symbol = "AMZN";
+        //avApi apiObj = new avApi();
         System.out.println("Obj generated");
-        apiObj.stockDataUpdate(this, symbol);
+        //apiObj.stockDataUpdate(this, symbol);
         System.out.println("file should be made");
-        Float testPrice = CSVReader.getClosePrice(0, symbol);
-        System.out.println("testPrice: " + testPrice);
+        //Float testPrice = CSVReader.getClosePrice(0, symbol);
+        //System.out.println("testPrice: " + testPrice);
 
-        Float testVolume = CSVReader.getVolume(0, symbol);
-        System.out.println("testVolume: " + testVolume);
+        //Float testVolume = CSVReader.getVolume(0, symbol);
+        //System.out.println("testVolume: " + testVolume);
 
-        ArrayList<Float> arryL = new ArrayList<Float>();
-        arryL = (ArrayList<Float>) CSVReader.readClosingPrices(symbol);
+        //ArrayList<Float> arryL = new ArrayList<Float>();
+        //arryL = (ArrayList<Float>) CSVReader.readClosingPrices(symbol);
 
-        System.out.println("arryL: " + arryL.size());
+        //System.out.println("arryL: " + arryL.size());
+
     }
     @Override
     public void onItemClick(int position) {

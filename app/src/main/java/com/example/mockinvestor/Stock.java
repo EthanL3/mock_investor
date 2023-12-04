@@ -9,9 +9,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Stock implements Serializable {
-    //every field marked by T_ is value considering TOTAL SHARES
-    private String symbol, companyName;
-    private double marketCap, volume;
+    private String symbol;
+    private double volume;
     private double T_gainLossDollars, T_gainLossPercent; //total gain/loss of all shares
     private double currentPrice, purchasePrice; //price per share
     private double currentValue, purchaseValue;//value of all shares
@@ -23,40 +22,31 @@ public class Stock implements Serializable {
     public Stock(String symbol, int shares) { //temporary code
         this.symbol = symbol;
         this.shares = shares;
-        this.companyName = "Company Name";
         this.currentPrice = 100;
         this.purchasePrice = 75;
         this.volume = 100000;
-        this.marketCap = 1000000;
         this.T_gainLossDollars = 25;
         this.T_gainLossPercent = 33.33;
     }
 
-    public Stock(String symbol, String companyName, String price, String volume, String marketCap){
+    public Stock(String symbol, double price, double volume){
         this.symbol = symbol;
-        this.companyName = companyName; //will add when I add CSV file
         try {
-            this.currentPrice = Double.parseDouble(price);
-            this.purchasePrice = Double.parseDouble(price);
-            this.volume = Double.parseDouble(volume); //will add when I add CSV file
-            this.marketCap = Double.parseDouble(marketCap); //will add when I add CSV file
+            this.currentPrice = price;
+            this.purchasePrice = price;
+            this.currentValue = currentPrice * shares;
+            this.purchaseValue = purchasePrice * shares;
+            this.volume = volume;
         } catch (NumberFormatException e){
             System.out.println("Error: initialization: string not in number format");
         }
         updateGainsLoss();
     }
-    //getters for each variable: to return strings only
     public String getSymbol(){
         return symbol;
     }
-    public String getCompanyName(){
-        return companyName;
-    }
     public int getShares(){ //number of shares
         return shares;
-    }
-    public double getMarketCap() {
-        return marketCap;
     }
     public double getVolume() {
         return volume;

@@ -27,15 +27,27 @@ public class StockInfoActivity extends AppCompatActivity {
 
         TextView symbol = findViewById(R.id.symbol);
         TextView current_price = findViewById(R.id.current_price);
-        TextView market_cap = findViewById(R.id.market_cap);
-        TextView volume = findViewById(R.id.volume);
+        TextView purchase_price = findViewById(R.id.purchase_price);
+        TextView current_value = findViewById(R.id.current_value);
+        TextView purchase_value = findViewById(R.id.purchase_value);
+        TextView current_date = findViewById(R.id.current_date);
+        TextView purchase_date = findViewById(R.id.purchase_date);
+        TextView gain_loss = findViewById(R.id.gain_loss);
+        TextView current_volume = findViewById(R.id.current_volume);
+
         Button btnSell = findViewById(R.id.btnSell);
         Button btnSellAll = findViewById(R.id.btnSellAll);
 
-        symbol.setText(stockToBeSold.getCompanyName()+"("+stockToBeSold.getSymbol()+")");
-        current_price.setText("Current Price: " + Double.toString(stockToBeSold.getCurrentPrice()));
-        market_cap.setText("Market Cap: " + Double.toString(stockToBeSold.getMarketCap()));
-        volume.setText("Volume " + Double.toString(stockToBeSold.getVolume()));
+
+        symbol.setText(stockToBeSold.getSymbol());
+        current_price.setText(String.format("Current Price: $%.2f", stockToBeSold.getCurrentPrice()));
+        purchase_price.setText(String.format("Purchase Price: $%.2f", stockToBeSold.getPurchasePrice()));
+        current_value.setText(String.format("Current Value: $%.2f", stockToBeSold.getCurrentValue()));
+        purchase_value.setText(String.format("Purchase Value: $%.2f", stockToBeSold.getPurchaseValue()));
+        gain_loss.setText(String.format("Gain/Loss($/%%): $%.2f", stockToBeSold.getGainLossDollars()) + " / " + String.format("%.2f%%", stockToBeSold.getGainLossPercent()));
+        current_volume.setText(String.format("Current Volume: %.2f", stockToBeSold.getVolume()));
+
+
 
         btnSell.setOnClickListener(new View.OnClickListener() {
             @Override
