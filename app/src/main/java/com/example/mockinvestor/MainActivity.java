@@ -86,18 +86,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
         int portfolioSize = MyApplication.getInstance().getPortfolioSize();
         Timer currentPriceTimer = new Timer();
-        while (MyApplication.getInstance().getCount() < 100) {
+        while (MyApplication.getInstance().getDayCount() < 100) {
             currentPriceTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     for (int i=0; i<portfolioSize; i++) {
                         String currentSymbol = MyApplication.getInstance().getAllUserStocks().get(i).getSymbol();
-                        MyApplication.getInstance().getAllUserStocks().get(i).updateDay(CSVReader.getClosePrice(MyApplication.getInstance().getCount(),currentSymbol));
+                        MyApplication.getInstance().getAllUserStocks().get(i).updateDay(CSVReader.getClosePrice(MyApplication.getInstance().getDayCount(),currentSymbol));
                         adapter.notifyDataSetChanged();
                     }
                 }
             }, 10000); //delay 10 seconds
-            MyApplication.getInstance().incrementCount();
+            MyApplication.getInstance().incrementDayCount();
         }
 
         //avApi test
