@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.mockinvestor.avApi.UpdateCallback;
 
 import java.util.ArrayList;
+
 
 public class TradeActivity extends AppCompatActivity {
 
@@ -50,13 +52,17 @@ public class TradeActivity extends AppCompatActivity {
                         System.out.println("Update failed");
                     }
                 };
-
                 apiobject.runStockDataUpdateWithRetry(TradeActivity.this, ticker, 5, updateCallback);
-                //Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), CSVReader.getDate(0, ticker));
+                System.out.println(CSVReader.readClosingPrices(ticker).size());
+                if (CSVReader.readClosingPrices(ticker).size() == 0){
+                    Toast.makeText(TradeActivity.this, "Invalid Ticker Or Out Of API Calls", Toast.LENGTH_SHORT).show();
+                }
+                else{
                 Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), "2023-08-01");
-
+                //end of api task and stock creation
 
                 MyApplication.getInstance().purchaseStocks(user_stock,shares);
+                }
                 //going back to main activity
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
                 startActivity(intent);
