@@ -100,12 +100,14 @@ public class avApi {
 
 
                 } else {
-                    System.out.println("Error: " + connection.getResponseCode());
+                    Log.e("StockDataAsyncTask", "Error: " + connection.getResponseCode());
                 }
 
                 connection.disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.e("StockDataAsyncTask", "Error during API request or CSV creation: " + e.getMessage());
+
             }
 
             return null;

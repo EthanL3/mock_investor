@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         avApi apiObj = new avApi();
 
-        String symbol = "TSLA";
+        String symbol = "AMZN";
         System.out.println("Obj generated");
         apiObj.stockDataUpdate(this, symbol);
         System.out.println("file should be made");
