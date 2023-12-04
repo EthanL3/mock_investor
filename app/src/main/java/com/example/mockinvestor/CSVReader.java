@@ -11,12 +11,12 @@ import java.util.List;
 public class CSVReader {
 
     public static String getFilepath(String symbol){
-        String fileP = symbol + "_historical_stock_data.csv";
+        String fileP ="/data/user/0/com.example.mockinvestor/files/CSVFiles/" + symbol + "_historical_stock_data.csv";
         return fileP;
     }
     public static List<Float> readClosingPrices(String symbol){
         String filepath = getFilepath(symbol);
-        List<Float> closingPrices = new ArrayList<>();
+        ArrayList<Float> closingPrices = new ArrayList<>();
 
         try(BufferedReader br = new BufferedReader(new FileReader(filepath))){
             br.readLine();
@@ -54,7 +54,7 @@ public class CSVReader {
         }
         return closingPrices;
     }
-    //days start at 0 and go to 98
+    //days start at 0 and go to 99
     public static Float getClosePrice (int day, String symbol){
         String filepath = getFilepath(symbol);
 

@@ -76,19 +76,22 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //avApi test
         //will save the csv to this path in the device's files:
         // /data/user/0/com.example.mockinvestor/files/CSVFiles/"symbol"_historical_stock_data.csv
-        /*
-        avApi apiObj = new avApi();
 
-        String symbol = "NFLX";
-        apiObj.stockDataUpdate(this, symbol);
+        //avApi apiObj = new avApi();
+
+        String symbol = "AI";
+        //apiObj.stockDataUpdate(this, symbol);
 
         Float testPrice = CSVReader.getClosePrice(0, symbol);
         System.out.println("testPrice: " + testPrice);
 
         Float testVolume = CSVReader.getVolume(0, symbol);
         System.out.println("testVolume: " + testVolume);
-        */
 
+        ArrayList<Float> arryL = new ArrayList<Float>();
+        arryL = (ArrayList<Float>) CSVReader.readClosingPrices(symbol);
+
+        System.out.println("arryL: " + arryL.size());
     }
     @Override
     public void onItemClick(int position) {
