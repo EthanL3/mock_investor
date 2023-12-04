@@ -54,6 +54,29 @@ public class CSVReader {
         }
         return closingPrices;
     }
+
+    public static List<String> readDate(String symbol){
+        String filepath = getFilepath(symbol);
+        ArrayList<String> dates = new ArrayList<>();
+
+        try(BufferedReader br = new BufferedReader(new FileReader(filepath))){
+            br.readLine();
+            String l;
+            String d;
+            while ((l = br.readLine()) != null){
+                String[] dat = l.split(",");
+                d =dat[0];
+                dates.add(d);
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return dates;
+    }
+
     //days start at 0 and go to 99
     public static float getClosePrice (int day, String symbol){
         String filepath = getFilepath(symbol);
@@ -68,4 +91,12 @@ public class CSVReader {
         float vol = readVolume(symbol).get(day);
         return vol;
     }
+
+    public static String getDate (int day, String symbol){
+        String filepath = getFilepath(symbol);
+
+        String date = readDate(symbol).get(day);
+        return date;
+    }
+
 }
