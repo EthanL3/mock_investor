@@ -13,9 +13,7 @@ public class MyApplication extends Application {
     public double getAvailableCash(){
         return availableCash;
     }
-    public void setAvailableCashCash(double val){
-        this.availableCash = val;
-    }
+    //public void setAvailableCash(double val){ this.availableCash = val; }
 
     public int getPortfolioSize(){ return portfolioSize; }
     public double getTotalValueOfStocks() {

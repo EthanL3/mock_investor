@@ -38,7 +38,7 @@ public class CSVReader {
 
     public static List<Float> readVolume(String symbol){
         String filepath = getFilepath(symbol);
-        List<Float> closingPrices = new ArrayList<>();
+        List<Float> closingVolume = new ArrayList<>();
 
         try(BufferedReader br = new BufferedReader(new FileReader(filepath))){
             br.readLine();
@@ -47,12 +47,12 @@ public class CSVReader {
             while ((l = br.readLine()) != null){
                 String[] dat = l.split(",");
                 vol = Float.parseFloat(dat[5]);
-                closingPrices.add(vol);
+                closingVolume.add(vol);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return closingPrices;
+        return closingVolume;
     }
 
     public static List<String> readDate(String symbol){
