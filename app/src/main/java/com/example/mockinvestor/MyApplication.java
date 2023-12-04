@@ -45,10 +45,9 @@ public class MyApplication extends Application {
             }
             availableCash = availableCash - stock.getPurchaseValue();
         } catch (NullPointerException e) {
-            Stock user_stock = new Stock(stock.getSymbol(), shares);
-            addStockToList(user_stock);
+            addStockToList(stock);
             allUserStocks.get(0).buyShares(shares);
-            availableCash= availableCash - user_stock.getPurchaseValue();
+            availableCash= availableCash - stock.getPurchaseValue();
             throw e;
         }
     }
