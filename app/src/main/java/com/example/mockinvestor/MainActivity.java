@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             stocks = MyApplication.getInstance().getAllUserStocks();
         }
 
+        StockAdapter adapter = new StockAdapter(this, stocks, this);
+        recycler_view.setAdapter(adapter);
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
+
         //Button clicks
         btnTrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                 // Do something when the button is clicked
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
+
             }
         });
 
@@ -81,9 +86,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             }
         });
 
-        StockAdapter adapter = new StockAdapter(this, stocks, this);
-        recycler_view.setAdapter(adapter);
-        recycler_view.setLayoutManager(new LinearLayoutManager(this));
         int portfolioSize = MyApplication.getInstance().getPortfolioSize();
         Timer currentPriceTimer = new Timer();
         while (MyApplication.getInstance().getDayCount() < 100) {
