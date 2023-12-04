@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.mockinvestor.avApi.UpdateCallback;
 
 import java.util.ArrayList;
 
@@ -34,9 +35,26 @@ public class TradeActivity extends AppCompatActivity {
                 String ticker = ticker_input.getText().toString();
                 int shares = Integer.parseInt(shares_input.getText().toString());
 
+                //code that handles buying and creating CSVs
                 avApi apiobject = new avApi();
-                apiobject.stockDataUpdate(getApplicationContext(), ticker);
+                UpdateCallback updateCallback = new UpdateCallback() {
+                    @Override
+                    public void onUpdateComplete() {
+                        // Handle success, e.g., update UI or perform additional tasks
+                        System.out.println("Update completed successfully");
+                    }
+
+                    @Override
+                    public void onUpdateFailed() {
+                        // Handle failure, e.g., show an error message
+                        System.out.println("Update failed");
+                    }
+                };
+
+                apiobject.runStockDataUpdateWithRetry(TradeActivity.this, ticker, 5, updateCallback);
                 Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), CSVReader.getDate(0, ticker));
+
+
                 MyApplication.getInstance().purchaseStocks(user_stock,shares);
                 //going back to main activity
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
