@@ -66,7 +66,7 @@ public class avApi {
             String symbol = params[0];
             String base_url = "https://www.alphavantage.co/query";
             String apiUrl = base_url + "?function=" + function + "&symbol=" + symbol + "&apikey=" + apiKey;
-
+            System.out.println(apiUrl);
             try {
                 URL url = new URL(apiUrl);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -123,6 +123,7 @@ public class avApi {
             StringBuilder csvData = new StringBuilder("Date,Open,High,Low,Close,Volume\n");
             try {
                 JSONObject jsonObject = new JSONObject(jsonResponse);
+                Log.d("JSON Response", jsonObject.toString());
                 JSONObject timeSeries = jsonObject.getJSONObject("Time Series (Daily)");
 
 
