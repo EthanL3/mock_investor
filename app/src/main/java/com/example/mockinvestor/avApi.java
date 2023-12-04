@@ -24,6 +24,10 @@ import java.io.File;
 
 public class avApi {
 
+    public interface UpdateCallback {
+        void onUpdateComplete();
+        void onUpdateFailed();
+    }
     //this will fetch the api key for the gradle.properties file
     private static final String PROPERTIES_FILE = "config.properties";
     private static final String API_KEY_PROPERTY = "ALPHA_VANTAGE_API_KEY";
@@ -148,4 +152,43 @@ public class avApi {
         }
 
     }
+    public void runStockDataUpdateWithRetry(Context context, String symbol, int maxRetries, UpdateCallback callback) {
+        int retryCount = 0;
+        boolean csvFileCreated = false;
+
+        while (retryCount < maxRetries && !csvFileCreated) {
+            try {
+                stockDataUpdate(context, symbol);
+                csvFileCreated = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("avApi", "Error during stock data update: " + e.getMessage());
+
+                // Delete the CSV file if it exists to avoid issues with incomplete or corrupted files
+                String csvFileName = symbol + "_historical_stock_data.csv";
+                File csvFile = new File(context.getFilesDir() + File.separator + "CSVFiles", csvFileName);
+                if (csvFile.exists()) {
+                    csvFile.delete();
+                    Log.d("avApi", "Deleted incomplete CSV file.");
+                }
+            }
+
+            retryCount++;
+
+            try {
+                Thread.sleep(1000); // Sleep for 1 second before retrying
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (!csvFileCreated) {
+            Log.e("avApi", "Max retries reached. CSV file not created.");
+            callback.onUpdateFailed();
+        } else {
+            Log.d("avApi", "CSV file created successfully.");
+            callback.onUpdateComplete();
+        }
+
     }
+}

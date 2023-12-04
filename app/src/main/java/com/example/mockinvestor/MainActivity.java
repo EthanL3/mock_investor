@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import com.example.mockinvestor.avApi.UpdateCallback;
 
 //import com.example.mockinvestor.BuildConfig;
 
@@ -85,24 +86,25 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //avApi test
         //will save the csv to this path in the device's files:
         // /data/user/0/com.example.mockinvestor/files/CSVFiles/"symbol"_historical_stock_data.csv
+ /*       avApi apiObj = new avApi();
 
-/*
-        avApi apiObj = new avApi();
-        String symbol = "AMZN";
-        //avApi apiObj = new avApi();
-        System.out.println("Obj generated");
-        //apiObj.stockDataUpdate(this, symbol);
-        System.out.println("file should be made");
-        //Float testPrice = CSVReader.getClosePrice(0, symbol);
-        //System.out.println("testPrice: " + testPrice);
+        String symbol = "AMD";
 
-        //Float testVolume = CSVReader.getVolume(0, symbol);
-        //System.out.println("testVolume: " + testVolume);
+        UpdateCallback updateCallback = new UpdateCallback() {
+            @Override
+            public void onUpdateComplete() {
+                // Handle success, e.g., update UI or perform additional tasks
+                System.out.println("Update completed successfully");
+            }
 
-        //ArrayList<Float> arryL = new ArrayList<Float>();
-        //arryL = (ArrayList<Float>) CSVReader.readClosingPrices(symbol);
+            @Override
+            public void onUpdateFailed() {
+                // Handle failure, e.g., show an error message
+                System.out.println("Update failed");
+            }
+        };
 
-        //System.out.println("arryL: " + arryL.size());
+        apiObj.runStockDataUpdateWithRetry(this, symbol, 10, updateCallback);
 */
     }
     @Override
