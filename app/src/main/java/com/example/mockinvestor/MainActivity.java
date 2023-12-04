@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -81,7 +83,21 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-
+        int portfolioSize = MyApplication.getInstance().getPortfolioSize();
+        int count = 0;
+        Timer currentPriceTimer = new Timer();
+        while (count < 100) {
+            currentPriceTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    for (int i=0; i<portfolioSize; i++) {
+                        String currentSymbol = MyApplication.getInstance().getAllUserStocks().get(i).getSymbol();
+                        MyApplication.getInstance().getAllUserStocks().get(i).updateDay(CSVReader.getClosePrice(count,currentSymbol));
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }, 10000); //delay 10 seconds
+        }
         //avApi test
         //will save the csv to this path in the device's files:
         // /data/user/0/com.example.mockinvestor/files/CSVFiles/"symbol"_historical_stock_data.csv

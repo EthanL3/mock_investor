@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+//import java.util.List;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -14,7 +15,6 @@ public class Stock implements Serializable {
     private double T_gainLossDollars, T_gainLossPercent; //total gain/loss of all shares
     private double currentPrice, purchasePrice; //price per share
     private double currentValue, purchaseValue;//value of all shares
-    private ArrayList<Double> valueHistory = new ArrayList<Double>(); //array of values of stock over time
     private int shares, count_day = 0;
     private Date purchaseDate, currentDate;
     private String date = "08/01/2023"; //placeholder
@@ -73,15 +73,9 @@ public class Stock implements Serializable {
     }
 
     //update day function: to be used every day through clock-imitating loop
-    public void updateDay(String price){
-        try {
-            this.currentPrice = Double.parseDouble(price);
-        } catch (NumberFormatException e){
-            System.out.println("Error: update string not in number format");
-        }
+    public void updateDay(double price){
+        this.currentPrice = price;
         this.currentValue = currentPrice * shares;
-        count_day++;
-        valueHistory.set(count_day, currentValue);
         updateGainsLoss();
         //update date by one day in "currentDate"
         SimpleDateFormat date_format = new SimpleDateFormat("MM/dd/yyyy");

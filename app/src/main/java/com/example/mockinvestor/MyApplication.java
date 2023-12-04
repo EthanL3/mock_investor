@@ -17,6 +17,7 @@ public class MyApplication extends Application {
         this.availableCash = val;
     }
 
+    public int getPortfolioSize(){ return portfolioSize; }
     public double getTotalValueOfStocks() {
         totalValueOfStocks = 0;
         for(int i = 0; i < allUserStocks.size(); i++) {
@@ -57,12 +58,10 @@ public class MyApplication extends Application {
             if (containsStock(stock)) {
                 int indexOfStock = allUserStocks.indexOf(stock);
                 Stock user_stock = allUserStocks.get(indexOfStock);
-                if (shares == user_stock.getShares()) {
+                if (shares >= user_stock.getShares()) {
                     removeStockFromList(stock);
                     portfolioSize--;
                     availableCash = availableCash + user_stock.getCurrentValue();
-                } else if (shares > user_stock.getShares()){
-                    System.out.println("Error: SellStocks: You own fewer shares than you want to sell.");
                 } else {
                     double previousCurrentVal = user_stock.getCurrentValue();
                     user_stock.sellShares(shares);

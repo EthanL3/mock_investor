@@ -14,7 +14,7 @@ public class CSVReader {
         String fileP ="/data/user/0/com.example.mockinvestor/files/CSVFiles/" + symbol + "_historical_stock_data.csv";
         return fileP;
     }
-    public static List<Float> readClosingPrices(String symbol){
+    public static ArrayList<Float> readClosingPrices(String symbol){
         String filepath = getFilepath(symbol);
         ArrayList<Float> closingPrices = new ArrayList<>();
 
