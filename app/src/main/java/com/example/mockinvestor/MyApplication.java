@@ -2,7 +2,10 @@ package com.example.mockinvestor;
 
 import android.app.Application;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class MyApplication extends Application {
     private static MyApplication instance;
@@ -17,7 +20,8 @@ public class MyApplication extends Application {
     }
     public void incrementDayCount(){
         if (timerCount < 100) {this.timerCount += 1;}
-        else {this.timerCount = 0; } }
+        else {this.timerCount = 0; }
+    }
 
     public double getAvailableCash(){
         return availableCash;
@@ -62,16 +66,13 @@ public class MyApplication extends Application {
     public void sellStocks(Stock stock, int shares) {
         try {
             if (containsStock(stock)) {
-                int indexOfStock = allUserStocks.indexOf(stock);
-                Stock user_stock = allUserStocks.get(indexOfStock);
-                if (shares >= user_stock.getShares()) {
+                if (shares >= stock.getShares()) {
                     removeStockFromList(stock);
                     portfolioSize--;
-                    availableCash = availableCash + user_stock.getCurrentValue();
+                    availableCash = availableCash + stock.getCurrentValue();
                 } else {
-                    double previousCurrentVal = user_stock.getCurrentValue();
-                    user_stock.sellShares(shares);
-                    availableCash = availableCash + (previousCurrentVal - user_stock.getCurrentValue());
+                    stock.sellShares(shares);
+                    availableCash = availableCash + (shares * stock.getCurrentPrice());
                 }
             } else {
                 System.out.println("Error: SellStocks: This stock does not exist in your portfolio.");
@@ -81,6 +82,25 @@ public class MyApplication extends Application {
         }
     }
 
+    //Saving portfolio code
+    public void saveStocks(){ //to save in Portfolio.csv
+        try {
+            String data;
+            portfolioCSVWriter.makePortfolioCSV();
+            for (int i = 0; i < portfolioSize; i++) {
+                Stock currentStock = allUserStocks.get(i);
+                data = currentStock.getSymbol() + "," + String.valueOf(currentStock.getPurchasePrice()) + "," + String.valueOf(currentStock.getVolume()) + ",";
+                data = data + currentStock.getPurchaseDate() + "," + String.valueOf(currentStock.getVolume()) + "," + String.valueOf(currentStock.getShares());
+                data = data + "," + String.valueOf(currentStock.getCurrentValue());
+                portfolioCSVWriter.addToPortfolioCSV(data);
+            }
+        } catch (IOException e){
+            System.out.println("Error: Save: Couldn't save your progress");
+        }
+    }
+    public void loadStocksAtOpen(){
+        allUserStocks = portfolioCSVReader.loadSavedStocks();
+    }
 
     public static MyApplication getInstance() {
         return instance;
@@ -100,8 +120,11 @@ public class MyApplication extends Application {
         return false;
     }
 
-    public void setAllUserStocks(ArrayList<Stock> allUserStocks) {
-        this.allUserStocks = allUserStocks;
+    public void updateStockData() {
+        for(int i=0; i<portfolioSize; i++){
+            String ticker = this.allUserStocks.get(i).getSymbol();
+            this.allUserStocks.get(i).updateDay(CSVReader.getClosePrice(timerCount,ticker));
+        }
     }
 
     public ArrayList<Stock> getAllUserStocks() {

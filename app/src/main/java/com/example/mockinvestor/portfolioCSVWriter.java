@@ -11,15 +11,30 @@ import java.io.IOException;
 //line2: stock2 symbol, purchase price, volume, purchase date, shares, current price
 
 public class portfolioCSVWriter {
-    public static void writeStringToCSV(Context context, String data) throws IOException {
-        File csvDirectory = new File(context.getFilesDir(), "CSVFiles");
+    static int lines = 0;
+    static File csvFile;
+    public static void makePortfolioCSV() throws IOException {
+        File csvDirectory = new File("/data/user/0/com.example.mockinvestor/files/", "CSVFiles");
         if (!csvDirectory.exists()) {
             csvDirectory.mkdirs();
+        } else {
+            String filePathStr ="/data/user/0/com.example.mockinvestor/files/CSVFiles/Portfolio.csv";
+            File filePath = new File(filePathStr);
+            if (filePath.exists() && !filePath.isDirectory()){
+                filePath.delete();
+                lines = 0;
+            }
         }
-        File csvFile = new File(csvDirectory, "Portfolio.csv");
+        csvFile = new File(csvDirectory, "Portfolio.csv");
+    }
+
+    public static void addToPortfolioCSV(String data) throws IOException {
         FileWriter writer = new FileWriter(csvFile);
         writer.append(data);
         writer.flush();
         writer.close();
+        lines++;
     }
+
+    public static int getNumLines(){ return lines; }
 }

@@ -42,12 +42,22 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         //if user has stocks, display them
         if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
+            //MyApplication.getInstance().loadStocksAtOpen();
             stocks = MyApplication.getInstance().getAllUserStocks();
         }
 
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
+
+        Timer currentPriceTimer = new Timer();
+        currentPriceTimer.schedule(new TimerTask() {
+            @Override
+                public void run() {
+                MyApplication.getInstance().incrementDayCount();
+            }
+        }, 10000); //delay 10 seconds
+
 
         //Button clicks
         btnTrade.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +72,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //update here?
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
+                //MyApplication.getInstance().loadStocksAtOpen();
+                //adapter.notifyDataSetChanged();
+                MyApplication.getInstance().updateStockData();
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -81,26 +92,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         btnQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MyApplication.getInstance().saveStocks();
                 finish();
                 System.exit(0);
             }
         });
-
-        int portfolioSize = MyApplication.getInstance().getPortfolioSize();
-        Timer currentPriceTimer = new Timer();
-        while (MyApplication.getInstance().getDayCount() < 100) {
-            currentPriceTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    for (int i=0; i<portfolioSize; i++) {
-                        String currentSymbol = MyApplication.getInstance().getAllUserStocks().get(i).getSymbol();
-                        MyApplication.getInstance().getAllUserStocks().get(i).updateDay(CSVReader.getClosePrice(MyApplication.getInstance().getDayCount(),currentSymbol));
-                        adapter.notifyDataSetChanged();
-                    }
-                }
-            }, 10000); //delay 10 seconds
-            MyApplication.getInstance().incrementDayCount();
-        }
 
         //avApi test
         //will save the csv to this path in the device's files:

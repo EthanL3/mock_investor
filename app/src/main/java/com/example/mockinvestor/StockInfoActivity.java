@@ -47,7 +47,7 @@ public class StockInfoActivity extends AppCompatActivity {
         gain_loss.setText(String.format("Gain/Loss($/%%): $%.2f", stockToBeSold.getGainLossDollars()) + " / " + String.format("%.2f%%", stockToBeSold.getGainLossPercent()));
         current_volume.setText(String.format("Current Volume: %.2f", stockToBeSold.getVolume()));
         //purchase_date.setText(String.format("Gain/Loss($/%%): $%.2f", stockToBeSold.getPurchaseDate()));
-       // current_date.setText(String.format("Gain/Loss($/%%): $%.2f", stockToBeSold.getCurrentDate()));
+        //current_date.setText(String.format("Gain/Loss($/%%): $%.2f", stockToBeSold.getCurrentDate()));
 
 
 
