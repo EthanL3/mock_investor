@@ -12,10 +12,12 @@ public class MyApplication extends Application {
     double totalValueOfStocks = 0;
     int timerCount = 0;
 
-    public int getCount(){
+    public int getDayCount(){
         return timerCount;
     }
-    public void incrementCount(){ this.timerCount += 1; }
+    public void incrementDayCount(){
+        if (timerCount < 100) {this.timerCount += 1;}
+        else {this.timerCount = 0; } }
 
     public double getAvailableCash(){
         return availableCash;

@@ -52,7 +52,8 @@ public class TradeActivity extends AppCompatActivity {
                 };
 
                 apiobject.runStockDataUpdateWithRetry(TradeActivity.this, ticker, 5, updateCallback);
-                Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), CSVReader.getDate(0, ticker));
+                //Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), CSVReader.getDate(0, ticker));
+                Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), "2023-08-01");
 
 
                 MyApplication.getInstance().purchaseStocks(user_stock,shares);
