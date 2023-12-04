@@ -118,6 +118,13 @@
             android:backgroundTint="@color/lightBlue"
             android:id="@+id/btnQuit"/>
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_chart" />
+
         <Button
             android:id="@+id/btnTrade"
             android:layout_alignLeft="@id/btnRefresh"

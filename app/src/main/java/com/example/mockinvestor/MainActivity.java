@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         //TextView objects for cash left and holdings
         TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
-        total_value_of_stocks.setText("Portfolio Value: $" + Double.toString(MyApplication.getInstance().getHoldings()));
+        total_value_of_stocks.setText("Portfolio Value: $" + Double.toString(MyApplication.getInstance().getTotalValueOfStocks()));
 
         //if user has stocks, display them
         if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         //avApi apiObj = new avApi();
 
+        /*
         String symbol = "AI";
         //apiObj.stockDataUpdate(this, symbol);
 
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         arryL = (ArrayList<Float>) CSVReader.readClosingPrices(symbol);
 
         System.out.println("arryL: " + arryL.size());
+        */
     }
     @Override
     public void onItemClick(int position) {

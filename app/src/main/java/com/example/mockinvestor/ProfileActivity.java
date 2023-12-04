@@ -13,12 +13,14 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TextView cash_left = findViewById(R.id.cash_left);
-        TextView cash_gain_loss = findViewById(R.id.cash_gain_loss);
+        TextView available_cash = findViewById(R.id.available_cash);
+        TextView current_total_holdings = findViewById(R.id.current_total_holdings);
+        TextView total_gain_loss = findViewById(R.id.total_gain_loss);
         TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
 
-        cash_left.setText("Cash Left: $" + Double.toString(MyApplication.getInstance().getCash()));
-        total_value_of_stocks.setText("Total Value of Stocks: $" + Double.toString(MyApplication.getInstance().getHoldings()));
-
+        available_cash.setText(String.format("Cash available to trade: $%.2f", MyApplication.getInstance().getAvailableCash()));
+        current_total_holdings.setText(String.format("Current total holdings: $%.2f", MyApplication.getInstance().getHoldings()));
+        total_gain_loss.setText(String.format("Total gain/loss: $%.2f", MyApplication.getInstance().getHoldings() - 100000));
+        total_value_of_stocks.setText(String.format("Total value of stocks: $%.2f", MyApplication.getInstance().getTotalValueOfStocks()));
     }
 }

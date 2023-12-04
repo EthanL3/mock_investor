@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blueBlack"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ProfileActivity">
 
     <TextView
@@ -14,68 +14,58 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:fontFamily="sans-serif"
-        android:text="Profile"
+        android:text="Portfolio Data"
         android:textColor="@color/lightBlue"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/cash_invested"
+        android:id="@+id/available_cash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
-        android:text="Cash Invested"
+        android:text="Available Cash"
         android:textColor="@color/lightBlue"
         android:textSize="20sp" />
+
     <TextView
+        android:id="@+id/current_total_holdings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cash_invested"
+        android:layout_below="@id/available_cash"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
-        android:text="Cash Left"
-        android:id="@+id/cash_left"
+        android:text="Current Total Holdings"
         android:textColor="@color/lightBlue"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
+
     <TextView
+        android:id="@+id/total_gain_loss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cash_left"
+        android:layout_below="@id/current_total_holdings"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
-        android:text="Cash gained/lost"
-        android:id="@+id/cash_gain_loss"
+        android:text="Total gained/lost"
         android:textColor="@color/lightBlue"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
+
     <TextView
+        android:id="@+id/total_value_of_stocks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cash_gain_loss"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="sans-serif"
-        android:text="Current total cash"
-        android:id="@+id/cash_current_total"
-        android:textColor="@color/lightBlue"
-        android:textSize="20sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cash_current_total"
+        android:layout_below="@id/total_gain_loss"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
         android:text="Total value of stocks"
-        android:id="@+id/total_value_of_stocks"
         android:textColor="@color/lightBlue"
-        android:textSize="20sp"/>
-
-
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

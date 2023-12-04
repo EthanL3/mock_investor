@@ -7,17 +7,25 @@ import java.util.ArrayList;
 public class MyApplication extends Application {
     private static MyApplication instance;
     ArrayList<Stock> allUserStocks = new ArrayList<>();
-    double holdings = 0, cash = 100000;
+    double holdings = 0, availableCash = 100000;
     int portfolioSize = 0;
-    public double getCash(){
-        return cash;
+    double totalValueOfStocks = 0;
+    public double getAvailableCash(){
+        return availableCash;
     }
-    public void setCash(double val){
-        this.cash = val;
+    public void setAvailableCashCash(double val){
+        this.availableCash = val;
     }
 
+    public double getTotalValueOfStocks() {
+        totalValueOfStocks = 0;
+        for(int i = 0; i < allUserStocks.size(); i++) {
+            totalValueOfStocks += allUserStocks.get(i).getCurrentValue();
+        }
+        return totalValueOfStocks;
+    }
     public double getHoldings() {
-        holdings = 0;
+        holdings = availableCash;
         for(int i = 0; i < allUserStocks.size(); i++) {
             holdings += allUserStocks.get(i).getCurrentValue();
         }
@@ -34,12 +42,12 @@ public class MyApplication extends Application {
                 portfolioSize++;
                 allUserStocks.get(portfolioSize-1).buyShares(shares);
             }
-            cash = cash - stock.getCurrentValue();
+            availableCash = availableCash - stock.getPurchaseValue();
         } catch (NullPointerException e) {
             Stock user_stock = new Stock(stock.getSymbol(), shares);
             addStockToList(user_stock);
             allUserStocks.get(0).buyShares(shares);
-            cash = cash - user_stock.getCurrentValue();
+            availableCash= availableCash - user_stock.getPurchaseValue();
             throw e;
         }
     }
@@ -52,13 +60,13 @@ public class MyApplication extends Application {
                 if (shares == user_stock.getShares()) {
                     removeStockFromList(stock);
                     portfolioSize--;
-                    cash = cash + user_stock.getCurrentValue();
+                    availableCash = availableCash + user_stock.getCurrentValue();
                 } else if (shares > user_stock.getShares()){
                     System.out.println("Error: SellStocks: You own fewer shares than you want to sell.");
                 } else {
                     double previousCurrentVal = user_stock.getCurrentValue();
                     user_stock.sellShares(shares);
-                    cash = cash + (previousCurrentVal - user_stock.getCurrentValue());
+                    availableCash = availableCash + (previousCurrentVal - user_stock.getCurrentValue());
                 }
             } else {
                 System.out.println("Error: SellStocks: This stock does not exist in your portfolio.");
