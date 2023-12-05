@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //if user has stocks, display them
         if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
             MyApplication.getInstance().loadStocksAtOpen();
+            MyApplication.getInstance().updateStockData();
             stocks = MyApplication.getInstance().getAllUserStocks();
         }
 
