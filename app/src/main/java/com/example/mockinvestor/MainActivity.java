@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         //if user has stocks, display them
         if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
-            //MyApplication.getInstance().loadStocksAtOpen();
+            MyApplication.getInstance().loadStocksAtOpen();
             stocks = MyApplication.getInstance().getAllUserStocks();
         }
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //MyApplication.getInstance().loadStocksAtOpen();
+                MyApplication.getInstance().loadStocksAtOpen();
                 //adapter.notifyDataSetChanged();
                 MyApplication.getInstance().updateStockData();
                 adapter.notifyDataSetChanged();
