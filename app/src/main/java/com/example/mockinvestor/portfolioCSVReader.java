@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 
 //data format:
-//line: stock symbol, purchase price, volume, purchase date, shares, current price (at time of closing app)
-//line2: stock2 symbol, purchase price, volume, purchase date, shares, current price
+//line: stock symbol,purchase price,volume,purchase date,shares,current price (at time of closing app)
+//line2: stock2 symbol,purchase price,volume,purchase date,shares,current price
 
 public class portfolioCSVReader {
 
@@ -29,6 +29,7 @@ public class portfolioCSVReader {
                 savedStocks.add(currentStock);
             }
         } catch (IOException e) {
+            e.printStackTrace();
             return null;
         }
         return savedStocks;

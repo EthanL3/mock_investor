@@ -90,11 +90,12 @@ public class MyApplication extends Application {
             //line: stock symbol, purchase price, volume, purchase date, shares, current price (at time of closing app)
             for (int i = 0; i < portfolioSize; i++) {
                 Stock currentStock = allUserStocks.get(i);
-                data = currentStock.getSymbol() + ", " + String.valueOf(currentStock.getPurchasePrice()) + ", " + String.valueOf(currentStock.getVolume());
-                data = data + ", " + currentStock.getPurchaseDate() + ", " + String.valueOf(currentStock.getShares());
-                data = data + ", " + String.valueOf(currentStock.getCurrentValue()) + "\n";
+                data = currentStock.getSymbol() + ", " + String.valueOf(currentStock.getPurchasePrice()) + "," + String.valueOf(currentStock.getVolume());
+                data = data + "," + currentStock.getPurchaseDate() + "," + String.valueOf(currentStock.getShares());
+                data = data + "," + String.valueOf(currentStock.getCurrentValue()) + "\n";
                 portfolioCSVWriter.addToPortfolioCSV(data);
             }
+            portfolioCSVWriter.closeCSV();
         } catch (IOException e){
             System.out.println("Error: Save: Couldn't save your progress");
         }
