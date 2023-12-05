@@ -21,7 +21,7 @@ Prerequsities:
 git clone https://github.com/your-username/MockInvestor.git
 ```  
 2. Create a local.properties file in the root directory: stock_app/local.properties should be the file path   
-3. Copy and paste the following line into local.properties:  
+3. Copy and paste the following line into local.properties and then save the file: 
 ```txt
 sdk.dir=C\:\\Users\\YourWindowsUserNameHere\\AppData\\Local\\Android\\Sdk
 ```
