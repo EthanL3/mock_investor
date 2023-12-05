@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         btnQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyApplication.getInstance().saveStocks();
                 finish();
                 System.exit(0);
             }
@@ -129,6 +128,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //pass the current stock object to the next activity
         intent.putExtra("index", position);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        MyApplication.getInstance().saveStocks();
     }
 }
 
