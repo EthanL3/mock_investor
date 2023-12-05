@@ -85,17 +85,17 @@ public class MyApplication extends Application {
     //Saving portfolio code
     public void saveStocks(){ //to save in Portfolio.csv
         try {
-            String data;
-            portfolioCSVWriter.makePortfolioCSV();
+            ArrayList<String> strings = new ArrayList<>();
             //line: stock symbol, purchase price, volume, purchase date, shares, current price (at time of closing app)
             for (int i = 0; i < portfolioSize; i++) {
                 Stock currentStock = allUserStocks.get(i);
+                String data;
                 data = currentStock.getSymbol() + ", " + String.valueOf(currentStock.getPurchasePrice()) + "," + String.valueOf(currentStock.getVolume());
                 data = data + "," + currentStock.getPurchaseDate() + "," + String.valueOf(currentStock.getShares());
-                data = data + "," + String.valueOf(currentStock.getCurrentValue()) + "\n";
-                portfolioCSVWriter.addToPortfolioCSV(data);
+                data = data + "," + String.valueOf(currentStock.getCurrentValue());
+                strings.add(data);
             }
-            portfolioCSVWriter.closeCSV();
+            portfolioCSVWriter.makePortfolioCSV(strings);
         } catch (IOException e){
             System.out.println("Error: Save: Couldn't save your progress");
         }
