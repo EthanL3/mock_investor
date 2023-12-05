@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Button btnProfile = findViewById(R.id.btnProfile);
         Button btnTrade = findViewById(R.id.btnTrade);
         Button btnRefresh = findViewById(R.id.btnRefresh);
-        Button btnQuit = findViewById(R.id.btnQuit);
+        Button btnSave = findViewById(R.id.btnSave);
 
         //TextView objects for cash left and holdings
         TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
@@ -89,11 +91,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             }
         });
 
-        btnQuit.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-                System.exit(0);
+                MyApplication.getInstance().saveStocks();
+                Toast.makeText(MainActivity.this, "Stocks Saved", Toast.LENGTH_SHORT).show();
             }
         });
 
