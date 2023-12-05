@@ -65,22 +65,10 @@
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/current_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/purchase_value"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Current Date"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
-
-    <TextView
         android:id="@+id/purchase_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/current_date"
+        android:layout_below="@id/purchase_value"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
@@ -89,10 +77,22 @@
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/gain_loss"
+        android:id="@+id/days_since_purchase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/purchase_date"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
+        android:text="Days Since Purchase"
+        android:textColor="@color/lightBlue"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/gain_loss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/days_since_purchase"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"

@@ -30,7 +30,7 @@ public class StockInfoActivity extends AppCompatActivity {
         TextView purchase_price = findViewById(R.id.purchase_price);
         TextView current_value = findViewById(R.id.current_value);
         TextView purchase_value = findViewById(R.id.purchase_value);
-        TextView current_date = findViewById(R.id.current_date);
+        TextView days_since_purchase = findViewById(R.id.days_since_purchase);
         TextView purchase_date = findViewById(R.id.purchase_date);
         TextView gain_loss = findViewById(R.id.gain_loss);
         TextView current_volume = findViewById(R.id.current_volume);
@@ -47,7 +47,7 @@ public class StockInfoActivity extends AppCompatActivity {
         gain_loss.setText(String.format("Gain/Loss($/%%): $%.2f", stockToBeSold.getGainLossDollars()) + " / " + String.format("%.2f%%", stockToBeSold.getGainLossPercent()));
         current_volume.setText(String.format("Current Volume: %.2f", stockToBeSold.getVolume()));
         purchase_date.setText("Purchase Date: " + stockToBeSold.getPurchaseDate());
-        current_date.setText("Current Date: " + stockToBeSold.getCurrentDate());
+        days_since_purchase.setText(String.format("Days Since Purchase: %d", stockToBeSold.getDaysSincePurchase()));
 
 
         btnSell.setOnClickListener(new View.OnClickListener() {

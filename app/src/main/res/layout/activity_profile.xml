@@ -66,6 +66,16 @@
         android:text="Total value of stocks"
         android:textColor="@color/lightBlue"
         android:textSize="20sp" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/current_day_count"
+        android:text="Current Day Count"
+        android:layout_below="@id/total_value_of_stocks"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/lightBlue"
+        android:textSize="20sp"/>
 
 </RelativeLayout>

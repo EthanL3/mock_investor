@@ -9,6 +9,7 @@ import java.util.Objects;
 
 public class Stock implements Serializable {
     private String symbol;
+    private int daysSincePurchase;
     private double volume;
     private double gainLossDollars, gainLossPercent; //total gain/loss of all shares
     private double currentPrice, purchasePrice; //price per share
@@ -35,6 +36,7 @@ public class Stock implements Serializable {
             this.currentValue = currentPrice * shares;
             this.purchaseValue = purchasePrice * shares;
             this.volume = volume;
+            this.daysSincePurchase = 0;
         } catch (NumberFormatException e){
             System.out.println("Error: initialization: string not in number format");
         }
@@ -82,6 +84,9 @@ public class Stock implements Serializable {
     public String getCurrentDate() {
         return currentDate.toString();
     }
+    public int getDaysSincePurchase() {
+        return daysSincePurchase;
+    }
 
     //update day function: to be used every day through clock-imitating loop
     public void updateDay(double price){
@@ -93,6 +98,7 @@ public class Stock implements Serializable {
         cal_currentDate.setTime(currentDate);
         cal_currentDate.add(Calendar.DATE, 1);
         currentDate = cal_currentDate.getTime();
+        this.daysSincePurchase++;
     }
 
     public void buyShares(int numShares) {
