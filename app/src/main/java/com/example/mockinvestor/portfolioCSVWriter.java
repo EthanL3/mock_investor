@@ -18,13 +18,13 @@ public class portfolioCSVWriter {
         if (!csvDirectory.exists()) {
             csvDirectory.mkdirs();
         } else {
-            String filePathStr ="/data/local/tmp/CSVFiles/Portfolio.csv";
+            String filePathStr ="/data/local/tmp/CSVFiles/Portfolio.txt";
             File filePath = new File(filePathStr);
             if (filePath.exists()){
                 filePath.delete();
             }
         }
-        File csvFile = new File(csvDirectory, "Portfolio.csv");
+        File csvFile = new File(csvDirectory, "Portfolio.txt");
         FileWriter writer = new FileWriter(csvFile);
         for (int i=0; i<strings.size();i++){
             writer.append(strings.get(i) + "\n");

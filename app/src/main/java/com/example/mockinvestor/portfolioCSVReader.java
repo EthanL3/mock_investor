@@ -16,7 +16,7 @@ public class portfolioCSVReader {
 
     public static ArrayList<Stock> loadSavedStocks(){
         ArrayList<Stock> savedStocks = new ArrayList<>();
-        String fileP ="/data/local/tmp/CSVFiles/Portfolio.csv";
+        String fileP ="/data/local/tmp/CSVFiles/Portfolio.txt";
 
         try(BufferedReader br = new BufferedReader(new FileReader(fileP))){
             br.readLine();
@@ -37,7 +37,7 @@ public class portfolioCSVReader {
 
     public static boolean containsStock(String Symbol){
         ArrayList<Stock> savedStocks = new ArrayList<>();
-        String fileP ="/data/local/tmp/CSVFiles/Portfolio.csv";
+        String fileP ="/data/local/tmp/CSVFiles/Portfolio.txt";
 
         try(BufferedReader br = new BufferedReader(new FileReader(fileP))){
             br.readLine();
