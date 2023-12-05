@@ -1,10 +1,13 @@
 package com.example.mockinvestor;
 
+import android.widget.Toast;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Stock implements Serializable {
@@ -36,14 +39,14 @@ public class Stock implements Serializable {
             this.purchaseValue = purchasePrice * shares;
             this.volume = volume;
         } catch (NumberFormatException e){
-            System.out.println("Error: initialization: string not in number format");
+            Toast.makeText(MyApplication.getInstance(), "Price not in correct format", Toast.LENGTH_SHORT).show();
         }
         SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             purchaseDate = date_format.parse(date);
             currentDate = date_format.parse(date);
         } catch (ParseException e) {
-            System.out.println("Error: purchaseStock: string not in 'yyyy-MM-dd' format" + e.getMessage());
+            Toast.makeText(MyApplication.getInstance(), "Date not in correct format", Toast.LENGTH_SHORT).show();
         }
         updateGainsLoss();
     }

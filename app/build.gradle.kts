@@ -56,6 +56,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("com.opencsv:opencsv:4.6")
+
 
     //implementation ("org.openjdk.jdk.incubator:httpclient:2.0.9");
 

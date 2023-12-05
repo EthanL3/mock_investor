@@ -1,7 +1,5 @@
 package com.example.mockinvestor;
 
-import android.content.Context;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +8,7 @@ import java.io.IOException;
 //line: stock symbol, purchase price, volume, purchase date, shares, current price (at time of closing app)
 //line2: stock2 symbol, purchase price, volume, purchase date, shares, current price
 
-public class portfolioCSVWriter {
+public class PortfolioCSVWriter {
     static int lines = 0;
     static File csvFile;
     public static void makePortfolioCSV() throws IOException {

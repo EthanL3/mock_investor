@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -34,17 +36,25 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Button btnProfile = findViewById(R.id.btnProfile);
         Button btnTrade = findViewById(R.id.btnTrade);
         Button btnRefresh = findViewById(R.id.btnRefresh);
-        Button btnQuit = findViewById(R.id.btnQuit);
+        Button btnSave = findViewById(R.id.btnSave);
 
         //TextView objects for cash left and holdings
         TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
+        MyApplication.getInstance().loadStocksAtOpen();
         total_value_of_stocks.setText(String.format("Total value of stocks: $%.2f", MyApplication.getInstance().getTotalValueOfStocks()));
-
-        //if user has stocks, display them
-        if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
-            //MyApplication.getInstance().loadStocksAtOpen();
+        if (!(MyApplication.getInstance().allUserStocks.isEmpty()))
+        {
+            //if user has stocks, display them
             stocks = MyApplication.getInstance().getAllUserStocks();
+            double cashToSubtract = 0;
+            for (Stock stock : stocks) {
+                cashToSubtract += stock.getCurrentValue();
+
+            }
+            MyApplication.getInstance().setAvailableCash(MyApplication.getInstance().getAvailableCash() - cashToSubtract);
+            MyApplication.getInstance().setHoldings(MyApplication.getInstance().getAvailableCash() + MyApplication.getInstance().getTotalValueOfStocks());
         }
+
 
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
@@ -89,12 +99,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             }
         });
 
-        btnQuit.setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Do something when the button is clicked
                 MyApplication.getInstance().saveStocks();
-                finish();
-                System.exit(0);
+                Toast.makeText(MainActivity.this, "Stocks saved", Toast.LENGTH_SHORT).show();
             }
         });
 

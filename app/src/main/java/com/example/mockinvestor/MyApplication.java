@@ -1,8 +1,12 @@
 package com.example.mockinvestor;
 
 import android.app.Application;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,20 +17,27 @@ public class MyApplication extends Application {
     double holdings = 0, availableCash = 100000;
     int portfolioSize = 0;
     double totalValueOfStocks = 0;
-    int timerCount = 0;
+    int dayCount = 0;
+
+    public void setAvailableCash(double availableCash) {
+        this.availableCash = availableCash;
+    }
+
+    public void setHoldings(double holdings) {
+        this.holdings = holdings;
+    }
 
     public int getDayCount(){
-        return timerCount;
+        return dayCount;
     }
     public void incrementDayCount(){
-        if (timerCount < 100) {this.timerCount += 1;}
-        else {this.timerCount = 0; }
+        if (dayCount < 100) {this.dayCount += 1;}
+        else {this.dayCount = 0; }
     }
 
     public double getAvailableCash(){
         return availableCash;
     }
-    //public void setAvailableCash(double val){ this.availableCash = val; }
 
     public int getPortfolioSize(){ return portfolioSize; }
     public double getTotalValueOfStocks() {
@@ -86,21 +97,52 @@ public class MyApplication extends Application {
     public void saveStocks(){ //to save in Portfolio.csv
         try {
             String data;
-            portfolioCSVWriter.makePortfolioCSV();
+            PortfolioCSVWriter.makePortfolioCSV();
             //line: stock symbol, purchase price, volume, purchase date, shares, current price (at time of closing app)
             for (int i = 0; i < portfolioSize; i++) {
                 Stock currentStock = allUserStocks.get(i);
                 data = currentStock.getSymbol() + "," + String.valueOf(currentStock.getPurchasePrice()) + "," + String.valueOf(currentStock.getVolume());
-                data = data + "," + currentStock.getPurchaseDate() + "," + String.valueOf(currentStock.getShares());
-                data = data + "," + String.valueOf(currentStock.getCurrentValue());
-                portfolioCSVWriter.addToPortfolioCSV(data);
+                data += "," + currentStock.getPurchaseDate() + "," + String.valueOf(currentStock.getShares());
+                data += "," + String.valueOf(currentStock.getCurrentPrice()) + String.valueOf(dayCount) + "\n";
+                PortfolioCSVWriter.addToPortfolioCSV(data);
             }
         } catch (IOException e){
-            System.out.println("Error: Save: Couldn't save your progress");
+            Toast.makeText(this, "Error saving portfolio", Toast.LENGTH_SHORT).show();
         }
     }
-    public void loadStocksAtOpen(){
-        allUserStocks = portfolioCSVReader.loadSavedStocks();
+    public void loadStocksAtOpen() {
+        FileReader fr = null;
+        String filePathStr ="/data/user/0/com.example.mockinvestor/files/CSVFiles/Portfolio.csv";
+        File csvFile = new File(filePathStr);
+        if (csvFile.exists())
+        {
+            try {
+                fr = new FileReader(csvFile);
+                BufferedReader br = new BufferedReader(fr);
+                //first line will always be same format: portfolioSize, availableCash
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String [] dat = line.split(",");
+                    Stock currentStock = new Stock(dat[0], Float.parseFloat(dat[1]), Float.parseFloat(dat[2]), dat[3]);
+                    currentStock.buyShares(Integer.parseInt(dat[4]));
+                    currentStock.updateDay(Float.parseFloat(dat[5]));
+                    if (!containsStock(currentStock))
+                    {
+                        addStockToList(currentStock);
+                        portfolioSize++;
+                    }
+                    }
+            } catch (FileNotFoundException e) {
+                Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            } catch (IOException e) {
+                Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            Toast.makeText(this, "File does not exist", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static MyApplication getInstance() {
@@ -124,7 +166,7 @@ public class MyApplication extends Application {
     public void updateStockData() {
         for(int i=0; i<portfolioSize; i++){
             String ticker = this.allUserStocks.get(i).getSymbol();
-            this.allUserStocks.get(i).updateDay(CSVReader.getClosePrice(timerCount,ticker));
+            this.allUserStocks.get(i).updateDay(CSVReader.getClosePrice(dayCount,ticker));
         }
     }
 

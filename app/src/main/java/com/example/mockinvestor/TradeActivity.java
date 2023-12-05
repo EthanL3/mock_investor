@@ -53,7 +53,6 @@ public class TradeActivity extends AppCompatActivity {
                     }
                 };
                 apiobject.runStockDataUpdateWithRetry(TradeActivity.this, ticker, 5, updateCallback);
-                System.out.println(CSVReader.readClosingPrices(ticker).size());
                 if (CSVReader.readClosingPrices(ticker).size() == 0){
                     Toast.makeText(TradeActivity.this, "Invalid Ticker Or Out Of API Calls", Toast.LENGTH_SHORT).show();
                 }
