@@ -95,7 +95,7 @@ public class MyApplication extends Application {
                 data = data + "," + String.valueOf(currentStock.getCurrentValue());
                 strings.add(data);
             }
-            portfolioCSVWriter.makePortfolioCSV(strings);
+            portfolioCSVWriter.makePortfolioCSV(strings,portfolioSize);
         } catch (IOException e){
             System.out.println("Error: Save: Couldn't save your progress");
         }

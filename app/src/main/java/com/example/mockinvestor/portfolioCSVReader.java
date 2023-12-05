@@ -21,7 +21,8 @@ public class portfolioCSVReader {
         try(BufferedReader br = new BufferedReader(new FileReader(fileP))){
             br.readLine();
             String l;
-            while ((l = br.readLine()) != null){
+            while (br.readLine() != null){
+                l = br.readLine();
                 String[] dat = l.split(",");
                 Stock currentStock = new Stock(dat[0], Float.parseFloat(dat[1]), Integer.parseInt(dat[2]), dat[3]);
                 currentStock.buyShares(Integer.parseInt(dat[4]));
@@ -30,7 +31,6 @@ public class portfolioCSVReader {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
         return savedStocks;
     }
