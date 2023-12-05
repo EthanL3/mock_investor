@@ -14,11 +14,11 @@ public class portfolioCSVWriter {
     static int lines = 0;
     static File csvFile;
     public static void makePortfolioCSV() throws IOException {
-        File csvDirectory = new File("/data/user/0/com.example.mockinvestor/files/", "CSVFiles");
+        File csvDirectory = new File("/data/local/tmp/", "CSVFiles");
         if (!csvDirectory.exists()) {
             csvDirectory.mkdirs();
         } else {
-            String filePathStr ="/data/user/0/com.example.mockinvestor/files/CSVFiles/Portfolio.csv";
+            String filePathStr ="/data/local/tmp/CSVFiles/Portfolio.csv";
             File filePath = new File(filePathStr);
             if (filePath.exists()){
                 filePath.delete();

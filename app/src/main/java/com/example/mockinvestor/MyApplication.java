@@ -92,7 +92,7 @@ public class MyApplication extends Application {
                 Stock currentStock = allUserStocks.get(i);
                 data = currentStock.getSymbol() + "," + String.valueOf(currentStock.getPurchasePrice()) + "," + String.valueOf(currentStock.getVolume());
                 data = data + "," + currentStock.getPurchaseDate() + "," + String.valueOf(currentStock.getShares());
-                data = data + "," + String.valueOf(currentStock.getCurrentValue());
+                data = data + "," + String.valueOf(currentStock.getCurrentValue()) + "\n";
                 portfolioCSVWriter.addToPortfolioCSV(data);
             }
         } catch (IOException e){
