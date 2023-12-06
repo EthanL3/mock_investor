@@ -1,6 +1,36 @@
-# stock_app
-Upon starting the app, the user is granted $100,000 of virtual currency to spend. Every time a stock is purhased, this amount decreases. Every time a stock is sold, it increases  
-How to use app:
-1. Trade button is used to purchase shares of stocks, enter a valid ticker from the S&P 500, Dow Jones, or NASDAQ, as well as number of shares to buy
-2. To sell, click on a stock in the portfolio page, and then enter number of shares to sell or sell all
-3. Profile activity will display info regarding the cash availible to trade, and how much profit/loss the portfolio has currently
+# Mock Investor App  
+MockInvestor is a simple Android application that allows users to simulate buying and selling stocks in a virtual trading environment.
+
+## Features
+
+- View and manage a portfolio of stocks.
+- Simulate buying and selling stocks.
+- Real-time stock price updates.
+- Save and load portfolio data.
+
+## Getting Started  
+- To run the app on an android device, simply download the apk file located in the root directory of this repo (MockInvestor.apk)
+- To run the app on an emulator, you will need to download android studio and follow the instructions below (Editing App)
+
+## Editing App:
+Prerequsities:  
+- Download java, the latest version can be found at: https://www.oracle.com/java/technologies/downloads/
+- Download android studio: https://developer.android.com/studio
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/MockInvestor.git
+```  
+2. Create a local.properties file in the root directory: stock_app/local.properties should be the file path   
+3. Copy and paste the following line into local.properties and then save the file: 
+```txt
+sdk.dir=C\:\\Users\\YourWindowsUserNameHere\\AppData\\Local\\Android\\Sdk
+```
+- Replace YourWindowsUserNameHere with your windows username. The default installation path of Sdk is above, if your installation path is any different you will have to change that.  
+4. Build the gradle files (a 'sync files' should pop up at the top of the screen')  
+5. Run the app using the run button 
+6. If necessary, change the compile sdk version from 33 to 34 in the build.gradle.kts file
+```kts
+android {
+    namespace = "com.example.mockinvestor"
+    compileSdk = 34
+```
