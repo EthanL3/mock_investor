@@ -12,7 +12,7 @@ MockInvestor is a simple Android application that allows users to simulate buyin
 - To run the app on an android device, simply download the apk file located in the root directory of this repo (MockInvestor.apk)
 - To run the app on an emulator, you will need to download android studio and follow the instructions below (Editing App)
 - Create a config.properties file with a valid API key from https://www.alphavantage.co/support/#api-key (free)
-- The config.properties filepath should be stock_app/app-/amin/src/assets/config.properties
+- The config.properties filepath should be stock_app/app/main/src/assets/config.properties
 - The sytax of the file is:
 ```txt
 ALPHA_VANTAGE_API_KEY=YourAPIKeyHere
