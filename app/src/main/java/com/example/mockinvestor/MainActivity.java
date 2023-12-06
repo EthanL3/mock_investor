@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                 //MyApplication.getInstance().loadStocksAtOpen();
                 //adapter.notifyDataSetChanged();
                 MyApplication.getInstance().updateStockData();
+                total_value_of_stocks.setText(String.format("Total value of stocks: $%.2f", MyApplication.getInstance().getTotalValueOfStocks()));
                 adapter.notifyDataSetChanged();
             }
         });
