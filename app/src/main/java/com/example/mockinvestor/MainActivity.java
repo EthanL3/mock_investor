@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +25,10 @@ import com.example.mockinvestor.avApi.UpdateCallback;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
+    private Handler handler;
+    private TextView total_value_of_stocks;
+    private static final long UPDATE_INTERVAL = 5000; // Update every 5 seconds
+    private StockAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Button btnSave = findViewById(R.id.btnSave);
 
         //TextView objects for cash left and holdings
-        TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
+        total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
 
         //if user has stocks, display them
         if(MyApplication.getInstance().getAllUserStocks().isEmpty()) {
@@ -52,18 +57,29 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
 
 
-        StockAdapter adapter = new StockAdapter(this, stocks, this);
+        adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-
+        /*
         Timer currentPriceTimer = new Timer();
         currentPriceTimer.schedule(new TimerTask() {
             @Override
-                public void run() {
-                MyApplication.getInstance().incrementDayCount();
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // UI update logic here
+                        MyApplication.getInstance().incrementDayCount();
+                        MyApplication.getInstance().updateStockData();
+                        total_value_of_stocks.setText(String.format("Total value of stocks: $%.2f", MyApplication.getInstance().getTotalValueOfStocks()));
+                        adapter.notifyDataSetChanged();
+                    }
+                });
             }
-        }, 10000); //delay 10 seconds
-
+        }, 5000);
+*/
+        handler = new Handler();
+        startRepeatingTask();
 
         //Button clicks
         btnTrade.setOnClickListener(new View.OnClickListener() {
@@ -134,5 +150,32 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         intent.putExtra("index", position);
         startActivity(intent);
     }
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            // Update the UI and schedule the next update
+            MyApplication.getInstance().incrementDayCount();
+            MyApplication.getInstance().updateStockData();
+            total_value_of_stocks.setText(String.format("Total value of stocks: $%.2f", MyApplication.getInstance().getTotalValueOfStocks()));
+            adapter.notifyDataSetChanged();
+            handler.postDelayed(this, UPDATE_INTERVAL);
+        }
+    };
+
+    void startRepeatingTask() {
+        handler.postDelayed(runnable, UPDATE_INTERVAL);
+    }
+
+    void stopRepeatingTask() {
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopRepeatingTask();
+    }
+
 }
 

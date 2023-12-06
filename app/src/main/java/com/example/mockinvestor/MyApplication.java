@@ -142,10 +142,6 @@ public class MyApplication extends Application {
                 throw new RuntimeException(e);
             }
         }
-        else {
-            Toast.makeText(this, "File does not exist", Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     public static MyApplication getInstance() {
