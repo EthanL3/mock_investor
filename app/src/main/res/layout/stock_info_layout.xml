@@ -5,175 +5,196 @@
     android:layout_height="match_parent"
     android:background="@color/blueBlack"
     tools:context=".StockInfoActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stock_info"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif"
+            android:text="Symbol"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stock_name"
+            android:text="Company Name"
+            android:layout_below="@id/symbol"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:textSize="12.5sp" />
 
-    <TextView
-        android:id="@+id/symbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif"
-        android:text="Symbol"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/stock_name"
-        android:text="Company Name"
-        android:layout_below="@id/symbol"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:fontFamily="sans-serif"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        <TextView
+            android:id="@+id/current_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stock_name"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Current Price"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/purchase_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stock_name"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Purchase Price"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/current_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/stock_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Current Price"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
-    <TextView
-        android:id="@+id/purchase_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/current_price"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Purchase Price"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
+        <TextView
+            android:id="@+id/current_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/purchase_price"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Current Value"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/purchase_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/purchase_price"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Purchase Value"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/current_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/purchase_price"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Current Value"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
-    <TextView
-        android:id="@+id/purchase_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/current_value"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Purchase Value"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
+        <TextView
+            android:id="@+id/purchase_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/purchase_value"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Purchase Day"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/purchase_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/purchase_value"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Purchase Day"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
+        <TextView
+            android:id="@+id/days_since_purchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/purchase_value"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Days Since Purchase"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/days_since_purchase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/purchase_day"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Days Since Purchase"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
+        <TextView
+            android:id="@+id/gain_loss_dollars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/days_since_purchase"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Gain/Loss ($)"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/gain_loss_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/days_since_purchase"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif"
+            android:text="Gain/Loss (%)"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/gain_loss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/days_since_purchase"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Gain/Loss ($/%)"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
-    <TextView
-        android:id="@+id/current_volume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/gain_loss"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:text="Current Volume"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/current_day"
-        android:text="Current Day"
-        android:layout_below="@id/current_volume"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif"
-        android:textColor="@color/lightBlue"
-        android:textSize="17sp" />
+        <TextView
+            android:id="@+id/current_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gain_loss_dollars"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Current Volume"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/current_day"
+            android:text="Current Day"
+            android:layout_below="@id/gain_loss_dollars"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/lightBlue"
+            android:textSize="15sp" />
+        <EditText
+            android:id="@+id/enter_shares_sold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/lightBlue"
+            android:hint="Number of shares"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/current_volume"
+            android:textColor="@color/lightBlue"
+            android:textColorHint="@color/lightBlue"
+            android:textSize="17.5sp"/>
+
+        <Button
+            android:id="@+id/btnSell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/enter_shares_sold"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/lightBlue"
+            android:fontFamily="sans-serif"
+            android:layout_marginStart="60dp"
+            android:text="Sell"
+            android:textColor="@color/blueBlack"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSellAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/enter_shares_sold"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="60dp"
+            android:backgroundTint="@color/lightBlue"
+            android:fontFamily="sans-serif"
+            android:text="Sell All"
+            android:textColor="@color/blueBlack"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/stockLineChart"
+        android:layout_below="@id/stock_info"
+        android:layout_centerHorizontal="true" />
 
 
 
-    <EditText
-        android:id="@+id/enter_shares_sold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/lightBlue"
-        android:hint="Number of shares"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/current_day"
-        android:textColor="@color/lightBlue"
-        android:textColorHint="@color/lightBlue" />
 
-    <Button
-        android:id="@+id/btnSell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/enter_shares_sold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/lightBlue"
-        android:fontFamily="sans-serif"
-        android:text="Sell"
-        android:textColor="@color/blueBlack"
-        android:textSize="15dp"
-        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnSellAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnSell"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/lightBlue"
-        android:fontFamily="sans-serif"
-        android:text="Sell All"
-        android:textColor="@color/blueBlack"
-        android:textSize="15dp"
-        android:textStyle="bold" />
 
 
 </RelativeLayout>

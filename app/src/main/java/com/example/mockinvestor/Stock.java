@@ -1,8 +1,11 @@
 package com.example.mockinvestor;
 
+import com.github.mikephil.charting.data.Entry;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -15,6 +18,7 @@ public class Stock implements Serializable {
     private double currentPrice, purchasePrice; //price per share
     private double currentValue, purchaseValue;//value of all shares
     private int shares;
+    private ArrayList<Entry> dataVals;
 
     public Stock(String symbol, double price, double volume) {
         this.symbol = symbol;
@@ -27,6 +31,7 @@ public class Stock implements Serializable {
             this.daysSincePurchase = 0;
             this.purchaseDay = MyApplication.getInstance().getDayCount();
             this.name = setName();
+            this.dataVals = new ArrayList<>();
         } catch (NumberFormatException e){
             System.out.println("Error: initialization: string not in number format");
         }
@@ -107,6 +112,19 @@ public class Stock implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(symbol);
+    }
+
+
+    public void setDataVals() {
+        dataVals.clear();
+        for(int i = 0; i <= MyApplication.getInstance().getDayCount(); i++)
+        {
+            dataVals.add(new Entry(i, CSVReader.getClosePrice(i, symbol)));
+        }
+    }
+
+    public ArrayList<Entry> getDataVals() {
+        return this.dataVals;
     }
 
     public void setDaysSincePurchase(int daysSincePurchase) {

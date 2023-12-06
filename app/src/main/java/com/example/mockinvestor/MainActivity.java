@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     private Handler handler;
     private TextView total_value_of_stocks;
-    private static final long UPDATE_INTERVAL = 5000; // Update every 5 seconds
+    private static final long UPDATE_INTERVAL = 7500; // Update every 5 seconds
     private StockAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
