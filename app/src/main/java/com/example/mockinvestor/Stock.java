@@ -9,26 +9,14 @@ import java.util.Objects;
 
 public class Stock implements Serializable {
     private String symbol;
-    private int daysSincePurchase;
+    private int daysSincePurchase, purchaseDay;
     private double volume;
     private double gainLossDollars, gainLossPercent; //total gain/loss of all shares
     private double currentPrice, purchasePrice; //price per share
     private double currentValue, purchaseValue;//value of all shares
     private int shares;
-    private Date purchaseDate, currentDate;
-    //private String date = "2023-12-01"; //placeholder
 
-    /*public Stock(String symbol, int shares) { //temporary code
-        this.symbol = symbol;
-        this.shares = shares;
-        this.currentPrice = 100;
-        this.purchasePrice = 75;
-        this.volume = 100000;
-        this.gainLossDollars = 25;
-        this.gainLossPercent = 33.33;
-    }*/
-
-    public Stock(String symbol, double price, double volume, String date){
+    public Stock(String symbol, double price, double volume) {
         this.symbol = symbol;
         try {
             this.currentPrice = price;
@@ -37,17 +25,15 @@ public class Stock implements Serializable {
             this.purchaseValue = purchasePrice * shares;
             this.volume = volume;
             this.daysSincePurchase = 0;
+            this.purchaseDay = MyApplication.getInstance().getDayCount();
         } catch (NumberFormatException e){
             System.out.println("Error: initialization: string not in number format");
         }
-        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            purchaseDate = date_format.parse(date);
-            currentDate = date_format.parse(date);
-        } catch (ParseException e) {
-            System.out.println("Error: purchaseStock: string not in 'yyyy-MM-dd' format" + e.getMessage());
-        }
         updateGainsLoss();
+    }
+
+    public int getPurchaseDay() {
+        return purchaseDay;
     }
     public String getSymbol(){
         return symbol;
@@ -78,28 +64,19 @@ public class Stock implements Serializable {
     public double getGainLossPercent(){
         return gainLossPercent;
     }
+    /*
     public String getPurchaseDate() {
         return purchaseDate.toString();
     }
     public String getCurrentDate() {
         return currentDate.toString();
     }
+    */
     public int getDaysSincePurchase() {
         return daysSincePurchase;
     }
 
     //update day function: to be used every day through clock-imitating loop
-    public void updateDay(double price){
-        this.currentPrice = price;
-        this.currentValue = currentPrice * shares;
-        updateGainsLoss();
-        //update date by one day in "currentDate"
-        Calendar cal_currentDate = Calendar.getInstance();
-        cal_currentDate.setTime(currentDate);
-        cal_currentDate.add(Calendar.DATE, 1);
-        currentDate = cal_currentDate.getTime();
-        this.daysSincePurchase++;
-    }
 
     public void buyShares(int numShares) {
         this.shares += numShares;
@@ -113,8 +90,7 @@ public class Stock implements Serializable {
         this.purchaseValue -= numShares * currentPrice;
     }
 
-    //private functions to be used within class (IGNORE)
-    private void updateGainsLoss(){
+    public void updateGainsLoss(){
         gainLossDollars = currentValue - purchaseValue;
         gainLossPercent = (gainLossDollars / purchaseValue) * 100; //in percent
     }
@@ -130,5 +106,32 @@ public class Stock implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(symbol);
+    }
+
+    public void setDaysSincePurchase(int daysSincePurchase) {
+        this.daysSincePurchase = daysSincePurchase;
+    }
+
+    public void setShares(int shares){
+        this.shares = shares;
+    }
+
+    public void setCurrentValue(double v) {
+        this.currentValue = v;
+    }
+
+    public void setPurchaseValue(double v) {
+        this.purchaseValue = v;
+    }
+
+    public void setCurrentPrice(float closePrice) {
+        this.currentPrice = closePrice;
+    }
+
+    public void setGainLossDollars(double v) {
+        this.gainLossDollars = v;
+    }
+    public void setGainLossPercent(double v) {
+        this.gainLossPercent = v;
     }
 }

@@ -1,8 +1,13 @@
 package com.example.mockinvestor;
 
 import android.app.Application;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -11,24 +16,29 @@ public class MyApplication extends Application {
     private static MyApplication instance;
     ArrayList<Stock> allUserStocks = new ArrayList<>();
     double holdings = 0, availableCash = 100000;
-    int portfolioSize = 0;
     double totalValueOfStocks = 0;
-    int timerCount = 0;
+    int dayCount;
 
     public int getDayCount(){
-        return timerCount;
+        return dayCount;
     }
     public void incrementDayCount(){
-        if (timerCount < 100) {this.timerCount += 1;}
-        else {this.timerCount = 0; }
+        if (dayCount < 100) {
+            this.dayCount += 1;
+            for(int i = 0; i < allUserStocks.size(); i++) {
+                allUserStocks.get(i).setDaysSincePurchase(allUserStocks.get(i).getDaysSincePurchase() + 1);
+            }
+        }
+        else {
+            this.dayCount = 0;
+        }
     }
 
     public double getAvailableCash(){
         return availableCash;
     }
-    //public void setAvailableCash(double val){ this.availableCash = val; }
+    public void setAvailableCash(double val){ this.availableCash = val; }
 
-    public int getPortfolioSize(){ return portfolioSize; }
     public double getTotalValueOfStocks() {
         totalValueOfStocks = 0;
         for(int i = 0; i < allUserStocks.size(); i++) {
@@ -46,13 +56,10 @@ public class MyApplication extends Application {
     public void purchaseStocks(Stock stock, int shares) {
         try {
             if (containsStock(stock)) {
-                int indexOfStock = allUserStocks.indexOf(stock);
-                Stock user_stock = allUserStocks.get(indexOfStock);
-                user_stock.buyShares(shares);
+                allUserStocks.get(allUserStocks.indexOf(stock)).buyShares(shares);
             } else {
                 addStockToList(stock);
-                portfolioSize++;
-                allUserStocks.get(portfolioSize-1).buyShares(shares);
+                allUserStocks.get(allUserStocks.indexOf(stock)).buyShares(shares);
             }
             availableCash = availableCash - stock.getPurchaseValue();
         } catch (NullPointerException e) {
@@ -68,17 +75,16 @@ public class MyApplication extends Application {
             if (containsStock(stock)) {
                 if (shares >= stock.getShares()) {
                     removeStockFromList(stock);
-                    portfolioSize--;
-                    availableCash = availableCash + stock.getCurrentValue();
+                    availableCash += stock.getCurrentValue();
                 } else {
                     stock.sellShares(shares);
-                    availableCash = availableCash + (shares * stock.getCurrentPrice());
+                    availableCash += (shares * stock.getCurrentPrice());
                 }
             } else {
-                System.out.println("Error: SellStocks: This stock does not exist in your portfolio.");
+                Toast.makeText(this, "Error: SellStocks: You do not own this stock.", Toast.LENGTH_SHORT).show();
             }
         } catch (NullPointerException nullPointerException) {
-            System.out.println("Error: SellStocks: You have no stocks to sell.");
+            Toast.makeText(this, "Error: SellStocks: You do not own this stock.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -86,21 +92,60 @@ public class MyApplication extends Application {
     public void saveStocks(){ //to save in Portfolio.csv
         try {
             String data;
-            portfolioCSVWriter.makePortfolioCSV();
-            //line: stock symbol, purchase price, volume, purchase date, shares, current price (at time of closing app)
-            for (int i = 0; i < portfolioSize; i++) {
+            PortfolioCSVWriter.makePortfolioCSV();
+            data = String.valueOf(availableCash) + "," + String.valueOf(dayCount) + "\n";
+            //line: symbol, purchasePrice, currentPrice, volume, daysSincePurchase, shares, currentValue, dayCount
+            for (int i = 0; i < allUserStocks.size(); i++) {
                 Stock currentStock = allUserStocks.get(i);
                 data = currentStock.getSymbol() + "," + String.valueOf(currentStock.getPurchasePrice()) + "," + String.valueOf(currentStock.getVolume());
-                data = data + "," + currentStock.getPurchaseDate() + "," + String.valueOf(currentStock.getShares());
-                data = data + "," + String.valueOf(currentStock.getCurrentValue());
-                portfolioCSVWriter.addToPortfolioCSV(data);
+                data += "," + String.valueOf(currentStock.getDaysSincePurchase()) + "," + String.valueOf(currentStock.getShares());
+                data += "," + String.valueOf(availableCash) + "," + String.valueOf(dayCount) + "\n";
+                PortfolioCSVWriter.addToPortfolioCSV(data);
             }
         } catch (IOException e){
-            System.out.println("Error: Save: Couldn't save your progress");
+            Toast.makeText(this, "Unable to Save Stocks", Toast.LENGTH_SHORT).show();
         }
     }
-    public void loadStocksAtOpen(){
-        allUserStocks = portfolioCSVReader.loadSavedStocks();
+    public void loadStocksAtOpen() {
+        FileReader fr = null;
+        String filePathStr ="/data/user/0/com.example.mockinvestor/files/CSVFiles/Portfolio.csv";
+        File csvFile = new File(filePathStr);
+        if (csvFile.exists())
+        {
+            try {
+                fr = new FileReader(csvFile);
+                BufferedReader br = new BufferedReader(fr);
+                //line: symbol, purchasePrice, volume, daysSincePurchase, shares, currentValue, dayCount;
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String [] dat = line.split(",");
+                    Stock currentStock = new Stock(dat[0], Double.parseDouble(dat[1]), Double.parseDouble(dat[2]));
+                    currentStock.setDaysSincePurchase((int) Double.parseDouble(dat[3]));
+                    currentStock.setShares((int) Double.parseDouble(dat[4]));
+                    currentStock.setCurrentPrice(CSVReader.getClosePrice(dayCount, currentStock.getSymbol()));
+                    currentStock.setCurrentValue(currentStock.getCurrentPrice() * currentStock.getShares());
+                    currentStock.setPurchaseValue(currentStock.getPurchasePrice() * currentStock.getShares());
+                    currentStock.setGainLossDollars(currentStock.getCurrentValue() - currentStock.getPurchaseValue());
+                    currentStock.setGainLossPercent((currentStock.getCurrentValue() - currentStock.getPurchaseValue()) / currentStock.getPurchaseValue());
+                    addStockToList(currentStock);
+                    dayCount = (int) Double.parseDouble(dat[6]);
+                }
+                br.close();
+                for (Stock stock : allUserStocks) {
+                    availableCash -= stock.getPurchaseValue();
+                }
+            } catch (FileNotFoundException e) {
+                Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            } catch (IOException e) {
+                Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            Toast.makeText(this, "File does not exist", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public static MyApplication getInstance() {
@@ -121,11 +166,34 @@ public class MyApplication extends Application {
         return false;
     }
 
-    public void updateStockData() {
-        for(int i=0; i<portfolioSize; i++){
-            String ticker = this.allUserStocks.get(i).getSymbol();
-            this.allUserStocks.get(i).updateDay(CSVReader.getClosePrice(timerCount,ticker));
+
+    public boolean containsStock(String ticker) {
+        for(int i = 0; i < this.allUserStocks.size(); i++) {
+            if (this.allUserStocks.get(i).getSymbol().equals(ticker)) {
+                return true;
+            }
         }
+        return false;
+    }
+    public void updateStockData() {
+        for(int i=0; i<allUserStocks.size(); i++){
+            String ticker = this.allUserStocks.get(i).getSymbol();
+            Stock currentStock = this.allUserStocks.get(i);
+            currentStock.setCurrentPrice(CSVReader.getClosePrice(dayCount, ticker));
+            currentStock.setCurrentValue(currentStock.getCurrentPrice() * currentStock.getShares());
+            currentStock.setGainLossDollars(currentStock.getCurrentValue() - currentStock.getPurchaseValue());
+            currentStock.setGainLossPercent((currentStock.getCurrentValue() - currentStock.getPurchaseValue()) / currentStock.getPurchaseValue());
+        }
+    }
+
+    public void resetApp()
+    {
+        this.availableCash = 100000;
+        this.dayCount = 0;
+        this.allUserStocks.clear();
+        this.totalValueOfStocks = 0;
+        this.holdings = 0;
+        saveStocks();
     }
 
     public ArrayList<Stock> getAllUserStocks() {

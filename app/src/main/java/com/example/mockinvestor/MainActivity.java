@@ -40,13 +40,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         //TextView objects for cash left and holdings
         TextView total_value_of_stocks = findViewById(R.id.total_value_of_stocks);
-        total_value_of_stocks.setText(String.format("Total value of stocks: $%.2f", MyApplication.getInstance().getTotalValueOfStocks()));
 
         //if user has stocks, display them
-        if(!MyApplication.getInstance().getAllUserStocks().isEmpty()) {
-            //MyApplication.getInstance().loadStocksAtOpen();
-            stocks = MyApplication.getInstance().getAllUserStocks();
+        if(MyApplication.getInstance().getAllUserStocks().isEmpty()) {
+            MyApplication.getInstance().loadStocksAtOpen();
         }
+        stocks = MyApplication.getInstance().getAllUserStocks();
+
+        total_value_of_stocks.setText(String.format("Total value of stocks: $%.2f", MyApplication.getInstance().getTotalValueOfStocks()));
+
+
+
 
         StockAdapter adapter = new StockAdapter(this, stocks, this);
         recycler_view.setAdapter(adapter);

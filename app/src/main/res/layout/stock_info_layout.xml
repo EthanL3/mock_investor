@@ -65,14 +65,14 @@
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/purchase_date"
+        android:id="@+id/purchase_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/purchase_value"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:text="Purchase Date"
+        android:text="Purchase Day"
         android:textColor="@color/lightBlue"
         android:textSize="17sp" />
 
@@ -80,7 +80,7 @@
         android:id="@+id/days_since_purchase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/purchase_date"
+        android:layout_below="@id/purchase_day"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
@@ -110,6 +110,17 @@
         android:text="Current Volume"
         android:textColor="@color/lightBlue"
         android:textSize="17sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/current_day"
+        android:text="Current Day"
+        android:layout_below="@id/current_volume"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/lightBlue"
+        android:textSize="17sp" />
 
 
 
@@ -121,7 +132,7 @@
         android:backgroundTint="@color/lightBlue"
         android:hint="Number of shares"
         android:layout_marginTop="30dp"
-        android:layout_below="@id/current_volume"
+        android:layout_below="@id/current_day"
         android:textColor="@color/lightBlue"
         android:textColorHint="@color/lightBlue" />
 

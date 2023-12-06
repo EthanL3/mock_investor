@@ -53,15 +53,12 @@ public class TradeActivity extends AppCompatActivity {
                     }
                 };
                 apiobject.runStockDataUpdateWithRetry(TradeActivity.this, ticker, 5, updateCallback);
-                System.out.println(CSVReader.readClosingPrices(ticker).size());
                 if (CSVReader.readClosingPrices(ticker).size() == 0){
                     Toast.makeText(TradeActivity.this, "Invalid Ticker Or Out Of API Calls", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(0, ticker), CSVReader.getVolume(0, ticker), CSVReader.getDate(0, ticker));
-                //end of api task and stock creation
-
-                MyApplication.getInstance().purchaseStocks(user_stock,shares);
+                else {
+                    Stock user_stock = new Stock(ticker, CSVReader.getClosePrice(MyApplication.getInstance().getDayCount(), ticker), CSVReader.getVolume(MyApplication.getInstance().getDayCount(), ticker));
+                    MyApplication.getInstance().purchaseStocks(user_stock, shares);
                 }
                 //going back to main activity
                 Intent intent = new Intent(TradeActivity.this, MainActivity.class);
