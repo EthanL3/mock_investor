@@ -35,6 +35,7 @@ public class StockInfoActivity extends AppCompatActivity {
         TextView gain_loss = findViewById(R.id.gain_loss);
         TextView current_volume = findViewById(R.id.current_volume);
         TextView current_day = findViewById(R.id.current_day);
+        TextView stock_name = findViewById(R.id.stock_name);
 
         Button btnSell = findViewById(R.id.btnSell);
         Button btnSellAll = findViewById(R.id.btnSellAll);
@@ -51,6 +52,7 @@ public class StockInfoActivity extends AppCompatActivity {
         purchase_date.setText(String.format("Purchase Day: %d", stockToBeSold.getPurchaseDay()));
         days_since_purchase.setText(String.format("Days Since Purchase: %d", stockToBeSold.getDaysSincePurchase()));
         current_day.setText(String.format("Current Day: %d", MyApplication.getInstance().getDayCount()));
+        stock_name.setText(stockToBeSold.getName());
 
 
         btnSell.setOnClickListener(new View.OnClickListener() {
