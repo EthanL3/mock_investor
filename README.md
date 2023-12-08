@@ -9,12 +9,14 @@ MockInvestor is a simple Android application that allows users to simulate buyin
 - Save and load portfolio data.
 
 ## Setting up API:
-- Create a config.properties file with a valid API key from https://www.alphavantage.co/support/#api-key (free)
+- Create a new file and name it config.properties
 - The config.properties filepath should be stock_app/app/main/src/assets/config.properties
-- The sytax of the file is:
+- Go to https://www.alphavantage.co/support/#api-key to get a free API key
+- Edit the file (should be blank right now) to have the following line:
 ```txt
 ALPHA_VANTAGE_API_KEY=YourAPIKeyHere
 ```
+- API is fully set up now, not that it is limited to 25 requests/day
 
 ## Getting Started  
 - To run the app on an android device, simply download the apk file located in the root directory of this repo (MockInvestor.apk)
