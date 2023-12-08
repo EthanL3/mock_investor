@@ -16,7 +16,7 @@ MockInvestor is a simple Android application that allows users to simulate buyin
 ```txt
 ALPHA_VANTAGE_API_KEY=YourAPIKeyHere
 ```
-- API is fully set up now, not that it is limited to 25 requests/day
+- API is fully set up now, note that it is limited to 25 requests/day
 
 ## Getting Started  
 - To run the app on an android device, simply download the apk file located in the root directory of this repo (MockInvestor.apk)
