@@ -3,7 +3,7 @@ MockInvestor is a simple Android application that allows users to simulate buyin
 
 ## Video Demo:
 [https://youtu.be/uwwTBX9VWsA](https://youtu.be/uwwTBX9VWsA)  
-## Features
+## Features:
 - View and manage a portfolio of stocks.
 - Simulate buying and selling stocks.
 - Real-time stock price updates.
@@ -11,7 +11,8 @@ MockInvestor is a simple Android application that allows users to simulate buyin
 
 ## Setting up API:
 - Create a new file and name it config.properties
-- The config.properties filepath should be stock_app/app/main/src/assets/config.properties
+- The config.properties filepath should be mock_investor/app/main/src/assets/config.properties
+- If there is no assets folder in mock_investor/app/main/src, then right click on the path and make a new directory and name it 'assets'
 - Go to https://www.alphavantage.co/support/#api-key to get a free API key
 - Edit the file (should be blank right now) to have the following line:
 ```txt
@@ -19,7 +20,7 @@ ALPHA_VANTAGE_API_KEY=YourAPIKeyHere
 ```
 - API is fully set up now, note that it is limited to 25 requests/day
 
-## Getting Started  
+## Getting Started:
 - To run the app on an android device, simply download the apk file located in the root directory of this repo (MockInvestor.apk)
 - To run the app on an emulator, you will need to download android studio and follow the instructions below (Editing App)
 - The API Key must be set up before running the app
