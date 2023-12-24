@@ -39,7 +39,11 @@ git clone https://github.com/your-username/mock_investor.git
 sdk.dir=C\:\\Users\\YourWindowsUserNameHere\\AppData\\Local\\Android\\Sdk
 ```
 - Replace YourWindowsUserNameHere with your windows username. The default installation path of Sdk is above, if your installation path is any different you will have to change that.  
-4. Build the gradle files (a 'sync files' should pop up at the top of the screen')  
+4. Build the gradle files (a 'sync files' should pop up at the top of the screen')
+5. If you get an error and are unable to build the gradle files, you may need to create a gradle.properties file in the root directory and have it include the following:
+```
+android.useAndroidX=true
+```
 5. Run the app using the run button 
 6. If necessary, change the compile sdk version from 33 to 34 in the build.gradle.kts file
 ```kts
