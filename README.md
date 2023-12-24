@@ -31,7 +31,7 @@ Prerequsities:
 - Download android studio: https://developer.android.com/studio
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/MockInvestor.git
+git clone https://github.com/your-username/mock_investor.git
 ```  
 2. Create a local.properties file in the root directory: stock_app/local.properties should be the file path   
 3. Copy and paste the following line into local.properties and then save the file: 
