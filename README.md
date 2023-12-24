@@ -1,8 +1,9 @@
 # Mock Investor App  
 MockInvestor is a simple Android application that allows users to simulate buying and selling stocks in a virtual trading environment.
 
+## Video Demo:
+[https://youtu.be/uwwTBX9VWsA](https://youtu.be/uwwTBX9VWsA)  
 ## Features
-
 - View and manage a portfolio of stocks.
 - Simulate buying and selling stocks.
 - Real-time stock price updates.
