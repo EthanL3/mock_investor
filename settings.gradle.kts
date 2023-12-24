@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Mock Investor"
+rootProject.name = "mock_investor"
 include(":app")
  
